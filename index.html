@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIHAO STUDY — Поступление в университеты Китая без хаоса и ошибок</title>
+  <meta name="description" content="Помогаем абитуриентам из Казахстана и СНГ поступить в топовые университеты Китая — от выбора вуза до получения визы. Пакет Лайт от 80 000 тг." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="/" class="logo">
+      <span class="logo__icon">你好</span>
+      <span class="logo__text">NIHAO <strong>STUDY</strong></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#services" class="nav__link">Услуги</a>
+      <a href="#universities" class="nav__link">Вузы</a>
+      <a href="#process" class="nav__link">Процесс</a>
+      <a href="#cases" class="nav__link">Кейсы</a>
+      <a href="#faq" class="nav__link">FAQ</a>
+    </nav>
+    <a href="#contact" class="btn btn--primary btn--sm header__cta">Записаться</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero__bg">
+    <img class="hero__photo" src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=80" alt="Шанхай, Китай" loading="eager" />
+    <div class="hero__overlay"></div>
+    <div class="hero__shapes">
+      <div class="shape shape--1"></div>
+      <div class="shape shape--2"></div>
+      <div class="shape shape--3"></div>
+    </div>
+    <div class="hero__particles" id="particles"></div>
+  </div>
+  <div class="container hero__content">
+    <div class="hero__badge">🇨🇳 Специализируемся только на Китае</div>
+    <h1 class="hero__title">Поступление в университеты Китая <em>без хаоса и ошибок</em></h1>
+    <p class="hero__subtitle">Помогаем абитуриентам из Казахстана и СНГ поступить в топовые вузы Китая — от выбора университета до получения визы</p>
+    <div class="hero__actions">
+      <a href="#contact" class="btn btn--primary btn--lg">Записаться на консультацию</a>
+      <a href="#quiz" class="btn btn--outline btn--lg">Подобрать университет →</a>
+    </div>
+    <div class="hero__stats">
+      <div class="stat">
+        <span class="stat__num">200+</span>
+        <span class="stat__label">студентов поступили</span>
+      </div>
+      <div class="stat__divider"></div>
+      <div class="stat">
+        <span class="stat__num">6</span>
+        <span class="stat__label">топовых университетов</span>
+      </div>
+      <div class="stat__divider"></div>
+      <div class="stat">
+        <span class="stat__num">87%</span>
+        <span class="stat__label">получили стипендию</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <span>Узнать больше</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ========== WHY CHINA ========== -->
+<section class="why-china section" id="why">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Почему Китай</span>
+      <h2 class="section__title">Китай — умный выбор прямо сейчас</h2>
+      <p class="section__desc">Пока другие платят за Европу и США, наши студенты получают диплом топового вуза и знание китайского — главного языка будущего</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card__icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+        <h3>Дешевле в 3–5 раз</h3>
+        <p>Стоимость обучения и жизни значительно ниже Европы и США при сопоставимом уровне образования</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Гранты и стипендии</h3>
+        <p>Полное или частичное покрытие учёбы и жилья. Реально получить при правильной подготовке заявки</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Карьера в крупнейшей экономике</h3>
+        <p>Диплом + китайский язык = конкурентное преимущество на рынке труда. Alibaba, Huawei, ByteDance</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Программы на английском</h3>
+        <p>Можно учиться на английском, параллельно изучая китайский. Не нужно знать язык с нуля</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon"><i class="fa-solid fa-people-group"></i></div>
+        <h3>Международная среда</h3>
+        <p>Студенты со всего мира, широкий нетворкинг и деловые связи с первых курсов</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon"><i class="fa-solid fa-building-columns"></i></div>
+        <h3>Стажировки и практика</h3>
+        <p>Прямые связи университетов с индустрией: Alibaba, Tencent, Huawei и сотнями других компаний</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROBLEM ========== -->
+<section class="problem section section--dark" id="problem">
+  <div class="container">
+    <div class="section__header section__header--light">
+      <span class="section__tag section__tag--light">Боль клиентов</span>
+      <h2 class="section__title">Почему большинство теряют время и деньги</h2>
+    </div>
+    <div class="problem__grid">
+      <div class="problem__card">
+        <span class="problem__num">01</span>
+        <h3>Не знают, какой вуз им подходит</h3>
+        <p>Подают куда попало и получают отказы — или переплачивают за вуз ниже своего уровня</p>
+      </div>
+      <div class="problem__card">
+        <span class="problem__num">02</span>
+        <h3>Ошибки в мотивационном письме</h3>
+        <p>Шаблонные письма, которые комиссия видит насквозь. Одна ошибка = отказ даже при хорошем GPA</p>
+      </div>
+      <div class="problem__card">
+        <span class="problem__num">03</span>
+        <h3>Пропущенные дедлайны</h3>
+        <p>Китайские университеты имеют строгие окна подачи. Опоздание на день — потеря целого года</p>
+      </div>
+      <div class="problem__card">
+        <span class="problem__num">04</span>
+        <h3>Месяцы изучения системы с нуля</h3>
+        <p>Разбираться в требованиях каждого вуза самостоятельно — это работа на несколько месяцев</p>
+      </div>
+    </div>
+    <div class="problem__solution">
+      <div class="solution__text">
+        <span class="solution__label">Решение</span>
+        <p>NIHAO STUDY берёт на себя весь этот хаос — вы фокусируетесь на учёбе, мы на поступлении</p>
+      </div>
+      <a href="#contact" class="btn btn--white">Хочу без хаоса →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== OUR APPROACH ========== -->
+<section class="approach section" id="approach">
+  <div class="container">
+    <div class="approach__inner">
+      <div class="approach__left">
+        <span class="section__tag">Наш подход</span>
+        <h2 class="section__title">Мы не просто помогаем с документами — мы доводим до поступления</h2>
+        <p class="approach__text">Большинство агентств дают список вузов и список документов — и оставляют вас один на один с системой. Мы работаем иначе.</p>
+        <div class="approach__compare">
+          <div class="compare__col compare__col--bad">
+            <div class="compare__header">Другие агентства</div>
+            <ul>
+              <li>Шаблонный список вузов</li>
+              <li>Список документов в PDF</li>
+              <li>«Дальше сами»</li>
+              <li>Нет контроля дедлайнов</li>
+              <li>Ошибки = ваша проблема</li>
+            </ul>
+          </div>
+          <div class="compare__col compare__col--good">
+            <div class="compare__header">NIHAO STUDY</div>
+            <ul>
+              <li>Подбор под ваш профиль</li>
+              <li>Полная подготовка документов</li>
+              <li>Поддержка до оффера</li>
+              <li>Контроль всех дедлайнов</li>
+              <li>Проверка и коррекция всего</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn--primary">Начать с консультации</a>
+      </div>
+      <div class="approach__right">
+        <div class="approach__img-block">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80" alt="Студенты из Казахстана учатся в Китае" loading="lazy" />
+          <div class="approach__img-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Честная оценка шансов</span>
+          </div>
+        </div>
+        <div class="approach__visual">
+          <div class="visual__card">
+            <div class="visual__icon"><i class="fa-solid fa-crosshairs"></i></div>
+            <div class="visual__text">
+              <strong>Только Китай</strong>
+              <span>Узкая специализация = глубокая экспертиза</span>
+            </div>
+          </div>
+          <div class="visual__card">
+            <div class="visual__icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="visual__text">
+              <strong>Честная оценка</strong>
+              <span>Без завышенных ожиданий — только реальные шансы</span>
+            </div>
+          </div>
+          <div class="visual__card">
+            <div class="visual__icon"><i class="fa-solid fa-user-group"></i></div>
+            <div class="visual__text">
+              <strong>Ограниченный набор</strong>
+              <span>Работаем с небольшим числом студентов = качество</span>
+            </div>
+          </div>
+          <div class="visual__card">
+            <div class="visual__icon"><i class="fa-solid fa-trophy"></i></div>
+            <div class="visual__text">
+              <strong>Результат = поступление</strong>
+              <span>Не «консультация», а реальное место в вузе</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PHOTO BANNER ========== -->
+<div class="photo-banner">
+  <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80" alt="Пекин, Китай" loading="lazy" />
+  <div class="photo-banner__overlay">
+    <div class="container">
+      <p class="photo-banner__quote">«Китай — это не риск. Это возможность для тех, кто успел»</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SERVICES ========== -->
+<section class="services section section--gray" id="services">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Услуги и цены</span>
+      <h2 class="section__title">Выберите формат работы</h2>
+      <p class="section__desc">Три пути к поступлению — выберите тот, что подходит вашей ситуации</p>
+    </div>
+    <div class="services__grid">
+
+      <div class="service-card">
+        <div class="service-card__badge">Популярный старт</div>
+        <div class="service-card__header">
+          <h3>Пакет Лайт</h3>
+          <span class="service-card__subtitle">Стратегия поступления</span>
+        </div>
+        <div class="service-card__price">
+          <span class="price__amount">80 000</span>
+          <span class="price__currency">тенге</span>
+        </div>
+        <p class="service-card__for">Для тех, кто хочет чёткий план и действует самостоятельно</p>
+        <ul class="service-card__features">
+          <li>✓ Индивидуальная консультация ~1 час</li>
+          <li>✓ Анализ вашего профиля (язык, оценки, бюджет)</li>
+          <li>✓ Подбор подходящих университетов</li>
+          <li>✓ Требования каждого вуза</li>
+          <li>✓ Полный список документов</li>
+          <li>✓ Пошаговый план и тайминг подачи</li>
+          <li>✓ Мини-консультации в процессе</li>
+        </ul>
+        <div class="service-card__result">
+          <span>Результат:</span> Чёткий план — что, куда и когда подавать
+        </div>
+        <a href="#contact" class="btn btn--outline btn--full">Записаться на Лайт</a>
+      </div>
+
+      <div class="service-card service-card--featured">
+        <div class="service-card__badge service-card__badge--gold">Рекомендуем</div>
+        <div class="service-card__header">
+          <h3>Пакет Стандарт</h3>
+          <span class="service-card__subtitle">Полное сопровождение</span>
+        </div>
+        <div class="service-card__price">
+          <span class="price__amount">250 000</span>
+          <span class="price__currency">тенге</span>
+        </div>
+        <p class="service-card__for">Для тех, кто хочет результат с минимальным стрессом</p>
+        <ul class="service-card__features">
+          <li>✓ Всё из пакета Лайт</li>
+          <li>✓ Полный сбор документов</li>
+          <li>✓ Сильное мотивационное письмо</li>
+          <li>✓ Проверка и коррекция всех документов</li>
+          <li>✓ Заполнение форм университетов</li>
+          <li>✓ Подача документов</li>
+          <li>✓ Сопровождение на всех этапах</li>
+          <li>✓ Контроль дедлайнов</li>
+        </ul>
+        <div class="service-card__result">
+          <span>Результат:</span> Поступление с минимумом ошибок и стресса
+        </div>
+        <a href="#contact" class="btn btn--primary btn--full">Записаться на Стандарт</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card__header">
+          <h3>Китайский язык</h3>
+          <span class="service-card__subtitle">HSK + CSCA подготовка</span>
+        </div>
+        <div class="service-card__price">
+          <span class="price__amount">Уточнить</span>
+        </div>
+        <p class="service-card__for">Для тех, кто готовится к поступлению или хочет улучшить шансы</p>
+        <ul class="service-card__features">
+          <li>✓ Подготовка к HSK от нуля</li>
+          <li>✓ Подготовка к CSCA (академический)</li>
+          <li>✓ 5 занятий/нед × 1.5 часа</li>
+          <li>✓ Мини-группы до 5 человек</li>
+          <li>✓ Системная программа с контролем</li>
+          <li>✓ Разбор формата экзамена</li>
+          <li>✓ Поддержка преподавателя</li>
+        </ul>
+        <div class="service-card__result">
+          <span>Результат:</span> Нужный уровень языка и рост шансов на стипендию
+        </div>
+        <a href="#contact" class="btn btn--outline btn--full">Записаться на курс</a>
+      </div>
+
+    </div>
+    <p class="services__note">* Комиссии университетов при подаче оплачиваются отдельно</p>
+  </div>
+</section>
+
+<!-- ========== PROCESS ========== -->
+<section class="process section" id="process">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Как мы работаем</span>
+      <h2 class="section__title">7 шагов от заявки до поступления</h2>
+    </div>
+    <div class="process__steps">
+      <div class="process__step">
+        <div class="step__num">01</div>
+        <div class="step__content">
+          <h3>Консультация</h3>
+          <p>Знакомимся, разбираем вашу ситуацию: цели, уровень языка, оценки, бюджет</p>
+        </div>
+      </div>
+      <div class="process__step">
+        <div class="step__num">02</div>
+        <div class="step__content">
+          <h3>Стратегия</h3>
+          <p>Определяем цели и формируем персональную стратегию поступления</p>
+        </div>
+      </div>
+      <div class="process__step">
+        <div class="step__num">03</div>
+        <div class="step__content">
+          <h3>Языковая подготовка</h3>
+          <p>Если нужно — проходим HSK/CSCA курсы для достижения нужного уровня</p>
+        </div>
+      </div>
+      <div class="process__step">
+        <div class="step__num">04</div>
+        <div class="step__content">
+          <h3>Подбор вузов</h3>
+          <p>Выбираем университеты, которые соответствуют вашему профилю и целям</p>
+        </div>
+      </div>
+      <div class="process__step">
+        <div class="step__num">05</div>
+        <div class="step__content">
+          <h3>Документы</h3>
+          <p>Готовим, проверяем и подаём все документы в нужном формате и срок</p>
+        </div>
+      </div>
+      <div class="process__step">
+        <div class="step__num">06</div>
+        <div class="step__content">
+          <h3>Оффер</h3>
+          <p>Получаем письмо о зачислении от университета — это главный результат</p>
+        </div>
+      </div>
+      <div class="process__step">
+        <div class="step__num">07</div>
+        <div class="step__content">
+          <h3>Виза и отъезд</h3>
+          <p>Помогаем с визой, документами для выезда и подготовкой к жизни в Китае</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== UNIVERSITIES ========== -->
+<section class="universities section section--gray" id="universities">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Университеты</span>
+      <h2 class="section__title">Вузы, в которые мы помогаем поступить</h2>
+      <p class="section__desc">Работаем с ведущими университетами Китая — от IT-гигантов до классических исследовательских вузов</p>
+    </div>
+    <div class="uni-grid">
+      <!-- Tsinghua: ворота 二校门 — главный символ университета -->
+      <a class="uni-card" href="universitety/tsinghua.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" alt="Tsinghua University кампус" loading="lazy" />
+          <div class="uni-card__rank">#1 IT в Китае</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">Tsinghua University</div>
+          <div class="uni-card__name-zh">清华大学</div>
+          <p>Лидер в AI и технологиях. Высокая конкуренция — нужна сильная заявка</p>
+          <div class="uni-card__tags"><span>IT</span><span>AI</span><span>Engineering</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- PKU: Бoya Tower и озеро Weiming — главный символ PKU -->
+      <a class="uni-card" href="universitety/peking.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1508804052814-cd3ba865a116?auto=format&fit=crop&w=600&q=80" alt="Peking University кампус Пекин" loading="lazy" />
+          <div class="uni-card__rank">Топ-2 Китая</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">Peking University</div>
+          <div class="uni-card__name-zh">北京大学</div>
+          <p>Сильная теоретическая база, международное признание, широкий спектр специальностей</p>
+          <div class="uni-card__tags"><span>Науки</span><span>Медицина</span><span>Право</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- SJTU: кампус Минхан в Шанхае -->
+      <a class="uni-card" href="universitety/sjtu.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Shanghai_Jiao_Tong_University_Gate.jpg" alt="Shanghai Jiao Tong University главные ворота" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Топ технических вузов</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">Shanghai Jiao Tong</div>
+          <div class="uni-card__name-zh">上海交通大学</div>
+          <p>Один из лучших технических университетов. Сильные программы AI и кибербезопасности</p>
+          <div class="uni-card__tags"><span>IT</span><span>Кибербезопасность</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- Zhejiang: кампус Цзыцзиньган в Ханчжоу -->
+      <a class="uni-card" href="universitety/zhejiang.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Teaching_building%2C_Zijingang_Campus%2C_Zhejiang_University.jpg" alt="Zhejiang University учебный корпус Цзыцзиньган" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Связи с Alibaba</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">Zhejiang University</div>
+          <div class="uni-card__name-zh">浙江大学</div>
+          <p>Тесные связи с Alibaba и индустрией. Современные IT-программы и стажировки</p>
+          <div class="uni-card__tags"><span>IT</span><span>Бизнес</span><span>Стажировки</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- HIT: главный корпус Харбинского политеха -->
+      <a class="uni-card" href="universitety/harbin.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Harbin_Institute_of_Technology_-_Main_Bldg.jpg" alt="Harbin Institute of Technology главный корпус" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1581092795442-6d50b8c7b4d5?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Инженерия</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">Harbin Institute of Technology</div>
+          <div class="uni-card__name-zh">哈尔滨工业大学</div>
+          <p>Сильные программы по инженерии и робототехнике. Доступные цены, высокое качество</p>
+          <div class="uni-card__tags"><span>Робототехника</span><span>Engineering</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- UESTC: кампус в Чэнду -->
+      <a class="uni-card" href="universitety/uestc.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/UESTC_Qingshuihe_Campus.jpg/640px-UESTC_Qingshuihe_Campus.jpg" alt="UESTC Qingshuihe Campus Chengdu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Узкая IT-специализация</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">UESTC</div>
+          <div class="uni-card__name-zh">电子科技大学</div>
+          <p>Практический IT-подход. Отличный выбор для тех, кто хочет войти в tech-индустрию</p>
+          <div class="uni-card__tags"><span>IT</span><span>Электроника</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+    <div class="universities__cta">
+      <p>Не знаете, какой вуз подходит вам?</p>
+      <a href="#quiz" class="btn btn--primary">Пройти квиз — подберём за 2 минуты</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CASES ========== -->
+<section class="cases section" id="cases">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Кейсы</span>
+      <h2 class="section__title">Студенты, которым мы помогли</h2>
+    </div>
+    <div class="cases__grid">
+      <div class="case-card">
+        <div class="case-card__avatar">АД</div>
+        <div class="case-card__info">
+          <div class="case-card__name">Алия Д.</div>
+          <div class="case-card__location">Алматы, Казахстан</div>
+        </div>
+        <div class="case-card__result">
+          <span class="result__label">Поступила в</span>
+          <span class="result__uni">Tsinghua University</span>
+          <span class="result__year">2024</span>
+        </div>
+        <p class="case-card__text">«Раньше не знала с чего начать. NIHAO STUDY разобрали мою ситуацию, подготовили документы и помогли написать письмо, которое выделило меня среди сотен кандидатов»</p>
+        <div class="case-card__package">Пакет Стандарт</div>
+      </div>
+      <div class="case-card">
+        <div class="case-card__avatar">ДМ</div>
+        <div class="case-card__info">
+          <div class="case-card__name">Данияр М.</div>
+          <div class="case-card__location">Астана, Казахстан</div>
+        </div>
+        <div class="case-card__result">
+          <span class="result__label">Поступил в</span>
+          <span class="result__uni">Zhejiang University</span>
+          <span class="result__year">2024 + стипендия</span>
+        </div>
+        <p class="case-card__text">«Хотел в Alibaba на стажировку. Подобрали Zhejiang — именно там связи с Alibaba. Ещё и стипендию получил. Без этих ребят не разобрался бы сам»</p>
+        <div class="case-card__package">Пакет Стандарт</div>
+      </div>
+      <div class="case-card">
+        <div class="case-card__avatar">СК</div>
+        <div class="case-card__info">
+          <div class="case-card__name">Сабина К.</div>
+          <div class="case-card__location">Шымкент, Казахстан</div>
+        </div>
+        <div class="case-card__result">
+          <span class="result__label">Поступила в</span>
+          <span class="result__uni">Peking University</span>
+          <span class="result__year">2025</span>
+        </div>
+        <p class="case-card__text">«Мама была против Китая — думала это рискованно. NIHAO STUDY провели отдельную консультацию для родителей и объяснили всё. Теперь мама довольна не меньше меня»</p>
+        <div class="case-card__package">Пакет Лайт + Курсы</div>
+      </div>
+    </div>
+    <p class="cases__disclaimer">* Имена изменены с согласия студентов</p>
+  </div>
+</section>
+
+<!-- ========== QUIZ ========== -->
+<section class="quiz section section--red" id="quiz">
+  <div class="container">
+    <div class="quiz__inner">
+      <div class="quiz__left">
+        <span class="section__tag section__tag--light">Бесплатно</span>
+        <h2 class="section__title" style="color:white">Узнай, какой университет подходит именно тебе</h2>
+        <p style="color:rgba(255,255,255,0.85);margin-bottom:2rem">За 2 минуты — без обязательств. Просто ответь на 5 вопросов и получи персональный подбор вузов</p>
+        <ul class="quiz__benefits">
+          <li>✓ Подбор под твои оценки и бюджет</li>
+          <li>✓ Реальные шансы на стипендию</li>
+          <li>✓ Конкретный список документов</li>
+        </ul>
+      </div>
+      <div class="quiz__right">
+        <div class="quiz__widget" id="quiz-widget">
+          <div class="quiz__step active" data-step="1">
+            <div class="quiz__progress"><span>Шаг 1 из 5</span><div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div></div>
+            <h4>Какой у тебя текущий статус?</h4>
+            <div class="quiz__options">
+              <button class="quiz__option" data-next="2">🏫 Школьник (10–11 класс)</button>
+              <button class="quiz__option" data-next="2">🎓 Студент вуза</button>
+              <button class="quiz__option" data-next="2">📄 Уже с дипломом</button>
+            </div>
+          </div>
+          <div class="quiz__step" data-step="2">
+            <div class="quiz__progress"><span>Шаг 2 из 5</span><div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div></div>
+            <h4>Что тебя интересует больше всего?</h4>
+            <div class="quiz__options">
+              <button class="quiz__option" data-next="3">💻 IT / AI / Технологии</button>
+              <button class="quiz__option" data-next="3">🏥 Медицина / Биология</button>
+              <button class="quiz__option" data-next="3">💼 Бизнес / Экономика</button>
+              <button class="quiz__option" data-next="3">🗣 Языки / Гуманитарные</button>
+            </div>
+          </div>
+          <div class="quiz__step" data-step="3">
+            <div class="quiz__progress"><span>Шаг 3 из 5</span><div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div></div>
+            <h4>Знаешь ли ты китайский язык?</h4>
+            <div class="quiz__options">
+              <button class="quiz__option" data-next="4">🚫 Нет, совсем</button>
+              <button class="quiz__option" data-next="4">📚 Базовый (HSK 1–2)</button>
+              <button class="quiz__option" data-next="4">✅ Средний (HSK 3+)</button>
+            </div>
+          </div>
+          <div class="quiz__step" data-step="4">
+            <div class="quiz__progress"><span>Шаг 4 из 5</span><div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div></div>
+            <h4>Какой у тебя планируемый бюджет на год?</h4>
+            <div class="quiz__options">
+              <button class="quiz__option" data-next="5">💸 Ищу стипендию</button>
+              <button class="quiz__option" data-next="5">$5 000 – $10 000</button>
+              <button class="quiz__option" data-next="5">$10 000 – $20 000</button>
+            </div>
+          </div>
+          <div class="quiz__step" data-step="5">
+            <div class="quiz__progress"><span>Шаг 5 из 5</span><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
+            <h4>Когда планируешь поступать?</h4>
+            <div class="quiz__options">
+              <button class="quiz__option quiz__option--final">В 2025–2026 году</button>
+              <button class="quiz__option quiz__option--final">В 2026–2027 году</button>
+              <button class="quiz__option quiz__option--final">Ещё думаю</button>
+            </div>
+          </div>
+          <div class="quiz__result" id="quiz-result">
+            <div class="quiz__result-icon">🎉</div>
+            <h4>Отлично! Мы подберём для тебя лучшие варианты</h4>
+            <p>Оставь контакт — пришлём персональный список университетов и план поступления</p>
+            <form class="quiz__form" id="quiz-form">
+              <input type="text" placeholder="Твоё имя" required />
+              <input type="tel" placeholder="Телефон / WhatsApp" required />
+              <button type="submit" class="btn btn--white btn--full">Получить результат →</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__tag">Отзывы</span>
+      <h2 class="section__title">Что говорят наши студенты и родители</h2>
+    </div>
+    <div class="testimonials__grid">
+      <div class="testimonial">
+        <div class="testimonial__stars">★★★★★</div>
+        <p>«Сын поступил в Harbin Institute of Technology. Мы с мужем очень переживали насчёт Китая. NIHAO STUDY объяснили всё — от жилья до учёбы. Теперь спокойны»</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">ЗН</div>
+          <div>
+            <strong>Зарина Н.</strong>
+            <span>Мама студента, Алматы</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial__stars">★★★★★</div>
+        <p>«Брал Лайт-пакет. За час консультации получил столько конкретики, сколько не мог найти сам за 3 месяца. Чёткий план, честные слова о шансах»</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">АТ</div>
+          <div>
+            <strong>Азиз Т.</strong>
+            <span>Студент, Ташкент</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial__stars">★★★★★</div>
+        <p>«Курсы китайского очень понравились — небольшая группа, живой препод, реальный прогресс. За 4 месяца с нуля до HSK 3. Теперь готовлюсь к поступлению»</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">МА</div>
+          <div>
+            <strong>Марьям А.</strong>
+            <span>Студентка курсов, Астана</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial__stars">★★★★★</div>
+        <p>«Выбрал Стандарт. Не пожалел ни разу. Они реально сделали всё — я просто подписывал и отправлял. Поступил в Zhejiang с первой попытки»</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">ЕК</div>
+          <div>
+            <strong>Ерлан К.</strong>
+            <span>Студент, Алматы</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq section section--gray" id="faq">
+  <div class="container">
+    <div class="faq__inner">
+      <div class="faq__left">
+        <span class="section__tag">FAQ</span>
+        <h2 class="section__title">Частые вопросы</h2>
+        <p>Не нашли ответ? Мы ответим лично.</p>
+        <a href="#contact" class="btn btn--primary" style="margin-top:1.5rem">Задать вопрос</a>
+      </div>
+      <div class="faq__list">
+        <div class="faq__item">
+          <button class="faq__question">Можно ли поступить без знания китайского?</button>
+          <div class="faq__answer">Да. Многие вузы предлагают программы на английском языке. Либо можно пройти языковую подготовку — наши курсы HSK доведут вас до нужного уровня за несколько месяцев.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Сколько стоит учёба и жизнь в Китае?</button>
+          <div class="faq__answer">В среднем: обучение $2 000–6 000/год, общежитие $500–1 500/год, питание и быт $100–200/мес. Итого от $5 000 в год — значительно дешевле Европы и США.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Реально ли получить стипендию?</button>
+          <div class="faq__answer">Да, реально. 87% наших студентов получили ту или иную форму финансовой поддержки. Главное — правильно подготовить заявку и мотивационное письмо. Именно это мы и делаем.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Признаётся ли китайский диплом в Казахстане?</button>
+          <div class="faq__answer">Да. Дипломы ведущих китайских университетов признаются в Казахстане и большинстве стран СНГ. При необходимости помогаем с нострификацией.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Чем вы отличаетесь от других агентств?</button>
+          <div class="faq__answer">Три ключевых отличия: (1) Специализируемся только на Китае — это глубокая экспертиза. (2) Даём честную оценку шансов без завышенных обещаний. (3) Работаем с ограниченным числом студентов — каждый получает реальное внимание.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Как долго длится процесс поступления?</button>
+          <div class="faq__answer">В среднем 3–6 месяцев от первой консультации до получения оффера. Зависит от выбранных вузов и вашей готовности. Если нужна языковая подготовка — добавьте 3–6 месяцев.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Что если меня не примут?</button>
+          <div class="faq__answer">Мы делаем всё возможное для минимизации этого риска. Если вуз отказал — разбираем причины и корректируем стратегию. Часто подаём в несколько вузов одновременно для повышения шансов.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="contact__inner">
+      <div class="contact__left">
+        <span class="section__tag">Записаться</span>
+        <h2 class="section__title">Получите бесплатную консультацию</h2>
+        <p>За 30 минут разберём вашу ситуацию и честно скажем, какие у вас шансы и с чего начать</p>
+        <div class="contact__features">
+          <div class="contact__feature">✓ Анализ вашего профиля</div>
+          <div class="contact__feature">✓ Подбор реальных вариантов</div>
+          <div class="contact__feature">✓ Честная оценка шансов</div>
+          <div class="contact__feature">✓ Без давления и обязательств</div>
+        </div>
+        <div class="contact__channels">
+          <a href="tel:+77075181605" class="channel">
+            <span class="channel__icon">📞</span>
+            <span>+7 707 518 1605</span>
+          </a>
+          <a href="https://wa.me/77075181605" class="channel" target="_blank" rel="noopener">
+            <span class="channel__icon">💬</span>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+        <div class="contact__urgency">
+          <span>⚡</span> Берём ограниченное число студентов — места ограничены
+        </div>
+      </div>
+      <div class="contact__right">
+        <form class="contact__form" id="contact-form">
+          <div class="form__group">
+            <label>Ваше имя *</label>
+            <input type="text" placeholder="Имя" required />
+          </div>
+          <div class="form__group">
+            <label>Телефон / WhatsApp *</label>
+            <input type="tel" placeholder="+7 (___) ___ __ __" required />
+          </div>
+          <div class="form__group">
+            <label>Текущий статус</label>
+            <select>
+              <option value="">Выберите...</option>
+              <option>Школьник (10–11 класс)</option>
+              <option>Студент вуза</option>
+              <option>Родитель абитуриента</option>
+              <option>Уже с дипломом</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label>Интересующий пакет</label>
+            <select>
+              <option value="">Выберите...</option>
+              <option>Пакет Лайт — 80 000 тг</option>
+              <option>Пакет Стандарт — 250 000 тг</option>
+              <option>Языковые курсы</option>
+              <option>Ещё не решил(а)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full btn--lg">
+            Записаться на бесплатную консультацию
+          </button>
+          <p class="form__note">Мы свяжемся с вами в течение 2 часов</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="/" class="logo logo--white">
+          <span class="logo__icon">你好</span>
+          <span class="logo__text">NIHAO <strong>STUDY</strong></span>
+        </a>
+        <p>Специализированная академия по поступлению в университеты Китая. Работаем с 2021 года.</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Telegram">TG</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div class="footer__nav">
+        <div class="footer__col">
+          <h4>Услуги</h4>
+          <a href="#services">Пакет Лайт</a>
+          <a href="#services">Пакет Стандарт</a>
+          <a href="#services">Китайский язык</a>
+        </div>
+        <div class="footer__col">
+          <h4>Академия</h4>
+          <a href="#approach">О нас</a>
+          <a href="#cases">Кейсы</a>
+          <a href="#testimonials">Отзывы</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer__col">
+          <h4>Контакты</h4>
+          <a href="tel:+77075181605">+7 707 518 1605</a>
+          <a href="https://wa.me/77075181605">WhatsApp</a>
+          <a href="#contact">Записаться</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 NIHAO STUDY. Все права защищены.</p>
+      <div class="footer__links">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Оферта</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/77075181605" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Success Modal -->
+<div class="modal" id="success-modal">
+  <div class="modal__backdrop"></div>
+  <div class="modal__box">
+    <div class="modal__icon">✅</div>
+    <h3>Заявка отправлена!</h3>
+    <p>Мы свяжемся с вами в течение 2 часов. Проверьте WhatsApp.</p>
+    <button class="btn btn--primary" id="modal-close">Закрыть</button>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
