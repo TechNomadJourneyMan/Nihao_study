@@ -173,13 +173,15 @@ input, select, textarea { font-family: inherit; }
 .logo--white .logo__text { color: var(--white); }
 .logo--white .logo__text strong { color: var(--gold); }
 .logo__img {
-  height: 48px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   display: block;
+  flex-shrink: 0;
 }
 .logo__img--footer {
-  height: 52px;
+  height: 44px;
+  filter: brightness(0) invert(1);
 }
 
 .nav {
