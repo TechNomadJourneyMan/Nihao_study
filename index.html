@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NIHAO STUDY — Поступление в университеты Китая без хаоса и ошибок</title>
   <meta name="description" content="Помогаем абитуриентам из Казахстана и СНГ поступить в топовые университеты Китая — от выбора вуза до получения визы. Пакет Лайт от 80 000 тг." />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -17,8 +17,7 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a href="/" class="logo">
-      <span class="logo__icon">你好</span>
-      <span class="logo__text">NIHAO <strong>STUDY</strong></span>
+      <img src="/logo.png" alt="NIHAO STUDY" class="logo__img" />
     </a>
     <nav class="nav" id="nav">
       <a href="#services" class="nav__link">Услуги</a>
@@ -61,8 +60,8 @@
       </div>
       <div class="stat__divider"></div>
       <div class="stat">
-        <span class="stat__num">6</span>
-        <span class="stat__label">топовых университетов</span>
+        <span class="stat__num">9</span>
+        <span class="stat__label">вузов C9 лиги</span>
       </div>
       <div class="stat__divider"></div>
       <div class="stat">
@@ -403,7 +402,7 @@
     <div class="section__header">
       <span class="section__tag">Университеты</span>
       <h2 class="section__title">Вузы, в которые мы помогаем поступить</h2>
-      <p class="section__desc">Работаем с ведущими университетами Китая — от IT-гигантов до классических исследовательских вузов</p>
+      <p class="section__desc">Работаем со всеми 9 университетами C9 League — элитного объединения, аналога Ivy League в Китае</p>
     </div>
     <div class="uni-grid">
       <!-- Tsinghua: ворота 二校门 — главный символ университета -->
@@ -476,17 +475,59 @@
           <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
-      <!-- UESTC: кампус в Чэнду -->
-      <a class="uni-card" href="universitety/uestc.html">
+      <!-- Fudan: главные ворота кампуса Хандань в Шанхае -->
+      <a class="uni-card" href="universitety/fudan.html">
         <div class="uni-card__img-wrap">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/UESTC_Qingshuihe_Campus.jpg/640px-UESTC_Qingshuihe_Campus.jpg" alt="UESTC Qingshuihe Campus Chengdu" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80'" />
-          <div class="uni-card__rank">Узкая IT-специализация</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/FudanUniversityHbFudanGate.jpg" alt="Fudan University главные ворота Шанхай" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Топ гуманитарных наук</div>
         </div>
         <div class="uni-card__body">
-          <div class="uni-card__name">UESTC</div>
-          <div class="uni-card__name-zh">电子科技大学</div>
-          <p>Практический IT-подход. Отличный выбор для тех, кто хочет войти в tech-индустрию</p>
-          <div class="uni-card__tags"><span>IT</span><span>Электроника</span></div>
+          <div class="uni-card__name">Fudan University</div>
+          <div class="uni-card__name-zh">复旦大学</div>
+          <p>Флагман гуманитарных и социальных наук. Сильная медицина, экономика, международные отношения</p>
+          <div class="uni-card__tags"><span>Медицина</span><span>Экономика</span><span>Право</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- Nanjing: главный корпус кампуса Гулоу -->
+      <a class="uni-card" href="universitety/nanjing.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Nanjing_University_North_Gate.jpg" alt="Nanjing University северные ворота" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Топ-5 фундаментальных наук</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">Nanjing University</div>
+          <div class="uni-card__name-zh">南京大学</div>
+          <p>Один из старейших вузов Китая. Мировые позиции в физике, химии и науках о Земле</p>
+          <div class="uni-card__tags"><span>Физика</span><span>Химия</span><span>Науки</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- USTC: кампус в Хэфэе (Анхой) -->
+      <a class="uni-card" href="universitety/ustc.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/USTC_west.JPG" alt="University of Science and Technology of China кампус Хэфэй" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Лучший в точных науках</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">USTC</div>
+          <div class="uni-card__name-zh">中国科学技术大学</div>
+          <p>Элита точных наук. Основан Китайской академией наук — уникальная связка науки и образования</p>
+          <div class="uni-card__tags"><span>Физика</span><span>Квантовые науки</span><span>AI</span></div>
+          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <!-- Xi'an Jiaotong: 1-й учебный корпус -->
+      <a class="uni-card" href="universitety/xjtu.html">
+        <div class="uni-card__img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Xian_Jiaotong_University_1st_classroom_building.jpg" alt="Xi'an Jiaotong University первый учебный корпус" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80'" />
+          <div class="uni-card__rank">Инженерия и энергетика</div>
+        </div>
+        <div class="uni-card__body">
+          <div class="uni-card__name">Xi'an Jiaotong University</div>
+          <div class="uni-card__name-zh">西安交通大学</div>
+          <p>Исторически сильный технический вуз. Лидер в энергетике, материаловедении и машиностроении</p>
+          <div class="uni-card__tags"><span>Энергетика</span><span>Машиностроение</span><span>Материаловедение</span></div>
           <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
@@ -804,15 +845,15 @@
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <a href="/" class="logo logo--white">
-          <span class="logo__icon">你好</span>
-          <span class="logo__text">NIHAO <strong>STUDY</strong></span>
+        <a href="/" class="logo">
+          <img src="/logo.png" alt="NIHAO STUDY" class="logo__img logo__img--footer" />
         </a>
         <p>Специализированная академия по поступлению в университеты Китая. Работаем с 2021 года.</p>
         <div class="footer__socials">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Telegram">TG</a>
-          <a href="#" aria-label="WhatsApp">WA</a>
+          <a href="https://www.instagram.com/nihao_study_china" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://t.me/nihao_study_china" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://wa.me/77075181605" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://2gis.kz/almaty/geo/70000001113901800" target="_blank" rel="noopener" aria-label="2GIS"><i class="fa-solid fa-location-dot"></i></a>
         </div>
       </div>
       <div class="footer__nav">
