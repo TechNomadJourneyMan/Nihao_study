@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подбор университета | NIHAO STUDY</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary: #2563eb; --primary-dark: #1d4ed8; --primary-light: #dbeafe;
+  --secondary: #f59e0b; --success: #10b981; --danger: #ef4444; --warning: #f59e0b;
+  --dark: #1e293b; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b; --gray-600: #475569;
+  --gray-700: #334155; --gray-800: #1e293b;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --radius: 12px; --radius-lg: 16px; --radius-xl: 24px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--gray-50); color: var(--gray-800); line-height: 1.6; overflow-x: hidden;
+}
+
+/* Onboarding */
+.onboarding-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.onboarding-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.onboarding-container { width: 100%; max-width: 720px; padding: 2rem; }
+.onboarding-step {
+  background: white; border-radius: var(--radius-xl); padding: 3rem;
+  box-shadow: var(--shadow-xl); animation: slideUp 0.5s ease; display: none;
+}
+.onboarding-step.active { display: block; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.step-indicator { display: flex; gap: 8px; justify-content: center; margin-bottom: 2rem; }
+.step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gray-300); transition: all 0.3s ease; }
+.step-dot.active { background: var(--primary); width: 32px; border-radius: 5px; }
+.step-dot.completed { background: var(--success); }
+.onboarding-title { font-size: 1.875rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--dark); }
+.onboarding-subtitle { text-align: center; color: var(--gray-500); margin-bottom: 2.5rem; font-size: 1.05rem; }
+.option-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.option-card {
+  border: 2px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1.5rem 1rem;
+  text-align: center; cursor: pointer; transition: all 0.2s ease; background: white;
+}
+.option-card:hover { border-color: var(--primary-light); transform: translateY(-2px); }
+.option-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
+.option-card .icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+.option-card .label { font-weight: 600; font-size: 0.95rem; }
+.option-card .desc { font-size: 0.8rem; color: var(--gray-500); margin-top: 0.25rem; }
+.range-slider { margin: 2rem 0; }
+.range-slider label { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 0.75rem; }
+.range-slider input[type="range"] { width: 100%; height: 8px; -webkit-appearance: none; background: var(--gray-200); border-radius: 4px; outline: none; }
+.range-slider input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; background: var(--primary); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 6px rgba(37,99,235,0.3); border: 3px solid white; }
+.range-value { text-align: center; font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-top: 0.5rem; }
+.btn-group { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.875rem 2rem; border-radius: var(--radius); font-weight: 600; font-size: 1rem;
+  cursor: pointer; border: none; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-secondary { background: var(--gray-100); color: var(--gray-700); }
+.btn-secondary:hover { background: var(--gray-200); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+/* App */
+.app-container { display: none; }
+.app-container.active { display: block; }
+.app-header {
+  background: rgba(255,255,255,0.95); border-bottom: 1px solid var(--gray-200);
+  padding: 0 2rem; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
+}
+.header-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.35rem; color: var(--dark); text-decoration: none; }
+.logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #3b82f6); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; }
+.nav-tabs { display: flex; gap: 0.25rem; }
+.nav-tab { padding: 0.5rem 1.25rem; border-radius: var(--radius); font-weight: 500; font-size: 0.9rem; cursor: pointer; border: none; background: transparent; color: var(--gray-500); transition: all 0.2s; position: relative; }
+.nav-tab:hover { color: var(--gray-700); background: var(--gray-100); }
+.nav-tab.active { color: var(--primary); background: var(--primary-light); }
+.nav-tab .badge { position: absolute; top: 2px; right: 2px; background: var(--danger); color: white; font-size: 0.65rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.header-actions { display: flex; align-items: center; gap: 0.75rem; }
+.lang-switch, .currency-switch {
+  padding: 0.4rem 0.75rem; border: 1px solid var(--gray-200); border-radius: var(--radius);
+  background: white; font-size: 0.85rem; cursor: pointer; color: var(--gray-600); font-weight: 500;
+}
+.user-avatar { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+
+.main-content { max-width: 1400px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
+.sidebar { position: sticky; top: 88px; height: calc(100vh - 104px); overflow-y: auto; }
+.filter-card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-200); }
+.filter-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--gray-700); }
+.filter-group { margin-bottom: 1.25rem; }
+.filter-group:last-child { margin-bottom: 0; }
+.filter-label { font-size: 0.8rem; font-weight: 600; color: var(--gray-500); margin-bottom: 0.5rem; display: block; }
+.checkbox-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.checkbox-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0.5rem; border-radius: 8px; cursor: pointer; transition: background 0.15s; font-size: 0.9rem; }
+.checkbox-item:hover { background: var(--gray-50); }
+.checkbox-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+.checkbox-item .count { margin-left: auto; font-size: 0.75rem; color: var(--gray-400); background: var(--gray-100); padding: 2px 8px; border-radius: 10px; }
+.price-range { display: flex; align-items: center; gap: 0.5rem; }
+.price-range input { flex: 1; padding: 0.5rem; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 0.85rem; text-align: center; }
+.reset-btn { width: 100%; padding: 0.75rem; border: 1px solid var(--gray-200); background: white; border-radius: var(--radius); font-weight: 600; color: var(--gray-600); cursor: pointer; transition: all 0.2s; font-size: 0.9rem; }
+.reset-btn:hover { background: var(--gray-50); border-color: var(--gray-300); }
+
+.content-area { min-width: 0; }
+.content-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+.results-count { font-size: 1.1rem; font-weight: 700; color: var(--gray-800); }
+.results-count span { color: var(--primary); }
+.sort-dropdown { padding: 0.5rem 1rem; border: 1px solid var(--gray-200); border-radius: var(--radius); background: white; font-size: 0.9rem; cursor: pointer; color: var(--gray-600); }
+
+.uni-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.25rem; }
+.uni-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }
+.uni-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--gray-300); }
+.uni-card.compared { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
+.uni-card.favorite .fav-btn { color: var(--danger); }
+.uni-card-header { padding: 1.25rem 1.25rem 0.75rem; display: flex; gap: 1rem; }
+.uni-logo { width: 56px; height: 56px; border-radius: var(--radius); background: linear-gradient(135deg, var(--gray-100), var(--gray-200)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+.uni-header-info { flex: 1; min-width: 0; }
+.uni-name { font-weight: 700; font-size: 1.05rem; color: var(--dark); line-height: 1.3; margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.uni-location { font-size: 0.85rem; color: var(--gray-500); display: flex; align-items: center; gap: 0.35rem; }
+.uni-ranking { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap; }
+.rank-badge { background: var(--primary-light); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
+.rank-badge.gold { background: #fef3c7; color: #92400e; }
+.rank-badge.silver { background: #f3f4f6; color: #4b5563; }
+.uni-card-body { padding: 0 1.25rem; flex: 1; }
+.uni-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+.uni-tag { font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 6px; background: var(--gray-100); color: var(--gray-600); }
+.uni-tag.lang-en { background: #dbeafe; color: #1e40af; }
+.uni-tag.lang-cn { background: #fce7f3; color: #9d174d; }
+.uni-tag.lang-ru { background: #f3e8ff; color: #6b21a8; }
+.uni-tag.deadline { background: #fef3c7; color: #92400e; }
+.uni-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem; }
+.detail-item { font-size: 0.85rem; }
+.detail-item .label { font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.1rem; }
+.detail-item .value { font-weight: 600; color: var(--gray-700); }
+.detail-item .value.price { color: var(--success); }
+.uni-progress { margin-bottom: 0.75rem; }
+.progress-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.3rem; }
+.progress-label .label { color: var(--gray-500); }
+.progress-label .value { font-weight: 700; color: var(--primary); }
+.progress-bar { height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #3b82f6); border-radius: 3px; transition: width 0.6s ease; }
+.uni-card-footer { padding: 0.75rem 1.25rem 1.25rem; display: flex; gap: 0.5rem; }
+.card-btn { flex: 1; padding: 0.6rem; border-radius: var(--radius); font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+.card-btn-outline { background: white; border: 1px solid var(--gray-200); color: var(--gray-600); }
+.card-btn-outline:hover { background: var(--gray-50); border-color: var(--gray-300); }
+.card-btn-primary { background: var(--primary); color: white; }
+.card-btn-primary:hover { background: var(--primary-dark); }
+.card-btn-primary.added { background: var(--success); }
+
+.compare-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--gray-200); padding: 1rem 2rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.08); z-index: 90; transform: translateY(100%); transition: transform 0.3s ease; }
+.compare-bar.active { transform: translateY(0); }
+.compare-bar-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.compare-thumbs { display: flex; gap: 0.75rem; }
+.compare-thumb { width: 48px; height: 48px; border-radius: var(--radius); background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; border: 2px solid var(--gray-200); position: relative; }
+.compare-thumb .remove { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: var(--danger); color: white; border-radius: 50%; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.compare-info { font-weight: 600; color: var(--gray-700); }
+.compare-info span { color: var(--primary); }
+.compare-actions { display: flex; gap: 0.75rem; }
+
+.modal-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal { background: white; border-radius: var(--radius-xl); width: 100%; max-width: 1200px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.3s ease; }
+.modal-overlay.active .modal { transform: scale(1); }
+.modal-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; }
+.modal-title { font-size: 1.25rem; font-weight: 700; }
+.modal-close { width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--gray-100); cursor: pointer; font-size: 1.1rem; color: var(--gray-500); transition: all 0.2s; }
+.modal-close:hover { background: var(--gray-200); color: var(--gray-700); }
+.modal-body { padding: 2rem; overflow-y: auto; flex: 1; }
+
+.comparison-table { width: 100%; border-collapse: collapse; }
+.comparison-table th, .comparison-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--gray-200); }
+.comparison-table th { background: var(--gray-50); font-weight: 700; font-size: 0.85rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; position: sticky; top: 0; }
+.comparison-table td { font-size: 0.95rem; vertical-align: top; }
+.comparison-table tr:hover td { background: var(--gray-50); }
+.comparison-table .uni-col { min-width: 220px; }
+.comparison-table .uni-col-header { display: flex; align-items: center; gap: 0.75rem; }
+.comparison-table .uni-col-logo { width: 40px; height: 40px; border-radius: 8px; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.comparison-table .uni-col-name { font-weight: 700; font-size: 0.95rem; }
+.comparison-table .uni-col-location { font-size: 0.8rem; color: var(--gray-500); }
+.comparison-table .highlight-best { background: #ecfdf5 !important; color: var(--success); font-weight: 700; }
+.comparison-table .highlight-worst { background: #fef2f2 !important; color: var(--danger); }
+
+.chart-row { display: flex; align-items: center; gap: 1rem; margin: 0.3rem 0; }
+.chart-bar-bg { flex: 1; height: 8px; background: var(--gray-100); border-radius: 4px; overflow: hidden; }
+.chart-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+.chart-label { font-size: 0.8rem; font-weight: 600; min-width: 40px; text-align: right; }
+
+.rec-section { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: var(--radius-xl); padding: 2rem; color: white; margin-bottom: 2rem; }
+.rec-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.rec-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.rec-title { font-size: 1.25rem; font-weight: 700; }
+.rec-subtitle { font-size: 0.9rem; opacity: 0.7; }
+.rec-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.rec-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 1.25rem; transition: all 0.2s; }
+.rec-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+.rec-match { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+.rec-match-label { font-size: 0.8rem; opacity: 0.7; }
+.rec-match-value { font-size: 1.25rem; font-weight: 800; color: #34d399; }
+.rec-uni-name { font-weight: 700; margin-bottom: 0.25rem; }
+.rec-uni-location { font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.75rem; }
+.rec-reasons { display: flex; flex-direction: column; gap: 0.4rem; }
+.rec-reason { font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem; }
+.rec-reason i { color: #34d399; font-size: 0.7rem; }
+
+.favorites-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+.checklist-card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--gray-200); margin-bottom: 1.25rem; }
+.checklist-title { font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.checklist-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-100); cursor: pointer; transition: all 0.2s; }
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item:hover { padding-left: 0.5rem; }
+.checklist-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; }
+.checklist-item.checked { opacity: 0.5; text-decoration: line-through; }
+.checklist-progress { margin-top: 1rem; height: 8px; background: var(--gray-100); border-radius: 4px; overflow: hidden; }
+.checklist-progress-fill { height: 100%; background: var(--success); border-radius: 4px; transition: width 0.4s ease; }
+.checklist-progress-text { text-align: right; font-size: 0.8rem; color: var(--gray-500); margin-top: 0.5rem; }
+
+.analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+.analytics-card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--gray-200); }
+.analytics-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--gray-700); }
+.stat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--gray-100); }
+.stat-row:last-child { border-bottom: none; }
+.stat-label { font-size: 0.9rem; color: var(--gray-600); }
+.stat-value { font-weight: 700; color: var(--gray-800); }
+.stat-value.positive { color: var(--success); }
+.stat-value.negative { color: var(--danger); }
+.roi-chart { display: flex; align-items: flex-end; gap: 1rem; height: 200px; padding-top: 1rem; }
+.roi-bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.roi-bar { width: 100%; background: linear-gradient(to top, var(--primary), #3b82f6); border-radius: 6px 6px 0 0; transition: height 0.8s ease; min-height: 4px; }
+.roi-bar-label { font-size: 0.75rem; font-weight: 600; color: var(--gray-600); text-align: center; }
+.roi-bar-value { font-size: 0.8rem; font-weight: 700; color: var(--primary); }
+
+.empty-state { text-align: center; padding: 4rem 2rem; }
+.empty-state-icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.3; }
+.empty-state h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+.empty-state p { color: var(--gray-500); }
+
+.toast-container { position: fixed; top: 80px; right: 2rem; z-index: 300; display: flex; flex-direction: column; gap: 0.5rem; }
+.toast { background: white; border-radius: var(--radius); padding: 1rem 1.25rem; box-shadow: var(--shadow-lg); border-left: 4px solid var(--primary); display: flex; align-items: center; gap: 0.75rem; animation: slideInRight 0.3s ease; min-width: 280px; }
+.toast.success { border-left-color: var(--success); }
+.toast.error { border-left-color: var(--danger); }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.animate-in { animation: fadeIn 0.4s ease forwards; }
+
+.mobile-filter-toggle { display: none; position: fixed; bottom: 80px; right: 1rem; width: 56px; height: 56px; border-radius: 50%; background: var(--primary); color: white; border: none; box-shadow: var(--shadow-lg); font-size: 1.25rem; cursor: pointer; z-index: 80; align-items: center; justify-content: center; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+
+@media (max-width: 1024px) {
+  .main-content { grid-template-columns: 1fr; }
+  .sidebar { position: relative; top: 0; height: auto; }
+  .uni-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .mobile-filter-toggle { display: flex; }
+}
+@media (max-width: 768px) {
+  .main-content { padding: 1rem; }
+  .uni-grid { grid-template-columns: 1fr; }
+  .onboarding-container { padding: 1rem; }
+  .onboarding-step { padding: 1.5rem; }
+  .nav-tabs { display: none; }
+  .modal { max-width: 100%; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .comparison-table { font-size: 0.85rem; }
+  .comparison-table th, .comparison-table td { padding: 0.75rem 0.5rem; }
+  .header-actions .btn-secondary { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ONBOARDING -->
+<div class="onboarding-overlay" id="onboarding">
+<div class="onboarding-container">
+
+<!-- Step 1: Goal -->
+<div class="onboarding-step active" data-step="1">
+  <div class="step-indicator"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div><div class="step-dot"></div></div>
+  <h2 class="onboarding-title">Какая ваша цель обучения?</h2>
+  <p class="onboarding-subtitle">Выберите основную цель — это поможет нам подобрать лучшие варианты</p>
+  <div class="option-grid" id="goal-options">
+    <div class="option-card" data-value="career"><span class="icon">💼</span><div class="label">Карьера и работа</div><div class="desc">Максимальный доход после выпуска</div></div>
+    <div class="option-card" data-value="immigration"><span class="icon">🌍</span><div class="label">Иммиграция</div><div class="desc">Переезд и ВНЖ после учёбы</div></div>
+    <div class="option-card" data-value="prestige"><span class="icon">🏆</span><div class="label">Престиж и наука</div><div class="desc">Топовые вузы и исследования</div></div>
+    <div class="option-card" data-value="budget"><span class="icon">💰</span><div class="label">Экономия</div><div class="desc">Лучшее качество за меньшие деньги</div></div>
+    <div class="option-card" data-value="experience"><span class="icon">✈️</span><div class="label">Опыт и путешествия</div><div class="desc">Новая культура и язык</div></div>
+    <div class="option-card" data-value="startup"><span class="icon">🚀</span><div class="label">Свой бизнес</div><div class="desc">Стартапы и предпринимательство</div></div>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-primary" id="btn-step1-next" disabled>Далее <i class="fas fa-arrow-right"></i></button>
+  </div>
+</div>
+
+<!-- Step 2: Region -->
+<div class="onboarding-step" data-step="2">
+  <div class="step-indicator"><div class="step-dot completed"></div><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div></div>
+  <h2 class="onboarding-title">Какие страны рассматриваете?</h2>
+  <p class="onboarding-subtitle">Можно выбрать несколько вариантов</p>
+  <div class="option-grid" id="region-options">
+    <div class="option-card" data-value="china"><span class="icon">🇨🇳</span><div class="label">Китай</div><div class="desc">Стипендии, технологии, рынок</div></div>
+    <div class="option-card" data-value="usa"><span class="icon">🇺🇸</span><div class="label">США</div><div class="desc">Топовые вузы, стартапы</div></div>
+    <div class="option-card" data-value="europe"><span class="icon">🇪🇺</span><div class="label">Европа</div><div class="desc">Доступное образование, ВНЖ</div></div>
+    <div class="option-card" data-value="other"><span class="icon">🌏</span><div class="label">Другие страны</div><div class="desc">Канада, Австралия, Азия</div></div>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-secondary" id="btn-step2-back"><i class="fas fa-arrow-left"></i> Назад</button>
+    <button class="btn btn-primary" id="btn-step2-next" disabled>Далее <i class="fas fa-arrow-right"></i></button>
+  </div>
+</div>
+
+<!-- Step 3: Budget -->
+<div class="onboarding-step" data-step="3">
+  <div class="step-indicator"><div class="step-dot completed"></div><div class="step-dot completed"></div><div class="step-dot active"></div><div class="step-dot"></div></div>
+  <h2 class="onboarding-title">Какой бюджет на обучение в год?</h2>
+  <p class="onboarding-subtitle">Укажите максимальную сумму в USD</p>
+  <div class="range-slider">
+    <label><span>Бюджет</span><span id="budget-label">$15,000</span></label>
+    <input type="range" id="budget-range" min="0" max="100000" step="1000" value="15000">
+    <div class="range-value" id="budget-value">$15,000 / год</div>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-secondary" id="btn-step3-back"><i class="fas fa-arrow-left"></i> Назад</button>
+    <button class="btn btn-primary" id="btn-step3-next">Далее <i class="fas fa-arrow-right"></i></button>
+  </div>
+</div>
+
+<!-- Step 4: Language -->
+<div class="onboarding-step" data-step="4">
+  <div class="step-indicator"><div class="step-dot completed"></div><div class="step-dot completed"></div><div class="step-dot completed"></div><div class="step-dot active"></div></div>
+  <h2 class="onboarding-title">Какой язык обучения предпочитаете?</h2>
+  <p class="onboarding-subtitle">Можно выбрать несколько вариантов</p>
+  <div class="option-grid" id="lang-options">
+    <div class="option-card" data-value="english"><span class="icon">🇬🇧</span><div class="label">Английский</div><div class="desc">IELTS/TOEFL требуется</div></div>
+    <div class="option-card" data-value="chinese"><span class="icon">🇨🇳</span><div class="label">Китайский</div><div class="desc">HSK требуется</div></div>
+    <div class="option-card" data-value="russian"><span class="icon">🇷🇺</span><div class="label">Русский</div><div class="desc">Доступно в некоторых вузах</div></div>
+    <div class="option-card" data-value="any"><span class="icon">🌐</span><div class="label">Любой</div><div class="desc">Не имеет значения</div></div>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-secondary" id="btn-step4-back"><i class="fas fa-arrow-left"></i> Назад</button>
+    <button class="btn btn-primary" id="btn-step4-finish" disabled>Начать подбор <i class="fas fa-rocket"></i></button>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- APP -->
+<div class="app-container" id="app">
+<header class="app-header">
+  <div class="header-inner">
+    <a href="/" class="logo" style="text-decoration:none;">
+      <img src="/logo.svg" alt="NIHAO STUDY" style="height:36px; width:auto;" />
+    </a>
+    <a href="/" class="btn btn-secondary" style="padding:0.4rem 0.9rem; font-size:0.82rem; margin-left:0.5rem; text-decoration:none; border-radius:8px; display:flex; align-items:center; gap:0.4rem;"><i class="fas fa-arrow-left"></i> На сайт</a>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="search" onclick="showTab('search')"><i class="fas fa-search"></i> <span class="tab-text">Подбор</span></button>
+      <button class="nav-tab" data-tab="recommendations" onclick="showTab('recommendations')"><i class="fas fa-star"></i> <span class="tab-text">Рекомендации</span></button>
+      <button class="nav-tab" data-tab="favorites" onclick="showTab('favorites')"><i class="fas fa-heart"></i> <span class="tab-text">Избранное</span><span class="badge" id="fav-badge" style="display:none">0</span></button>
+      <button class="nav-tab" data-tab="analytics" onclick="showTab('analytics')"><i class="fas fa-chart-line"></i> <span class="tab-text">Аналитика</span></button>
+      <button class="nav-tab" data-tab="checklist" onclick="showTab('checklist')"><i class="fas fa-tasks"></i> <span class="tab-text">Чек-лист</span></button>
+    </nav>
+    <div class="header-actions">
+      <select class="lang-switch" id="lang-switch" onchange="changeLanguage(this.value)">
+        <option value="ru">🇷🇺 Русский</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="kz">🇰🇿 Қазақша</option>
+      </select>
+      <select class="currency-switch" id="currency-switch" onchange="changeCurrency(this.value)">
+        <option value="USD">$ USD</option>
+        <option value="CNY">¥ CNY</option>
+        <option value="KZT">₸ KZT</option>
+        <option value="RUB">₽ RUB</option>
+        <option value="EUR">€ EUR</option>
+      </select>
+      <button class="btn btn-secondary" style="padding:0.5rem 1rem; font-size:0.85rem;" onclick="restartOnboarding()"><i class="fas fa-redo"></i> <span class="new-search-text">Новый подбор</span></button>
+      <div class="user-avatar">A</div>
+    </div>
+  </div>
+</header>
+
+<div class="main-content">
+  <aside class="sidebar" id="sidebar">
+    <div class="filter-card">
+      <div class="filter-title"><i class="fas fa-filter"></i> <span class="filters-text">Фильтры</span></div>
+      <div class="filter-group">
+        <label class="filter-label"><span class="country-text">Страна</span></label>
+        <div class="checkbox-list" id="filter-country">
+          <label class="checkbox-item"><input type="checkbox" value="china" checked><span>🇨🇳 <span class="china-text">Китай</span></span><span class="count" id="count-china">0</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="usa" checked><span>🇺🇸 <span class="usa-text">США</span></span><span class="count" id="count-usa">0</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="europe" checked><span>🇪🇺 <span class="europe-text">Европа</span></span><span class="count" id="count-europe">0</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="other" checked><span>🌏 <span class="other-text">Другие страны</span></span><span class="count" id="count-other">0</span></label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label"><span class="lang-text">Язык обучения</span></label>
+        <div class="checkbox-list" id="filter-lang">
+          <label class="checkbox-item"><input type="checkbox" value="english" checked><span class="english-text">Английский</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="chinese" checked><span class="chinese-text">Китайский</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="russian" checked><span class="russian-text">Русский</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="german" checked><span class="german-text">Deutsch</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="french" checked><span class="french-text">Français</span></label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label"><span class="cost-text">Стоимость в год (USD)</span></label>
+        <div class="price-range">
+          <input type="number" id="price-min" placeholder="От" value="0" min="0">
+          <span>—</span>
+          <input type="number" id="price-max" placeholder="До" value="100000" min="0">
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label"><span class="ranking-text">Рейтинг (QS/THE)</span></label>
+        <div class="checkbox-list" id="filter-ranking">
+          <label class="checkbox-item"><input type="checkbox" value="top50" checked><span class="top50-text">Топ 50</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="top100" checked><span class="top100-text">Топ 100</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="top500" checked><span class="top500-text">Топ 500</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="other" checked><span class="other-rank-text">Другие</span></label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label"><span class="major-text">Специальность</span></label>
+        <div class="checkbox-list" id="filter-major">
+          <label class="checkbox-item"><input type="checkbox" value="cs" checked><span class="cs-text">Computer Science</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="business" checked><span class="business-text">Business / MBA</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="engineering" checked><span class="engineering-text">Engineering</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="medicine" checked><span class="medicine-text">Medicine</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="economics" checked><span class="economics-text">Economics</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="natural_sciences" checked><span class="ns-text">Natural Sciences</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="humanities" checked><span class="hum-text">Humanities</span></label>
+          <label class="checkbox-item"><input type="checkbox" value="law" checked><span class="law-text">Law</span></label>
+        </div>
+      </div>
+      <button class="reset-btn" onclick="resetFilters()"><i class="fas fa-undo"></i> <span class="reset-text">Сбросить фильтры</span></button>
+    </div>
+  </aside>
+
+  <div class="content-area">
+    <!-- Search Tab -->
+    <div class="tab-content active" data-tab="search">
+      <div class="content-header">
+        <div class="results-count"><span class="found-text">Найдено</span> <span id="results-count">0</span> <span class="unis-text">университетов</span></div>
+        <select class="sort-dropdown" id="sort-select" onchange="sortUniversities()">
+          <option value="match" class="opt-match">По совпадению</option>
+          <option value="ranking" class="opt-rank">По рейтингу</option>
+          <option value="price_asc" class="opt-cheap">Сначала дешевле</option>
+          <option value="price_desc" class="opt-exp">Сначала дороже</option>
+          <option value="salary" class="opt-sal">По зарплате выпускников</option>
+        </select>
+      </div>
+      <div class="uni-grid" id="uni-grid"></div>
+    </div>
+
+    <!-- Recommendations Tab -->
+    <div class="tab-content" data-tab="recommendations" style="display:none">
+      <div class="rec-section">
+        <div class="rec-header">
+          <div class="rec-icon">🎯</div>
+          <div>
+            <div class="rec-title">Персональные рекомендации</div>
+            <div class="rec-subtitle">На основе ваших предпочтений: <span id="rec-profile"></span></div>
+          </div>
+        </div>
+        <div class="rec-cards" id="rec-cards"></div>
+      </div>
+      <h3 style="margin-bottom:1rem; font-size:1.1rem;" class="all-matching">Все подходящие варианты</h3>
+      <div class="uni-grid" id="rec-all-grid"></div>
+    </div>
+
+    <!-- Favorites Tab -->
+    <div class="tab-content" data-tab="favorites" style="display:none">
+      <div class="content-header">
+        <div class="results-count">Избранное: <span id="fav-count">0</span></div>
+      </div>
+      <div class="favorites-grid" id="favorites-grid"></div>
+      <div class="empty-state" id="fav-empty" style="display:none">
+        <div class="empty-state-icon">💔</div>
+        <h3 class="fav-empty-title">Пока ничего не добавлено</h3>
+        <p class="fav-empty-desc">Нажмите на сердечко на карточке университета, чтобы добавить в избранное</p>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div class="tab-content" data-tab="analytics" style="display:none">
+      <h2 style="margin-bottom:1.5rem; font-size:1.5rem;" class="analytics-title">📊 Аналитика и прогнозы</h2>
+      <div class="analytics-grid" id="analytics-content"></div>
+    </div>
+
+    <!-- Checklist Tab -->
+    <div class="tab-content" data-tab="checklist" style="display:none">
+      <h2 style="margin-bottom:1.5rem; font-size:1.5rem;" class="checklist-title-main">✅ Чек-лист поступления</h2>
+      <div id="checklist-content"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Compare Bar -->
+<div class="compare-bar" id="compare-bar">
+  <div class="compare-bar-inner">
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <div class="compare-thumbs" id="compare-thumbs"></div>
+      <div class="compare-info">Выбрано: <span id="compare-count">0</span> / 5</div>
+    </div>
+    <div class="compare-actions">
+      <button class="btn btn-secondary" style="padding:0.6rem 1.25rem; font-size:0.9rem;" onclick="clearComparison()">Очистить</button>
+      <button class="btn btn-primary" style="padding:0.6rem 1.5rem; font-size:0.9rem;" onclick="openComparisonModal()"><i class="fas fa-columns"></i> Сравнить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Comparison Modal -->
+<div class="modal-overlay" id="comparison-modal">
+  <div class="modal" style="max-width:1200px;">
+    <div class="modal-header">
+      <div class="modal-title"><i class="fas fa-columns"></i> Сравнение университетов</div>
+      <button class="modal-close" onclick="closeComparisonModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="comparison-content"></div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Mobile Filter Toggle -->
+<button class="mobile-filter-toggle" onclick="toggleMobileFilters()"><i class="fas fa-filter"></i></button>
+<script>
+const TRANSLATIONS = {"ru": {"app_name": "UniSelect", "search": "Подбор", "recommendations": "Рекомендации", "favorites": "Избранное", "analytics": "Аналитика", "checklist": "Чек-лист", "new_search": "Новый подбор", "filters": "Фильтры", "country": "Страна", "language_study": "Язык обучения", "cost_per_year": "Стоимость в год", "ranking": "Рейтинг", "major": "Специальность", "found": "Найдено", "universities": "университетов", "match": "По совпадению", "by_ranking": "По рейтингу", "cheaper_first": "Сначала дешевле", "expensive_first": "Сначала дороже", "by_salary": "По зарплате выпускников", "tuition": "Обучение", "living": "Проживание", "total_year": "Всего / год", "salary_grad": "Зарплата", "employment": "Трудоустройство", "roi": "ROI (окупаемость)", "add_fav": "В избранное", "in_fav": "В избранном", "compare": "Сравнить", "added": "Добавлено", "compare_title": "Сравнение университетов", "clear": "Очистить", "fav_empty_title": "Пока ничего не добавлено", "fav_empty_desc": "Нажмите на сердечко на карточке университета", "personal_rec": "Персональные рекомендации", "based_on": "На основе ваших предпочтений", "all_options": "Все подходящие варианты", "analytics_title": "Аналитика и прогнозы", "avg_stats": "Средние показатели", "avg_tuition": "Средняя стоимость обучения", "avg_living": "Средняя стоимость проживания", "avg_salary": "Средняя зарплата выпускников", "avg_roi": "Средний ROI", "employment_rate": "Трудоустройство", "by_region": "По регионам", "roi_chart": "ROI по университетам", "admission_forecast": "Прогноз поступления", "probability": "Вероятность (средняя)", "recommended_ielts": "Рекомендуемый IELTS", "nearest_deadline": "Ближайший дедлайн", "checklist_title": "Чек-лист поступления", "documents": "Документы", "finance": "Финансы", "visa_logistics": "Виза и логистика", "done_of": "выполнено", "goal_title": "Какая ваша цель обучения?", "goal_subtitle": "Выберите основную цель", "region_title": "Какие страны рассматриваете?", "region_subtitle": "Можно выбрать несколько", "budget_title": "Какой бюджет на обучение в год?", "budget_subtitle": "Укажите максимальную сумму", "lang_title": "Какой язык обучения предпочитаете?", "lang_subtitle": "Можно выбрать несколько", "next": "Далее", "back": "Назад", "start": "Начать подбор", "career": "Карьера и работа", "immigration": "Иммиграция", "prestige": "Престиж и наука", "budget_goal": "Экономия", "experience": "Опыт и путешествия", "startup": "Свой бизнес", "china": "Китай", "usa": "США", "europe": "Европа", "english": "Английский", "chinese": "Китайский", "russian": "Русский", "any_lang": "Любой", "budget_label": "Бюджет", "per_year": "/ год", "no_results": "Ничего не найдено", "no_results_desc": "Попробуйте изменить фильтры или увеличить бюджет", "select_min_two": "Выберите минимум 2 университета", "max_compare": "Максимум 5 университетов для сравнения", "removed_compare": "Удалено из сравнения", "added_compare": "Добавлено к сравнению", "removed_fav": "Удалено из избранного", "added_fav": "Добавлено в избранное!", "compare_selected": "Выбрано", "of": "из", "parameter": "Параметр", "pros": "Преимущества", "salary_compare": "Сравнение зарплат", "cost_compare": "Сравнение стоимости", "match_score": "Совпадение", "why": "Почему подходит", "currency": "Валюта", "language": "Язык", "reset_filters": "Сбросить фильтры", "deadline": "Дедлайн", "visa_after": "Виза после учёбы", "ielts_min": "IELTS минимум", "top_50": "Топ 50", "top_100": "Топ 100", "top_500": "Топ 500", "other": "Другие", "cs": "Computer Science", "business": "Business / MBA", "engineering": "Engineering", "medicine": "Medicine", "economics": "Economics", "natural_sciences": "Natural Sciences", "humanities": "Humanities", "law": "Law", "all_matching": "Все подходящие варианты", "other_region": "Другие страны", "other_desc": "Канада, Австралия, Азия", "career_desc": "Максимальный доход после выпуска", "immigration_desc": "Переезд и ВНЖ после учёбы", "prestige_desc": "Топовые вузы и исследования", "budget_desc": "Лучшее качество за меньшие деньги", "experience_desc": "Новая культура и язык", "startup_desc": "Стартапы и предпринимательство", "china_desc": "Стипендии, технологии, рынок", "usa_desc": "Топовые вузы, стартапы", "europe_desc": "Доступное образование, ВНЖ", "russian_desc": "Доступно в некоторых вузах", "any_desc": "Не имеет значения", "doc_passport": "Паспорт (копия + перевод)", "doc_diploma": "Диплом / аттестат с апостилем", "doc_transcript": "Транскрипт оценок", "doc_recommend": "Рекомендательные письма (2-3)", "doc_sop": "Мотивационное письмо (SOP)", "doc_cv": "CV / Резюме", "doc_ielts": "Сертификат IELTS / TOEFL", "doc_hsk": "Сертификат HSK (для Китая)", "fin_bank": "Подтверждение средств (банковская выписка)", "fin_fee": "Оплата application fee", "fin_scholarship": "Поиск стипендий и грантов", "fin_account": "Открытие счёта за рубежом", "fin_insurance": "Страховка для студентов", "visa_apply": "Подача заявления на визу", "visa_medical": "Медицинская комиссия", "visa_housing": "Бронирование жилья", "visa_flight": "Авиабилеты", "visa_register": "Регистрация в университете"}, "en": {"app_name": "UniSelect", "search": "Search", "recommendations": "Recommendations", "favorites": "Favorites", "analytics": "Analytics", "checklist": "Checklist", "new_search": "New Search", "filters": "Filters", "country": "Country", "language_study": "Language of Study", "cost_per_year": "Cost per Year", "ranking": "Ranking", "major": "Major", "found": "Found", "universities": "universities", "match": "By Match", "by_ranking": "By Ranking", "cheaper_first": "Cheaper First", "expensive_first": "Expensive First", "by_salary": "By Graduate Salary", "tuition": "Tuition", "living": "Living", "total_year": "Total / Year", "salary_grad": "Salary", "employment": "Employment", "roi": "ROI", "add_fav": "Add to Favorites", "in_fav": "In Favorites", "compare": "Compare", "added": "Added", "compare_title": "University Comparison", "clear": "Clear", "fav_empty_title": "Nothing added yet", "fav_empty_desc": "Click the heart on a university card to add it", "personal_rec": "Personal Recommendations", "based_on": "Based on your preferences", "all_options": "All matching options", "analytics_title": "Analytics & Forecasts", "avg_stats": "Average Statistics", "avg_tuition": "Average Tuition", "avg_living": "Average Living Cost", "avg_salary": "Average Graduate Salary", "avg_roi": "Average ROI", "employment_rate": "Employment Rate", "by_region": "By Region", "roi_chart": "ROI by University", "admission_forecast": "Admission Forecast", "probability": "Average Probability", "recommended_ielts": "Recommended IELTS", "nearest_deadline": "Nearest Deadline", "checklist_title": "Admission Checklist", "documents": "Documents", "finance": "Finance", "visa_logistics": "Visa & Logistics", "done_of": "done", "goal_title": "What is your study goal?", "goal_subtitle": "Select your main goal", "region_title": "Which countries are you considering?", "region_subtitle": "You can select multiple", "budget_title": "What is your annual study budget?", "budget_subtitle": "Enter the maximum amount in", "lang_title": "Preferred language of instruction?", "lang_subtitle": "You can select multiple", "next": "Next", "back": "Back", "start": "Start Search", "career": "Career & Work", "immigration": "Immigration", "prestige": "Prestige & Science", "budget_goal": "Save Money", "experience": "Experience & Travel", "startup": "Start a Business", "china": "China", "usa": "USA", "europe": "Europe", "english": "English", "chinese": "Chinese", "russian": "Russian", "any_lang": "Any", "budget_label": "Budget", "per_year": "/ year", "no_results": "No results found", "no_results_desc": "Try changing filters or increasing your budget", "select_min_two": "Select at least 2 universities", "max_compare": "Maximum 5 universities for comparison", "removed_compare": "Removed from comparison", "added_compare": "Added to comparison", "removed_fav": "Removed from favorites", "added_fav": "Added to favorites!", "compare_selected": "Selected", "of": "of", "parameter": "Parameter", "pros": "Advantages", "salary_compare": "Salary Comparison", "cost_compare": "Cost Comparison", "match_score": "Match", "why": "Why it fits", "currency": "Currency", "language": "Language", "reset_filters": "Reset Filters", "deadline": "Deadline", "visa_after": "Post-study Visa", "ielts_min": "Min IELTS", "top_50": "Top 50", "top_100": "Top 100", "top_500": "Top 500", "other": "Other", "cs": "Computer Science", "business": "Business / MBA", "engineering": "Engineering", "medicine": "Medicine", "economics": "Economics", "natural_sciences": "Natural Sciences", "humanities": "Humanities", "law": "Law", "all_matching": "All matching options", "other_region": "Other Countries", "other_desc": "Canada, Australia, Asia", "career_desc": "Maximum income after graduation", "immigration_desc": "Relocation and residency after studies", "prestige_desc": "Top universities and research", "budget_desc": "Best quality for less money", "experience_desc": "New culture and language", "startup_desc": "Startups and entrepreneurship", "china_desc": "Scholarships, technology, market", "usa_desc": "Top universities, startups", "europe_desc": "Affordable education, residency", "russian_desc": "Available at some universities", "any_desc": "Does not matter", "doc_passport": "Passport (copy + translation)", "doc_diploma": "Diploma / certificate with apostille", "doc_transcript": "Academic transcript", "doc_recommend": "Recommendation letters (2-3)", "doc_sop": "Statement of Purpose (SOP)", "doc_cv": "CV / Resume", "doc_ielts": "IELTS / TOEFL certificate", "doc_hsk": "HSK certificate (for China)", "fin_bank": "Proof of funds (bank statement)", "fin_fee": "Application fee payment", "fin_scholarship": "Search for scholarships and grants", "fin_account": "Open account abroad", "fin_insurance": "Student insurance", "visa_apply": "Visa application", "visa_medical": "Medical examination", "visa_housing": "Housing booking", "visa_flight": "Flight tickets", "visa_register": "University registration"}, "kz": {"app_name": "UniSelect", "search": "Іздеу", "recommendations": "Ұсыныстар", "favorites": "Таңдаулылар", "analytics": "Аналитика", "checklist": "Тізім", "new_search": "Жаңа іздеу", "filters": "Сүзгілер", "country": "Ел", "language_study": "Оқу тілі", "cost_per_year": "Жылдық құны", "ranking": "Рейтинг", "major": "Мамандық", "found": "Табылды", "universities": "университет", "match": "Сәйкестік бойынша", "by_ranking": "Рейтинг бойынша", "cheaper_first": "Алдымен арзан", "expensive_first": "Алдымен қымбат", "by_salary": "Бітіруші жалақысы бойынша", "tuition": "Оқу құны", "living": "Тұрмыс", "total_year": "Барлығы / жыл", "salary_grad": "Жалақы", "employment": "Жұмысқа орналасу", "roi": "ROI (түсімділік)", "add_fav": "Таңдаулыларға", "in_fav": "Таңдаулыларда", "compare": "Салыстыру", "added": "Қосылды", "compare_title": "Университеттерді салыстыру", "clear": "Тазалау", "fav_empty_title": "Ештеңе қосылмаған", "fav_empty_desc": "Университет карточкасындағы жүрек белгішесін басыңыз", "personal_rec": "Жеке ұсыныстар", "based_on": "Сіздің қалауларыңыз негізінде", "all_options": "Барлық сәйкес нұсқалар", "analytics_title": "Аналитика және болжамдар", "avg_stats": "Орташа көрсеткіштер", "avg_tuition": "Орташа оқу құны", "avg_living": "Орташа тұрмыс құны", "avg_salary": "Орташа бітіруші жалақысы", "avg_roi": "Орташа ROI", "employment_rate": "Жұмысқа орналасу", "by_region": "Аймақ бойынша", "roi_chart": "Университеттер бойынша ROI", "admission_forecast": "Түсу болжамы", "probability": "Орташа ықтималдық", "recommended_ielts": "Ұсынылған IELTS", "nearest_deadline": "Жақын арадағы мерзім", "checklist_title": "Түсу тізімі", "documents": "Құжаттар", "finance": "Қаржы", "visa_logistics": "Виза және логистика", "done_of": "орындалды", "goal_title": "Оқу мақсатыңыз қандай?", "goal_subtitle": "Негізгі мақсатты таңдаңыз", "region_title": "Қай елдерді қарастырып отырсыз?", "region_subtitle": "Бірнешеуін таңдауға болады", "budget_title": "Жылдық оқу бюджеті қандай?", "budget_subtitle": "Ең көп соманы енгізіңіз", "lang_title": "Оқу тілін қалай таңдайсыз?", "lang_subtitle": "Бірнешеуін таңдауға болады", "next": "Келесі", "back": "Артқа", "start": "Іздеуді бастау", "career": "Мансап және жұмыс", "immigration": "Иммиграция", "prestige": "Бедел және ғылым", "budget_goal": "Үнемдеу", "experience": "Тәжірибе және саяхат", "startup": "Өз бизнесіңді бастау", "china": "Қытай", "usa": "АҚШ", "europe": "Еуропа", "english": "Ағылшын", "chinese": "Қытай", "russian": "Орыс", "any_lang": "Кез келген", "budget_label": "Бюджет", "per_year": "/ жыл", "no_results": "Ештеңе табылмады", "no_results_desc": "Сүзгілерді өзгертіп немесе бюджетті ұлғайтып көріңіз", "select_min_two": "Кемінде 2 университетті таңдаңыз", "max_compare": "Салыстыру үшін ең көбі 5 университет", "removed_compare": "Салыстырудан алынды", "added_compare": "Салыстыруға қосылды", "removed_fav": "Таңдаулылардан алынды", "added_fav": "Таңдаулыларға қосылды!", "compare_selected": "Таңдалды", "of": "дан", "parameter": "Параметр", "pros": "Артықшылықтар", "salary_compare": "Жалақыны салыстыру", "cost_compare": "Құны салыстыру", "match_score": "Сәйкестік", "why": "Неге сәйкес келеді", "currency": "Валюта", "language": "Тіл", "reset_filters": "Сүзгілерді қалпына келтіру", "deadline": "Мерзім", "visa_after": "Оқудан кейінгі виза", "ielts_min": "IELTS минимум", "top_50": "Топ 50", "top_100": "Топ 100", "top_500": "Топ 500", "other": "Басқалар", "cs": "Computer Science", "business": "Business / MBA", "engineering": "Engineering", "medicine": "Medicine", "economics": "Economics", "natural_sciences": "Natural Sciences", "humanities": "Humanities", "law": "Law", "all_matching": "Барлық сәйкес нұсқалар", "other_region": "Басқа елдер", "other_desc": "Канада, Австралия, Азия", "career_desc": "Бітіргеннен кейін максималды табыс", "immigration_desc": "Оқудан кейін көші-қон және тұру", "prestige_desc": "Үздік университеттер және зерттеулер", "budget_desc": "Аз ақшаға ең жақсы сапа", "experience_desc": "Жаңа мәдениет және тіл", "startup_desc": "Стартаптар және кәсіпкерлік", "china_desc": "Стипендиялар, технологиялар, нарық", "usa_desc": "Үздік университеттер, стартаптар", "europe_desc": "Қолжетімді білім, тұру", "russian_desc": "Кейбір университеттерде қолжетімді", "any_desc": "Маңызды емес", "doc_passport": "Төлқұжат (көшірме + аударма)", "doc_diploma": "Диплом / куәлік апостильмен", "doc_transcript": "Транскрипт бағалары", "doc_recommend": "Ұсыныс хаттары (2-3)", "doc_sop": "Мотивациялық хат (SOP)", "doc_cv": "CV / Резюме", "doc_ielts": "IELTS / TOEFL сертификаты", "doc_hsk": "HSK сертификаты (Қытай үшін)", "fin_bank": "Қаражат растауы (банк выпискасы)", "fin_fee": "Application fee төлеу", "fin_scholarship": "Стипендиялар мен гранттар іздеу", "fin_account": "Шетелде шот ашу", "fin_insurance": "Студенттік сақтандыру", "visa_apply": "Визаға өтініш беру", "visa_medical": "Медициналық комиссия", "visa_housing": "Тұрғын үйді брондау", "visa_flight": "Әуе билеттері", "visa_register": "Университетке тіркеу"}};
+const EXCHANGE_RATES = {"USD": 1.0, "CNY": 7.2, "KZT": 500.0, "RUB": 92.0, "EUR": 0.92};
+const CURRENCY_SYMBOLS = {"USD": "$", "CNY": "¥", "KZT": "₸", "RUB": "₽", "EUR": "€"};
+const UNIVERSITIES = [{"id": 1, "name": "Tsinghua University", "country": "china", "city": "Beijing", "flag": "🇨🇳", "logo": "🏛️", "ranking": 14, "rankingTier": "top50", "tuition": 4500, "living": 6000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["cs", "engineering", "economics"], "ielts": "6.5", "deadline": "2026-03-15", "salary": 42000, "employment": 96, "visaEase": 85, "description": "Leading technical university of China, alma mater of many PRC leaders.", "pros": ["Top-20 worldwide", "Strong industry ties", "Low cost"], "roi": 9.3, "hsk": "5"}, {"id": 2, "name": "Peking University", "country": "china", "city": "Beijing", "flag": "🇨🇳", "logo": "📚", "ranking": 17, "rankingTier": "top50", "tuition": 4200, "living": 6500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["economics", "business", "medicine", "law", "humanities"], "ielts": "6.5", "deadline": "2026-01-31", "salary": 40000, "employment": 94, "visaEase": 85, "description": "Oldest university in China, strongest in humanities.", "pros": ["Prestige", "Historic campus", "Alumni network"], "roi": 9.1, "hsk": "5"}, {"id": 3, "name": "Fudan University", "country": "china", "city": "Shanghai", "flag": "🇨🇳", "logo": "🌆", "ranking": 34, "rankingTier": "top50", "tuition": 5000, "living": 8000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["business", "economics", "medicine", "law"], "ielts": "6.5", "deadline": "2026-04-01", "salary": 38000, "employment": 92, "visaEase": 88, "description": "One of Shanghai's best universities with strong management school.", "pros": ["Shanghai location", "Top-50 Asia MBA", "International environment"], "roi": 8.7, "hsk": "4"}, {"id": 4, "name": "Shanghai Jiao Tong University", "country": "china", "city": "Shanghai", "flag": "🇨🇳", "logo": "⚙️", "ranking": 46, "rankingTier": "top50", "tuition": 4800, "living": 8500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["cs", "engineering", "business"], "ielts": "6.0", "deadline": "2026-03-01", "salary": 41000, "employment": 95, "visaEase": 88, "description": "Technical giant with partnership with Michigan University.", "pros": ["Engineering top-30", "Strong startups", "Shanghai hub"], "roi": 8.9, "hsk": "4"}, {"id": 5, "name": "Zhejiang University", "country": "china", "city": "Hangzhou", "flag": "🇨🇳", "logo": "🌿", "ranking": 42, "rankingTier": "top50", "tuition": 3800, "living": 5500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["cs", "engineering", "economics", "natural_sciences"], "ielts": "6.0", "deadline": "2026-02-28", "salary": 36000, "employment": 93, "visaEase": 82, "description": "Largest campus in China, strong AI laboratory.", "pros": ["Low living cost", "AI & robotics", "Hangzhou ecology"], "roi": 9.5, "hsk": "4"}, {"id": 6, "name": "Nanjing University", "country": "china", "city": "Nanjing", "flag": "🇨🇳", "logo": "🏯", "ranking": 120, "rankingTier": "top500", "tuition": 3500, "living": 5000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["natural_sciences", "humanities", "economics"], "ielts": "6.0", "deadline": "2026-03-20", "salary": 34000, "employment": 91, "visaEase": 80, "description": "One of China's oldest universities, strong in natural sciences and ecology.", "pros": ["Academic depth", "Historic city", "Research excellence"], "roi": 9.2, "hsk": "4"}, {"id": 7, "name": "University of Science and Technology of China", "country": "china", "city": "Hefei", "flag": "🇨🇳", "logo": "🔬", "ranking": 98, "rankingTier": "top100", "tuition": 4000, "living": 4500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["natural_sciences", "cs", "engineering"], "ielts": "6.0", "deadline": "2026-02-15", "salary": 35000, "employment": 92, "visaEase": 78, "description": "Leading research university in physics, chemistry and IT.", "pros": ["Top research output", "Physics & chem", "Innovation hub"], "roi": 9.4, "hsk": "4"}, {"id": 8, "name": "Harbin Institute of Technology", "country": "china", "city": "Harbin", "flag": "🇨🇳", "logo": "🚀", "ranking": 160, "rankingTier": "top500", "tuition": 3200, "living": 4000, "currency": "USD", "language": "chinese", "languages": ["chinese", "russian"], "majors": ["engineering", "cs"], "ielts": "5.5", "deadline": "2026-06-01", "salary": 32000, "employment": 91, "visaEase": 78, "description": "Space school of Russia and China, strong in aerospace engineering.", "pros": ["Very affordable", "Russian programs", "Aerospace engineering"], "roi": 10.0, "hsk": "3"}, {"id": 9, "name": "Xi'an Jiaotong University", "country": "china", "city": "Xi'an", "flag": "🇨🇳", "logo": "⚡", "ranking": 200, "rankingTier": "top500", "tuition": 3400, "living": 4200, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "economics", "medicine"], "ielts": "6.0", "deadline": "2026-04-15", "salary": 33000, "employment": 90, "visaEase": 80, "description": "Known for engineering and energy programs. Strong scientific base.", "pros": ["Engineering legacy", "Energy programs", "Employer reputation"], "roi": 9.3, "hsk": "4"}, {"id": 10, "name": "Beihang University", "country": "china", "city": "Beijing", "flag": "🇨🇳", "logo": "✈️", "ranking": 220, "rankingTier": "top500", "tuition": 4000, "living": 6000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "cs"], "ielts": "6.0", "deadline": "2026-03-10", "salary": 36000, "employment": 92, "visaEase": 82, "description": "Top aerospace and aeronautics university in China.", "pros": ["Aerospace #1", "Beijing location", "Industry links"], "roi": 9.0, "hsk": "4"}, {"id": 11, "name": "Tianjin University", "country": "china", "city": "Tianjin", "flag": "🇨🇳", "logo": "🏗️", "ranking": 260, "rankingTier": "top500", "tuition": 3500, "living": 5000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "natural_sciences"], "ielts": "6.0", "deadline": "2026-04-01", "salary": 33000, "employment": 90, "visaEase": 80, "description": "One of China's oldest modern universities, strong in engineering.", "pros": ["Historic engineering", "Near Beijing", "Affordable"], "roi": 9.1, "hsk": "4"}, {"id": 12, "name": "Southeast University", "country": "china", "city": "Nanjing", "flag": "🇨🇳", "logo": "🔧", "ranking": 280, "rankingTier": "top500", "tuition": 3600, "living": 4800, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "cs", "architecture"], "ielts": "6.0", "deadline": "2026-03-25", "salary": 34000, "employment": 91, "visaEase": 80, "description": "Top architecture and civil engineering school in China.", "pros": ["Architecture #1", "Civil engineering", "Nanjing campus"], "roi": 9.0, "hsk": "4"}, {"id": 13, "name": "Wuhan University", "country": "china", "city": "Wuhan", "flag": "🇨🇳", "logo": "🌸", "ranking": 190, "rankingTier": "top500", "tuition": 3800, "living": 4500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["economics", "law", "medicine", "cs"], "ielts": "6.0", "deadline": "2026-03-15", "salary": 35000, "employment": 91, "visaEase": 82, "description": "Beautiful campus, strong in law, economics and remote sensing.", "pros": ["Beautiful campus", "Law & economics", "Remote sensing"], "roi": 9.2, "hsk": "4"}, {"id": 14, "name": "Huazhong Univ. of Sci. and Tech.", "country": "china", "city": "Wuhan", "flag": "🇨🇳", "logo": "💻", "ranking": 180, "rankingTier": "top500", "tuition": 4000, "living": 4800, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["cs", "engineering", "medicine"], "ielts": "6.0", "deadline": "2026-03-01", "salary": 37000, "employment": 93, "visaEase": 82, "description": "Leading tech university in central China, strong in optoelectronics.", "pros": ["Optoelectronics", "Medical school", "Central China hub"], "roi": 9.1, "hsk": "4"}, {"id": 15, "name": "Tongji University", "country": "china", "city": "Shanghai", "flag": "🇨🇳", "logo": "🌉", "ranking": 220, "rankingTier": "top500", "tuition": 4500, "living": 8500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english", "german"], "majors": ["engineering", "architecture", "business"], "ielts": "6.0", "deadline": "2026-03-20", "salary": 38000, "employment": 92, "visaEase": 88, "description": "Famous for architecture and German partnerships.", "pros": ["German partnerships", "Architecture", "Shanghai location"], "roi": 8.6, "hsk": "4"}, {"id": 16, "name": "Nankai University", "country": "china", "city": "Tianjin", "flag": "🇨🇳", "logo": "📖", "ranking": 300, "rankingTier": "top500", "tuition": 3400, "living": 4800, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["economics", "business", "natural_sciences"], "ielts": "6.0", "deadline": "2026-04-10", "salary": 33000, "employment": 90, "visaEase": 80, "description": "Historic university with strong economics and chemistry programs.", "pros": ["Economics tradition", "Chemistry", "Affordable"], "roi": 9.1, "hsk": "4"}, {"id": 17, "name": "Sun Yat-sen University", "country": "china", "city": "Guangzhou", "flag": "🇨🇳", "logo": "☀️", "ranking": 240, "rankingTier": "top500", "tuition": 4000, "living": 5500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["business", "medicine", "humanities"], "ielts": "6.0", "deadline": "2026-03-30", "salary": 36000, "employment": 91, "visaEase": 85, "description": "Leading university in South China with strong medical school.", "pros": ["South China hub", "Medical school", "Business programs"], "roi": 9.0, "hsk": "4"}, {"id": 18, "name": "Beijing Normal University", "country": "china", "city": "Beijing", "flag": "🇨🇳", "logo": "🎓", "ranking": 260, "rankingTier": "top500", "tuition": 3800, "living": 6000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["humanities", "education", "psychology"], "ielts": "6.0", "deadline": "2026-03-15", "salary": 32000, "employment": 90, "visaEase": 82, "description": "China's top teacher training and education research university.", "pros": ["Education #1", "Psychology", "Beijing location"], "roi": 8.8, "hsk": "4"}, {"id": 19, "name": "Beijing Institute of Technology", "country": "china", "city": "Beijing", "flag": "🇨🇳", "logo": "🛡️", "ranking": 300, "rankingTier": "top500", "tuition": 4200, "living": 6500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "cs", "natural_sciences"], "ielts": "6.0", "deadline": "2026-03-01", "salary": 36000, "employment": 92, "visaEase": 82, "description": "Top defense and technology university with strong engineering.", "pros": ["Defense tech", "Engineering", "Beijing resources"], "roi": 8.9, "hsk": "4"}, {"id": 20, "name": "Dalian University of Technology", "country": "china", "city": "Dalian", "flag": "🇨🇳", "logo": "🌊", "ranking": 380, "rankingTier": "top500", "tuition": 3500, "living": 5000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "cs", "business"], "ielts": "6.0", "deadline": "2026-04-20", "salary": 33000, "employment": 90, "visaEase": 78, "description": "Strong coastal university with excellent chemical engineering.", "pros": ["Chemical engineering", "Coastal city", "Affordable"], "roi": 9.0, "hsk": "4"}, {"id": 21, "name": "Chongqing University", "country": "china", "city": "Chongqing", "flag": "🇨🇳", "logo": "🏔️", "ranking": 400, "rankingTier": "top500", "tuition": 3200, "living": 4000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "architecture", "business"], "ielts": "5.5", "deadline": "2026-05-01", "salary": 31000, "employment": 89, "visaEase": 80, "description": "Major university in Southwest China, strong in civil engineering.", "pros": ["Southwest hub", "Civil engineering", "Low cost"], "roi": 9.2, "hsk": "3"}, {"id": 22, "name": "Hunan University", "country": "china", "city": "Changsha", "flag": "🇨🇳", "logo": "🌶️", "ranking": 420, "rankingTier": "top500", "tuition": 3000, "living": 3800, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "economics", "law"], "ielts": "5.5", "deadline": "2026-05-15", "salary": 30000, "employment": 88, "visaEase": 78, "description": "Historic university in Changsha, strong in engineering and design.", "pros": ["Historic campus", "Engineering", "Very affordable"], "roi": 9.3, "hsk": "3"}, {"id": 23, "name": "East China Normal University", "country": "china", "city": "Shanghai", "flag": "🇨🇳", "logo": "📐", "ranking": 350, "rankingTier": "top500", "tuition": 3800, "living": 7500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["education", "humanities", "cs"], "ielts": "6.0", "deadline": "2026-04-01", "salary": 34000, "employment": 90, "visaEase": 85, "description": "Top education university in Shanghai with growing tech programs.", "pros": ["Education research", "Shanghai", "Tech growth"], "roi": 8.7, "hsk": "4"}, {"id": 24, "name": "Xiamen University", "country": "china", "city": "Xiamen", "flag": "🇨🇳", "logo": "🏝️", "ranking": 360, "rankingTier": "top500", "tuition": 3500, "living": 4500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["economics", "business", "natural_sciences"], "ielts": "6.0", "deadline": "2026-04-15", "salary": 33000, "employment": 89, "visaEase": 85, "description": "Beautiful coastal campus, strong in economics and chemistry.", "pros": ["Beautiful campus", "Coastal city", "Economics"], "roi": 9.1, "hsk": "4"}, {"id": 25, "name": "Jilin University", "country": "china", "city": "Changchun", "flag": "🇨🇳", "logo": "❄️", "ranking": 450, "rankingTier": "top500", "tuition": 2800, "living": 3500, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "medicine", "law"], "ielts": "5.5", "deadline": "2026-05-20", "salary": 28000, "employment": 87, "visaEase": 75, "description": "Large comprehensive university in Northeast China.", "pros": ["Comprehensive", "Affordable", "Medical school"], "roi": 9.0, "hsk": "3"}, {"id": 26, "name": "Shandong University", "country": "china", "city": "Jinan", "flag": "🇨🇳", "logo": "⛰️", "ranking": 340, "rankingTier": "top500", "tuition": 3400, "living": 4200, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["medicine", "economics", "engineering"], "ielts": "6.0", "deadline": "2026-04-10", "salary": 32000, "employment": 89, "visaEase": 80, "description": "One of China's oldest universities with strong medical school.", "pros": ["Historic", "Medical school", "Affordable"], "roi": 9.0, "hsk": "4"}, {"id": 27, "name": "Sichuan University", "country": "china", "city": "Chengdu", "flag": "🇨🇳", "logo": "🐼", "ranking": 320, "rankingTier": "top500", "tuition": 3500, "living": 4000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["medicine", "engineering", "business"], "ielts": "6.0", "deadline": "2026-04-05", "salary": 33000, "employment": 90, "visaEase": 82, "description": "Top university in Southwest China with excellent medical school.", "pros": ["Medical school", "Chengdu lifestyle", "Research"], "roi": 9.1, "hsk": "4"}, {"id": 28, "name": "South China University of Technology", "country": "china", "city": "Guangzhou", "flag": "🇨🇳", "logo": "🏭", "ranking": 380, "rankingTier": "top500", "tuition": 3600, "living": 5000, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "cs", "business"], "ielts": "6.0", "deadline": "2026-04-20", "salary": 34000, "employment": 90, "visaEase": 85, "description": "Leading technology university in South China.", "pros": ["Technology focus", "Guangzhou", "Industry ties"], "roi": 8.9, "hsk": "4"}, {"id": 29, "name": "Northwestern Polytechnical University", "country": "china", "city": "Xi'an", "flag": "🇨🇳", "logo": "🛩️", "ranking": 360, "rankingTier": "top500", "tuition": 3800, "living": 4200, "currency": "USD", "language": "chinese", "languages": ["chinese", "english"], "majors": ["engineering", "cs"], "ielts": "6.0", "deadline": "2026-04-01", "salary": 35000, "employment": 91, "visaEase": 80, "description": "Top university for aeronautics, astronautics and marine engineering.", "pros": ["Aerospace & marine", "Research", "Affordable"], "roi": 9.1, "hsk": "4"}, {"id": 30, "name": "MIT", "country": "usa", "city": "Cambridge, MA", "flag": "🇺🇸", "logo": "🔬", "ranking": 1, "rankingTier": "top50", "tuition": 57000, "living": 18000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "engineering", "economics", "natural_sciences"], "ielts": "7.5", "deadline": "2026-01-01", "salary": 120000, "employment": 98, "visaEase": 45, "description": "World leader in technology and innovation.", "pros": ["#1 worldwide", "Startup ecosystem", "$120K+ salaries"], "roi": 7.2, "toefl": "100"}, {"id": 31, "name": "Stanford University", "country": "usa", "city": "Stanford, CA", "flag": "🇺🇸", "logo": "🌲", "ranking": 3, "rankingTier": "top50", "tuition": 56000, "living": 20000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "business", "engineering", "law"], "ielts": "7.5", "deadline": "2025-12-01", "salary": 125000, "employment": 97, "visaEase": 45, "description": "Heart of Silicon Valley, perfect for entrepreneurs.", "pros": ["Silicon Valley", "Venture capital", "Founder professors"], "roi": 7.0, "toefl": "100"}, {"id": 32, "name": "Harvard University", "country": "usa", "city": "Cambridge, MA", "flag": "🇺🇸", "logo": "📖", "ranking": 4, "rankingTier": "top50", "tuition": 55000, "living": 19000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "economics", "medicine", "law", "humanities"], "ielts": "7.5", "deadline": "2025-12-15", "salary": 110000, "employment": 96, "visaEase": 45, "description": "Most prestigious education brand, strongest business school.", "pros": ["Brand power", "Alumni network", "Financial aid"], "roi": 6.8, "toefl": "100"}, {"id": 33, "name": "California Institute of Technology", "country": "usa", "city": "Pasadena, CA", "flag": "🇺🇸", "logo": "🔭", "ranking": 6, "rankingTier": "top50", "tuition": 58000, "living": 17000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["natural_sciences", "engineering", "cs"], "ielts": "7.5", "deadline": "2025-12-01", "salary": 115000, "employment": 97, "visaEase": 45, "description": "Tiny but elite, world leader in physics and space science.", "pros": ["Elite science", "NASA partnership", "High ROI"], "roi": 7.1, "toefl": "100"}, {"id": 34, "name": "University of Chicago", "country": "usa", "city": "Chicago, IL", "flag": "🇺🇸", "logo": "💡", "ranking": 10, "rankingTier": "top50", "tuition": 54000, "living": 16000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["economics", "business", "law", "humanities"], "ielts": "7.5", "deadline": "2026-01-05", "salary": 100000, "employment": 95, "visaEase": 48, "description": "Home of the Chicago School of Economics, rigorous academics.", "pros": ["Economics #1", "Rigorous", "Research power"], "roi": 7.0, "toefl": "100"}, {"id": 35, "name": "Princeton University", "country": "usa", "city": "Princeton, NJ", "flag": "🇺🇸", "logo": "🐯", "ranking": 7, "rankingTier": "top50", "tuition": 56000, "living": 16000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["economics", "engineering", "natural_sciences", "humanities"], "ielts": "7.5", "deadline": "2026-01-01", "salary": 105000, "employment": 96, "visaEase": 45, "description": "Ivy League excellence with focus on undergraduate teaching.", "pros": ["Ivy League", "Undergrad focus", "No loans policy"], "roi": 7.0, "toefl": "100"}, {"id": 36, "name": "Yale University", "country": "usa", "city": "New Haven, CT", "flag": "🇺🇸", "logo": "🔔", "ranking": 9, "rankingTier": "top50", "tuition": 55000, "living": 16000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["law", "business", "humanities", "medicine"], "ielts": "7.5", "deadline": "2025-12-15", "salary": 100000, "employment": 95, "visaEase": 45, "description": "Historic Ivy League, strongest law school in the US.", "pros": ["Law #1", "Ivy prestige", "Liberal arts"], "roi": 6.9, "toefl": "100"}, {"id": 37, "name": "Columbia University", "country": "usa", "city": "New York, NY", "flag": "🇺🇸", "logo": "🦁", "ranking": 12, "rankingTier": "top50", "tuition": 58000, "living": 20000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "engineering", "law", "humanities", "medicine"], "ielts": "7.5", "deadline": "2026-01-01", "salary": 105000, "employment": 95, "visaEase": 45, "description": "Ivy League in NYC, strong in journalism and international affairs.", "pros": ["NYC location", "Journalism", "Global affairs"], "roi": 6.7, "toefl": "100"}, {"id": 38, "name": "University of Pennsylvania", "country": "usa", "city": "Philadelphia, PA", "flag": "🇺🇸", "logo": "📯", "ranking": 13, "rankingTier": "top50", "tuition": 56000, "living": 16000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "engineering", "law", "medicine"], "ielts": "7.5", "deadline": "2026-01-05", "salary": 110000, "employment": 96, "visaEase": 48, "description": "Wharton Business School, strong in finance and medicine.", "pros": ["Wharton MBA", "Finance", "Interdisciplinary"], "roi": 7.0, "toefl": "100"}, {"id": 39, "name": "Johns Hopkins University", "country": "usa", "city": "Baltimore, MD", "flag": "🇺🇸", "logo": "🏥", "ranking": 15, "rankingTier": "top50", "tuition": 55000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["medicine", "natural_sciences", "engineering", "public_health"], "ielts": "7.5", "deadline": "2026-01-03", "salary": 105000, "employment": 96, "visaEase": 50, "description": "World leader in medicine and public health research.", "pros": ["Medicine #1", "Public health", "Research funding"], "roi": 7.2, "toefl": "100"}, {"id": 40, "name": "Northwestern University", "country": "usa", "city": "Evanston, IL", "flag": "🇺🇸", "logo": "🟣", "ranking": 18, "rankingTier": "top50", "tuition": 56000, "living": 16000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "law", "engineering", "journalism"], "ielts": "7.5", "deadline": "2026-01-03", "salary": 100000, "employment": 95, "visaEase": 50, "description": "Top research university with excellent journalism and theater programs.", "pros": ["Journalism", "Theater", "Research"], "roi": 6.9, "toefl": "100"}, {"id": 41, "name": "UC Berkeley", "country": "usa", "city": "Berkeley, CA", "flag": "🇺🇸", "logo": "🐻", "ranking": 10, "rankingTier": "top50", "tuition": 44000, "living": 17000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "engineering", "economics", "business"], "ielts": "7.0", "deadline": "2025-11-30", "salary": 105000, "employment": 95, "visaEase": 50, "description": "Best public university in USA, strongest CS program.", "pros": ["Best public US", "Tech hub", "Diversity"], "roi": 7.8, "toefl": "90"}, {"id": 42, "name": "UCLA", "country": "usa", "city": "Los Angeles, CA", "flag": "🇺🇸", "logo": "🌴", "ranking": 15, "rankingTier": "top50", "tuition": 43000, "living": 18000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "business", "engineering", "medicine"], "ielts": "7.0", "deadline": "2025-11-30", "salary": 95000, "employment": 94, "visaEase": 52, "description": "Top public university in sunny Los Angeles.", "pros": ["LA location", "Film & media", "Medical center"], "roi": 7.5, "toefl": "90"}, {"id": 43, "name": "University of Michigan", "country": "usa", "city": "Ann Arbor, MI", "flag": "🇺🇸", "logo": "〽️", "ranking": 21, "rankingTier": "top50", "tuition": 52000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "business", "cs", "medicine"], "ielts": "7.0", "deadline": "2026-02-01", "salary": 95000, "employment": 94, "visaEase": 52, "description": "Strongest research university with huge campus.", "pros": ["Research power", "Auto industry", "School spirit"], "roi": 7.6, "toefl": "88"}, {"id": 44, "name": "Carnegie Mellon University", "country": "usa", "city": "Pittsburgh, PA", "flag": "🇺🇸", "logo": "🎭", "ranking": 24, "rankingTier": "top50", "tuition": 58000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "engineering", "business", "arts"], "ielts": "7.0", "deadline": "2025-12-15", "salary": 115000, "employment": 97, "visaEase": 48, "description": "#1 in Computer Science, birthplace of machine learning.", "pros": ["CS #1", "AI labs", "Big Tech recruiting"], "roi": 7.4, "toefl": "100"}, {"id": 45, "name": "Cornell University", "country": "usa", "city": "Ithaca, NY", "flag": "🇺🇸", "logo": "🐻", "ranking": 16, "rankingTier": "top50", "tuition": 56000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "business", "hotel_admin", "humanities"], "ielts": "7.5", "deadline": "2026-01-02", "salary": 100000, "employment": 95, "visaEase": 50, "description": "Ivy League with strongest engineering and hospitality programs.", "pros": ["Ivy engineering", "Hotel school", "Beautiful campus"], "roi": 7.0, "toefl": "100"}, {"id": 46, "name": "Duke University", "country": "usa", "city": "Durham, NC", "flag": "🇺🇸", "logo": "😈", "ranking": 20, "rankingTier": "top50", "tuition": 56000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "law", "engineering", "medicine"], "ielts": "7.5", "deadline": "2026-01-03", "salary": 100000, "employment": 95, "visaEase": 50, "description": "Southern Ivy, strong in law, business and medicine.", "pros": ["Southern Ivy", "Basketball", "Research triangle"], "roi": 7.0, "toefl": "100"}, {"id": 47, "name": "NYU", "country": "usa", "city": "New York, NY", "flag": "🇺🇸", "logo": "🗽", "ranking": 35, "rankingTier": "top50", "tuition": 52000, "living": 20000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "law", "arts", "cs"], "ielts": "7.0", "deadline": "2026-01-05", "salary": 90000, "employment": 93, "visaEase": 50, "description": "Global network university in the heart of Manhattan.", "pros": ["NYC campus", "Global network", "Arts & business"], "roi": 6.5, "toefl": "90"}, {"id": 48, "name": "UC San Diego", "country": "usa", "city": "San Diego, CA", "flag": "🇺🇸", "logo": "🌊", "ranking": 28, "rankingTier": "top50", "tuition": 42000, "living": 16000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "engineering", "natural_sciences", "medicine"], "ielts": "7.0", "deadline": "2025-11-30", "salary": 95000, "employment": 94, "visaEase": 52, "description": "Top research university with Scripps Oceanography.", "pros": ["Oceanography", "Biotech", "San Diego beaches"], "roi": 7.6, "toefl": "90"}, {"id": 49, "name": "University of Washington", "country": "usa", "city": "Seattle, WA", "flag": "🇺🇸", "logo": "☔", "ranking": 30, "rankingTier": "top50", "tuition": 38000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "engineering", "medicine", "business"], "ielts": "7.0", "deadline": "2025-12-01", "salary": 100000, "employment": 94, "visaEase": 55, "description": "Top public university in Seattle, strong in CS and medicine.", "pros": ["Seattle tech", "Amazon & Microsoft", "Medical school"], "roi": 7.8, "toefl": "90"}, {"id": 50, "name": "University of Wisconsin-Madison", "country": "usa", "city": "Madison, WI", "flag": "🇺🇸", "logo": "🦡", "ranking": 40, "rankingTier": "top50", "tuition": 36000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "business", "natural_sciences", "humanities"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 85000, "employment": 93, "visaEase": 55, "description": "Top public research university with vibrant campus life.", "pros": ["Public research", "Political science", "Campus life"], "roi": 7.8, "toefl": "80"}, {"id": 51, "name": "UT Austin", "country": "usa", "city": "Austin, TX", "flag": "🇺🇸", "logo": "🤘", "ranking": 38, "rankingTier": "top50", "tuition": 38000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "business", "engineering", "law"], "ielts": "6.5", "deadline": "2025-12-01", "salary": 90000, "employment": 94, "visaEase": 55, "description": "Top public university in booming Austin tech scene.", "pros": ["Austin tech", "Energy sector", "Live music capital"], "roi": 7.7, "toefl": "80"}, {"id": 52, "name": "UIUC", "country": "usa", "city": "Urbana-Champaign, IL", "flag": "🇺🇸", "logo": "🌽", "ranking": 42, "rankingTier": "top50", "tuition": 36000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "engineering", "business", "library_science"], "ielts": "6.5", "deadline": "2026-01-05", "salary": 92000, "employment": 94, "visaEase": 55, "description": "Top engineering and CS school with strong industry ties.", "pros": ["Engineering top-5", "CS recruiting", "Affordable"], "roi": 7.9, "toefl": "80"}, {"id": 53, "name": "Georgia Tech", "country": "usa", "city": "Atlanta, GA", "flag": "🇺🇸", "logo": "🐝", "ranking": 45, "rankingTier": "top50", "tuition": 34000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "cs", "business"], "ielts": "6.5", "deadline": "2026-01-10", "salary": 90000, "employment": 94, "visaEase": 55, "description": "Top engineering school in the South, great value.", "pros": ["Engineering value", "Atlanta hub", "Co-op programs"], "roi": 8.0, "toefl": "80"}, {"id": 54, "name": "Purdue University", "country": "usa", "city": "West Lafayette, IN", "flag": "🇺🇸", "logo": "🚂", "ranking": 55, "rankingTier": "top100", "tuition": 30000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "cs", "aviation", "business"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 85000, "employment": 93, "visaEase": 58, "description": "Aerospace engineering powerhouse, known for astronauts.", "pros": ["Astronaut alumni", "Engineering", "Affordable"], "roi": 8.1, "toefl": "80"}, {"id": 55, "name": "Ohio State University", "country": "usa", "city": "Columbus, OH", "flag": "🇺🇸", "logo": "🌰", "ranking": 60, "rankingTier": "top100", "tuition": 32000, "living": 13000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "engineering", "medicine", "cs"], "ielts": "6.5", "deadline": "2026-02-01", "salary": 80000, "employment": 92, "visaEase": 58, "description": "Huge public university with strong business and medicine.", "pros": ["Huge campus", "Business", "Sports culture"], "roi": 7.6, "toefl": "80"}, {"id": 56, "name": "Penn State University", "country": "usa", "city": "State College, PA", "flag": "🇺🇸", "logo": "🦁", "ranking": 65, "rankingTier": "top100", "tuition": 33000, "living": 13000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "business", "natural_sciences"], "ielts": "6.5", "deadline": "2026-02-01", "salary": 78000, "employment": 92, "visaEase": 58, "description": "Large public university with strong engineering and alumni network.", "pros": ["Alumni network", "Engineering", "Happy Valley"], "roi": 7.5, "toefl": "80"}, {"id": 57, "name": "USC", "country": "usa", "city": "Los Angeles, CA", "flag": "🇺🇸", "logo": "✌️", "ranking": 70, "rankingTier": "top100", "tuition": 56000, "living": 18000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "cinema", "engineering", "law"], "ielts": "7.0", "deadline": "2025-12-15", "salary": 85000, "employment": 93, "visaEase": 50, "description": "Private university in LA, famous for film school.", "pros": ["Film school #1", "LA network", "Trojan network"], "roi": 6.4, "toefl": "90"}, {"id": 58, "name": "Boston University", "country": "usa", "city": "Boston, MA", "flag": "🇺🇸", "logo": "🐕", "ranking": 75, "rankingTier": "top100", "tuition": 52000, "living": 16000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "law", "medicine", "communication"], "ielts": "7.0", "deadline": "2026-01-05", "salary": 82000, "employment": 92, "visaEase": 52, "description": "Large private university in Boston with strong medicine.", "pros": ["Boston location", "Medical center", "Communications"], "roi": 6.8, "toefl": "90"}, {"id": 59, "name": "Brown University", "country": "usa", "city": "Providence, RI", "flag": "🇺🇸", "logo": "🐻", "ranking": 25, "rankingTier": "top50", "tuition": 56000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["humanities", "natural_sciences", "medicine"], "ielts": "7.5", "deadline": "2026-01-01", "salary": 95000, "employment": 94, "visaEase": 50, "description": "Ivy League with open curriculum and creative freedom.", "pros": ["Open curriculum", "Ivy League", "Liberal arts"], "roi": 7.0, "toefl": "100"}, {"id": 60, "name": "Dartmouth College", "country": "usa", "city": "Hanover, NH", "flag": "🇺🇸", "logo": "🌲", "ranking": 30, "rankingTier": "top50", "tuition": 56000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "engineering", "medicine"], "ielts": "7.5", "deadline": "2026-01-01", "salary": 95000, "employment": 94, "visaEase": 50, "description": "Small Ivy League with tight community and Tuck MBA.", "pros": ["Tuck MBA", "Tight community", "Undergrad focus"], "roi": 7.0, "toefl": "100"}, {"id": 61, "name": "Rice University", "country": "usa", "city": "Houston, TX", "flag": "🇺🇸", "logo": "🦉", "ranking": 50, "rankingTier": "top50", "tuition": 48000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "natural_sciences", "business", "music"], "ielts": "7.0", "deadline": "2026-01-01", "salary": 90000, "employment": 94, "visaEase": 55, "description": "Elite private university in Houston, strong in engineering.", "pros": ["Houston energy", "Small classes", "Engineering"], "roi": 7.5, "toefl": "90"}, {"id": 62, "name": "Vanderbilt University", "country": "usa", "city": "Nashville, TN", "flag": "🇺🇸", "logo": "⚓", "ranking": 55, "rankingTier": "top100", "tuition": 52000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "law", "medicine", "education"], "ielts": "7.0", "deadline": "2026-01-01", "salary": 88000, "employment": 93, "visaEase": 55, "description": "Southern elite university with top medical center.", "pros": ["Medical center", "Southern charm", "Education"], "roi": 7.2, "toefl": "90"}, {"id": 63, "name": "University of Notre Dame", "country": "usa", "city": "Notre Dame, IN", "flag": "🇺🇸", "logo": "☘️", "ranking": 60, "rankingTier": "top100", "tuition": 54000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "law", "engineering", "humanities"], "ielts": "7.0", "deadline": "2026-01-01", "salary": 85000, "employment": 93, "visaEase": 55, "description": "Catholic research university with strong business ethics.", "pros": ["Business ethics", "Alumni loyalty", "Football tradition"], "roi": 7.0, "toefl": "90"}, {"id": 64, "name": "UC Davis", "country": "usa", "city": "Davis, CA", "flag": "🇺🇸", "logo": "🐄", "ranking": 80, "rankingTier": "top100", "tuition": 42000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["agriculture", "engineering", "medicine", "cs"], "ielts": "7.0", "deadline": "2025-11-30", "salary": 82000, "employment": 92, "visaEase": 55, "description": "Top agricultural university with growing tech programs.", "pros": ["Agriculture #1", "Veterinary", "Sustainable"], "roi": 7.3, "toefl": "90"}, {"id": 65, "name": "University of Oxford", "country": "europe", "city": "Oxford, UK", "flag": "🇬🇧", "logo": "📜", "ranking": 2, "rankingTier": "top50", "tuition": 42000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["humanities", "economics", "law", "medicine", "natural_sciences"], "ielts": "7.5", "deadline": "2025-10-15", "salary": 85000, "employment": 95, "visaEase": 60, "description": "Oldest English-speaking university, tutorial system.", "pros": ["Tutorial system", "History", "Global network"], "roi": 7.5, "toefl": "110"}, {"id": 66, "name": "University of Cambridge", "country": "europe", "city": "Cambridge, UK", "flag": "🇬🇧", "logo": "🎓", "ranking": 3, "rankingTier": "top50", "tuition": 42000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["natural_sciences", "engineering", "economics", "law", "medicine"], "ielts": "7.5", "deadline": "2025-10-15", "salary": 85000, "employment": 95, "visaEase": 60, "description": "Historic rival of Oxford, strongest in sciences.", "pros": ["Science tradition", "Silicon Fen", "Collegiate system"], "roi": 7.5, "toefl": "110"}, {"id": 67, "name": "Imperial College London", "country": "europe", "city": "London, UK", "flag": "🇬🇧", "logo": "🔬", "ranking": 6, "rankingTier": "top50", "tuition": 42000, "living": 18000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "natural_sciences", "medicine", "business"], "ielts": "7.0", "deadline": "2026-01-15", "salary": 90000, "employment": 95, "visaEase": 60, "description": "London's science and technology specialist.", "pros": ["STEM focus", "London location", "Industry links"], "roi": 7.2, "toefl": "100"}, {"id": 68, "name": "UCL", "country": "europe", "city": "London, UK", "flag": "🇬🇧", "logo": "🏛️", "ranking": 8, "rankingTier": "top50", "tuition": 38000, "living": 17000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "economics", "law", "medicine", "humanities"], "ielts": "7.0", "deadline": "2026-01-15", "salary": 80000, "employment": 94, "visaEase": 62, "description": "London's global university, diverse and research-intensive.", "pros": ["Diversity", "Research", "London hub"], "roi": 7.0, "toefl": "100"}, {"id": 69, "name": "University of Edinburgh", "country": "europe", "city": "Edinburgh, UK", "flag": "🇬🇧", "logo": "🏰", "ranking": 22, "rankingTier": "top50", "tuition": 32000, "living": 13000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "medicine", "law", "humanities", "natural_sciences"], "ielts": "6.5", "deadline": "2026-01-25", "salary": 70000, "employment": 93, "visaEase": 65, "description": "Historic Scottish university, strong in AI and medicine.", "pros": ["AI research", "Scottish history", "Affordable UK"], "roi": 7.5, "toefl": "92"}, {"id": 70, "name": "University of Manchester", "country": "europe", "city": "Manchester, UK", "flag": "🇬🇧", "logo": "🐝", "ranking": 28, "rankingTier": "top50", "tuition": 30000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "business", "cs", "medicine"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 65000, "employment": 92, "visaEase": 65, "description": "Large research university in industrial Manchester.", "pros": ["Research scale", "Affordable UK", "Industry heritage"], "roi": 7.5, "toefl": "90"}, {"id": 71, "name": "ETH Zurich", "country": "europe", "city": "Zurich, Switzerland", "flag": "🇨🇭", "logo": "🔷", "ranking": 7, "rankingTier": "top50", "tuition": 1600, "living": 24000, "currency": "USD", "language": "english", "languages": ["english", "german"], "majors": ["cs", "engineering", "natural_sciences", "economics"], "ielts": "7.0", "deadline": "2025-12-15", "salary": 95000, "employment": 94, "visaEase": 75, "description": "Best technical university in continental Europe.", "pros": ["Top-10 worldwide", "Very cheap tuition", "Swiss salaries"], "roi": 8.5}, {"id": 72, "name": "EPFL", "country": "europe", "city": "Lausanne, Switzerland", "flag": "🇨🇭", "logo": "🏔️", "ranking": 32, "rankingTier": "top50", "tuition": 1500, "living": 22000, "currency": "USD", "language": "english", "languages": ["english", "french"], "majors": ["cs", "engineering", "natural_sciences"], "ielts": "7.0", "deadline": "2025-12-15", "salary": 90000, "employment": 93, "visaEase": 75, "description": "French-speaking counterpart to ETH, strong in data science.", "pros": ["Low tuition", "Data Science", "Switzerland"], "roi": 8.8}, {"id": 73, "name": "TU Munich", "country": "europe", "city": "Munich, Germany", "flag": "🇩🇪", "logo": "🍺", "ranking": 28, "rankingTier": "top50", "tuition": 0, "living": 12000, "currency": "USD", "language": "english", "languages": ["english", "german"], "majors": ["engineering", "cs", "business", "natural_sciences"], "ielts": "6.5", "deadline": "2026-05-31", "salary": 65000, "employment": 92, "visaEase": 80, "description": "Free education in one of the strongest technical universities.", "pros": ["Free tuition!", "Auto industry", "18-month visa after study"], "roi": 9.8}, {"id": 74, "name": "TU Delft", "country": "europe", "city": "Delft, Netherlands", "flag": "🇳🇱", "logo": "🚲", "ranking": 47, "rankingTier": "top50", "tuition": 18000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "cs", "architecture"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 60000, "employment": 91, "visaEase": 85, "description": "Best engineering university in the Netherlands.", "pros": ["English taught", "Search Year Visa", "Tech hub"], "roi": 8.2}, {"id": 75, "name": "University of Amsterdam", "country": "europe", "city": "Amsterdam, Netherlands", "flag": "🇳🇱", "logo": "🌷", "ranking": 55, "rankingTier": "top100", "tuition": 14000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["economics", "business", "law", "humanities", "cs"], "ielts": "6.5", "deadline": "2026-01-31", "salary": 58000, "employment": 91, "visaEase": 85, "description": "Top Dutch university in humanities and social sciences.", "pros": ["Amsterdam life", "English programs", "Research"], "roi": 8.0}, {"id": 76, "name": "KU Leuven", "country": "europe", "city": "Leuven, Belgium", "flag": "🇧🇪", "logo": "🍺", "ranking": 45, "rankingTier": "top50", "tuition": 1200, "living": 12000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "theology", "business", "medicine"], "ielts": "6.5", "deadline": "2026-03-01", "salary": 55000, "employment": 92, "visaEase": 80, "description": "Europe's oldest Catholic university, strong in theology and engineering.", "pros": ["Low tuition", "Historic", "Research"], "roi": 8.8}, {"id": 77, "name": "Paris-Saclay University", "country": "europe", "city": "Paris, France", "flag": "🇫🇷", "logo": "🥐", "ranking": 15, "rankingTier": "top50", "tuition": 300, "living": 14000, "currency": "USD", "language": "english", "languages": ["english", "french"], "majors": ["natural_sciences", "engineering", "economics"], "ielts": "6.5", "deadline": "2026-03-15", "salary": 55000, "employment": 92, "visaEase": 70, "description": "Top French research university with excellent science programs.", "pros": ["Very cheap", "Math & physics", "Paris proximity"], "roi": 9.5}, {"id": 78, "name": "Sorbonne University", "country": "europe", "city": "Paris, France", "flag": "🇫🇷", "logo": "📚", "ranking": 40, "rankingTier": "top50", "tuition": 300, "living": 14000, "currency": "USD", "language": "french", "languages": ["french", "english"], "majors": ["humanities", "medicine", "natural_sciences"], "ielts": "6.5", "deadline": "2026-03-01", "salary": 52000, "employment": 91, "visaEase": 70, "description": "Historic Paris university, strong in humanities and medicine.", "pros": ["Humanities tradition", "Paris", "Medicine"], "roi": 8.8}, {"id": 79, "name": "École Polytechnique", "country": "europe", "city": "Palaiseau, France", "flag": "🇫🇷", "logo": "⚔️", "ranking": 50, "rankingTier": "top50", "tuition": 20000, "living": 13000, "currency": "USD", "language": "french", "languages": ["french", "english"], "majors": ["engineering", "natural_sciences", "economics"], "ielts": "7.0", "deadline": "2025-12-01", "salary": 70000, "employment": 93, "visaEase": 68, "description": "Elite French engineering school, highly selective.", "pros": ["Elite engineering", "French grande école", "Strong alumni"], "roi": 7.5}, {"id": 80, "name": "Sciences Po", "country": "europe", "city": "Paris, France", "flag": "🇫🇷", "logo": "🌍", "ranking": 80, "rankingTier": "top100", "tuition": 18000, "living": 14000, "currency": "USD", "language": "french", "languages": ["french", "english"], "majors": ["law", "economics", "humanities", "business"], "ielts": "7.0", "deadline": "2026-01-15", "salary": 60000, "employment": 91, "visaEase": 68, "description": "Top French school for political science and international relations.", "pros": ["Political science", "Diplomacy", "Paris network"], "roi": 7.5}, {"id": 81, "name": "Bocconi University", "country": "europe", "city": "Milan, Italy", "flag": "🇮🇹", "logo": "👔", "ranking": 320, "rankingTier": "top500", "tuition": 14000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english", "italian"], "majors": ["business", "economics", "law"], "ielts": "6.5", "deadline": "2026-01-31", "salary": 55000, "employment": 89, "visaEase": 70, "description": "Italy's best business school, strong in fashion and finance.", "pros": ["Fashion & Finance", "Milan", "Scholarships"], "roi": 8.0}, {"id": 82, "name": "Politecnico di Milano", "country": "europe", "city": "Milan, Italy", "flag": "🇮🇹", "logo": "🏗️", "ranking": 120, "rankingTier": "top500", "tuition": 4000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english", "italian"], "majors": ["engineering", "architecture", "design"], "ielts": "6.0", "deadline": "2026-01-31", "salary": 52000, "employment": 90, "visaEase": 70, "description": "Italy's top technical university, strong in design and architecture.", "pros": ["Design", "Architecture", "Affordable"], "roi": 8.5}, {"id": 83, "name": "University of Copenhagen", "country": "europe", "city": "Copenhagen, Denmark", "flag": "🇩🇰", "logo": "🧜", "ranking": 80, "rankingTier": "top100", "tuition": 12000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["medicine", "natural_sciences", "humanities", "economics"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 60000, "employment": 92, "visaEase": 78, "description": "Top Scandinavian university with excellent life sciences.", "pros": ["Life sciences", "Quality of life", "English programs"], "roi": 8.0}, {"id": 84, "name": "University of Helsinki", "country": "europe", "city": "Helsinki, Finland", "flag": "🇫🇮", "logo": "❄️", "ranking": 100, "rankingTier": "top100", "tuition": 15000, "living": 11000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "business", "education", "natural_sciences"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 50000, "employment": 91, "visaEase": 82, "description": "Strong AI research school with high quality of life.", "pros": ["AI research", "Quality of life", "English taught"], "roi": 8.4}, {"id": 85, "name": "KTH Royal Institute", "country": "europe", "city": "Stockholm, Sweden", "flag": "🇸🇪", "logo": "👑", "ranking": 89, "rankingTier": "top100", "tuition": 16000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "cs", "architecture"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 58000, "employment": 92, "visaEase": 80, "description": "Sweden's top technical university in Stockholm.", "pros": ["Stockholm tech", "English programs", "Innovation"], "roi": 8.1}, {"id": 86, "name": "Lund University", "country": "europe", "city": "Lund, Sweden", "flag": "🇸🇪", "logo": "🦁", "ranking": 95, "rankingTier": "top100", "tuition": 14000, "living": 11000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "medicine", "law", "economics"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 55000, "employment": 91, "visaEase": 80, "description": "Historic Swedish university with strong international programs.", "pros": ["Student city", "International", "Research"], "roi": 8.2}, {"id": 87, "name": "University of Oslo", "country": "europe", "city": "Oslo, Norway", "flag": "🇳🇴", "logo": "🏔️", "ranking": 100, "rankingTier": "top100", "tuition": 0, "living": 14000, "currency": "USD", "language": "english", "languages": ["english", "norwegian"], "majors": ["natural_sciences", "law", "medicine", "humanities"], "ielts": "6.5", "deadline": "2026-02-01", "salary": 65000, "employment": 92, "visaEase": 82, "description": "Free education in Norway's top university.", "pros": ["Free tuition", "High salaries", "Nature"], "roi": 9.0}, {"id": 88, "name": "University of Warsaw", "country": "europe", "city": "Warsaw, Poland", "flag": "🇵🇱", "logo": "🏰", "ranking": 250, "rankingTier": "top500", "tuition": 3000, "living": 7000, "currency": "USD", "language": "english", "languages": ["english", "russian"], "majors": ["economics", "cs", "business", "law"], "ielts": "6.0", "deadline": "2026-07-15", "salary": 28000, "employment": 88, "visaEase": 90, "description": "Poland's largest university, affordable EU education.", "pros": ["Very cheap", "EU visa", "Russian support"], "roi": 9.2}, {"id": 89, "name": "Charles University", "country": "europe", "city": "Prague, Czechia", "flag": "🇨🇿", "logo": "⛪", "ranking": 280, "rankingTier": "top500", "tuition": 0, "living": 9000, "currency": "USD", "language": "english", "languages": ["english", "czech"], "majors": ["medicine", "economics", "humanities", "law"], "ielts": "6.5", "deadline": "2026-02-28", "salary": 35000, "employment": 90, "visaEase": 88, "description": "Central Europe's oldest university, strong medicine.", "pros": ["Free in Czech", "Medicine", "Prague student city"], "roi": 9.6}, {"id": 90, "name": "University of Vienna", "country": "europe", "city": "Vienna, Austria", "flag": "🇦🇹", "logo": "🎼", "ranking": 150, "rankingTier": "top500", "tuition": 1800, "living": 12000, "currency": "USD", "language": "english", "languages": ["english", "german"], "majors": ["humanities", "law", "economics", "natural_sciences"], "ielts": "6.5", "deadline": "2026-03-01", "salary": 48000, "employment": 91, "visaEase": 80, "description": "Historic university in one of world's most livable cities.", "pros": ["Low tuition", "Vienna culture", "Humanities"], "roi": 8.8}, {"id": 91, "name": "Technical University of Denmark", "country": "europe", "city": "Lyngby, Denmark", "flag": "🇩🇰", "logo": "🔧", "ranking": 110, "rankingTier": "top500", "tuition": 18000, "living": 13000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "cs", "natural_sciences"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 62000, "employment": 93, "visaEase": 80, "description": "Top Danish technical university with strong industry links.", "pros": ["Engineering", "Green tech", "English"], "roi": 8.0}, {"id": 92, "name": "Trinity College Dublin", "country": "europe", "city": "Dublin, Ireland", "flag": "🇮🇪", "logo": "☘️", "ranking": 100, "rankingTier": "top100", "tuition": 22000, "living": 13000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["humanities", "cs", "business", "law"], "ielts": "6.5", "deadline": "2026-02-01", "salary": 55000, "employment": 91, "visaEase": 75, "description": "Ireland's oldest university, tech companies love graduates.", "pros": ["Tech companies", "Historic", "English"], "roi": 7.8}, {"id": 93, "name": "University of Barcelona", "country": "europe", "city": "Barcelona, Spain", "flag": "🇪🇸", "logo": "🌊", "ranking": 150, "rankingTier": "top500", "tuition": 8000, "living": 11000, "currency": "USD", "language": "spanish", "languages": ["spanish", "english"], "majors": ["economics", "medicine", "humanities", "business"], "ielts": "6.0", "deadline": "2026-03-15", "salary": 42000, "employment": 89, "visaEase": 75, "description": "Top Spanish university in vibrant Barcelona.", "pros": ["Barcelona life", "Affordable", "Mediterranean"], "roi": 8.0}, {"id": 94, "name": "Autonomous University of Madrid", "country": "europe", "city": "Madrid, Spain", "flag": "🇪🇸", "logo": "🌞", "ranking": 200, "rankingTier": "top500", "tuition": 6000, "living": 10000, "currency": "USD", "language": "spanish", "languages": ["spanish", "english"], "majors": ["law", "economics", "medicine", "humanities"], "ielts": "6.0", "deadline": "2026-03-01", "salary": 40000, "employment": 88, "visaEase": 75, "description": "Top research university in Spain's capital.", "pros": ["Madrid capital", "Research", "Affordable"], "roi": 8.2}, {"id": 95, "name": "University of Toronto", "country": "other", "city": "Toronto, Canada", "flag": "🇨🇦", "logo": "🍁", "ranking": 18, "rankingTier": "top50", "tuition": 45000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "business", "engineering", "medicine"], "ielts": "7.0", "deadline": "2026-01-15", "salary": 75000, "employment": 93, "visaEase": 70, "description": "Canada's top university in multicultural Toronto.", "pros": ["Multicultural", "Research", "PGWP visa"], "roi": 7.5, "toefl": "100"}, {"id": 96, "name": "UBC", "country": "other", "city": "Vancouver, Canada", "flag": "🇨🇦", "logo": "🌲", "ranking": 30, "rankingTier": "top50", "tuition": 40000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "business", "engineering", "natural_sciences"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 70000, "employment": 92, "visaEase": 72, "description": "Beautiful Vancouver campus, strong in sustainability.", "pros": ["Vancouver nature", "Sustainability", "Tech sector"], "roi": 7.6, "toefl": "90"}, {"id": 97, "name": "McGill University", "country": "other", "city": "Montreal, Canada", "flag": "🇨🇦", "logo": "🍁", "ranking": 35, "rankingTier": "top50", "tuition": 35000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english", "french"], "majors": ["medicine", "law", "engineering", "business"], "ielts": "6.5", "deadline": "2026-01-15", "salary": 68000, "employment": 92, "visaEase": 72, "description": "Canada's Harvard, bilingual university in Montreal.", "pros": ["Bilingual", "Medical school", "Affordable"], "roi": 7.8, "toefl": "90"}, {"id": 98, "name": "University of Melbourne", "country": "other", "city": "Melbourne, Australia", "flag": "🇦🇺", "logo": "🦘", "ranking": 25, "rankingTier": "top50", "tuition": 35000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["business", "law", "medicine", "engineering"], "ielts": "6.5", "deadline": "2025-12-01", "salary": 65000, "employment": 92, "visaEase": 70, "description": "Australia's top university in world's most livable city.", "pros": ["Livable city", "Research", "Work rights"], "roi": 7.3, "toefl": "90"}, {"id": 99, "name": "Australian National University", "country": "other", "city": "Canberra, Australia", "flag": "🇦🇺", "logo": "🏛️", "ranking": 40, "rankingTier": "top50", "tuition": 34000, "living": 14000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["economics", "law", "natural_sciences", "cs"], "ielts": "6.5", "deadline": "2025-12-01", "salary": 62000, "employment": 91, "visaEase": 70, "description": "Australia's national university, strong in policy and science.", "pros": ["Policy research", "Capital city", "Affordable"], "roi": 7.4, "toefl": "90"}, {"id": 100, "name": "National University of Singapore", "country": "other", "city": "Singapore", "flag": "🇸🇬", "logo": "🦁", "ranking": 8, "rankingTier": "top50", "tuition": 25000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["cs", "engineering", "business", "law", "medicine"], "ielts": "6.5", "deadline": "2026-01-31", "salary": 80000, "employment": 95, "visaEase": 75, "description": "Asia's top university, gateway to Southeast Asian markets.", "pros": ["Asia #1", "Finance hub", "English"], "roi": 8.2, "toefl": "90"}, {"id": 101, "name": "Nanyang Technological University", "country": "other", "city": "Singapore", "flag": "🇸🇬", "logo": "🌿", "ranking": 15, "rankingTier": "top50", "tuition": 22000, "living": 11000, "currency": "USD", "language": "english", "languages": ["english"], "majors": ["engineering", "cs", "business", "education"], "ielts": "6.5", "deadline": "2026-01-31", "salary": 75000, "employment": 94, "visaEase": 75, "description": "Singapore's tech powerhouse with beautiful campus.", "pros": ["Engineering", "Beautiful campus", "Asia gateway"], "roi": 8.3, "toefl": "90"}, {"id": 102, "name": "University of Tokyo", "country": "other", "city": "Tokyo, Japan", "flag": "🇯🇵", "logo": "🗼", "ranking": 23, "rankingTier": "top50", "tuition": 6000, "living": 15000, "currency": "USD", "language": "english", "languages": ["english", "japanese"], "majors": ["engineering", "natural_sciences", "economics", "medicine"], "ielts": "6.5", "deadline": "2025-12-01", "salary": 55000, "employment": 93, "visaEase": 65, "description": "Japan's top university in the heart of Tokyo.", "pros": ["Japan #1", "Tokyo", "Research"], "roi": 8.5, "toefl": "90"}, {"id": 103, "name": "Kyoto University", "country": "other", "city": "Kyoto, Japan", "flag": "🇯🇵", "logo": "⛩️", "ranking": 35, "rankingTier": "top50", "tuition": 5000, "living": 12000, "currency": "USD", "language": "english", "languages": ["english", "japanese"], "majors": ["natural_sciences", "engineering", "medicine", "humanities"], "ielts": "6.0", "deadline": "2025-12-01", "salary": 50000, "employment": 92, "visaEase": 65, "description": "Historic rival of Tokyo, strong in fundamental sciences.", "pros": ["Fundamental science", "Kyoto culture", "Affordable"], "roi": 8.8, "toefl": "80"}, {"id": 104, "name": "Seoul National University", "country": "other", "city": "Seoul, South Korea", "flag": "🇰🇷", "logo": "🏔️", "ranking": 29, "rankingTier": "top50", "tuition": 6000, "living": 10000, "currency": "USD", "language": "english", "languages": ["english", "korean"], "majors": ["engineering", "business", "law", "natural_sciences"], "ielts": "6.5", "deadline": "2025-11-30", "salary": 55000, "employment": 93, "visaEase": 68, "description": "Korea's top university in dynamic Seoul.", "pros": ["Korea #1", "Seoul tech", "Affordable"], "roi": 8.7, "toefl": "90"}, {"id": 105, "name": "KAIST", "country": "other", "city": "Daejeon, South Korea", "flag": "🇰🇷", "logo": "🚀", "ranking": 40, "rankingTier": "top50", "tuition": 8000, "living": 9000, "currency": "USD", "language": "english", "languages": ["english", "korean"], "majors": ["cs", "engineering", "natural_sciences"], "ielts": "6.5", "deadline": "2025-11-30", "salary": 60000, "employment": 94, "visaEase": 70, "description": "Korea's MIT, focused on science and technology.", "pros": ["Korea's MIT", "Tech focus", "English programs"], "roi": 8.5, "toefl": "90"}];
+
+let currentLang = 'ru';
+let currentCurrency = 'USD';
+let userProfile = { goal: null, regions: [], budget: 15000, languages: [] };
+let favorites = new Set();
+let compareList = new Set();
+let currentStep = 1;
+let currentTab = 'search';
+let checklistState = {};
+
+// Translation helper
+function t(key) {
+  const tr = TRANSLATIONS[currentLang];
+  return tr[key] || key;
+}
+
+// Currency formatting
+function formatMoney(amount) {
+  const rate = EXCHANGE_RATES[currentCurrency];
+  const symbol = CURRENCY_SYMBOLS[currentCurrency];
+  const converted = Math.round(amount * rate);
+  if (converted >= 1000000) return symbol + (converted / 1000000).toFixed(1) + 'M';
+  if (converted >= 1000) return symbol + converted.toLocaleString();
+  return symbol + converted;
+}
+
+function formatMoneyRaw(amount) {
+  const rate = EXCHANGE_RATES[currentCurrency];
+  const symbol = CURRENCY_SYMBOLS[currentCurrency];
+  return symbol + Math.round(amount * rate).toLocaleString();
+}
+
+// Language switching
+function changeLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'ru' ? 'ru' : lang === 'kz' ? 'kk' : 'en';
+  updateAllText();
+  renderUniversities();
+  if (currentTab === 'favorites') renderFavorites();
+  if (currentTab === 'recommendations') { renderRecommendations(); updateRecProfile(); }
+  if (currentTab === 'analytics') renderAnalytics();
+  if (currentTab === 'checklist') renderChecklist();
+}
+
+function changeCurrency(curr) {
+  currentCurrency = curr;
+  renderUniversities();
+  if (currentTab === 'favorites') renderFavorites();
+  if (currentTab === 'recommendations') renderRecommendations();
+  if (currentTab === 'analytics') renderAnalytics();
+}
+
+function updateAllText() {
+  const map = {
+    '.tab-text': null,
+    '.new-search-text': 'new_search',
+    '.filters-text': 'filters',
+    '.country-text': 'country',
+    '.china-text': 'china',
+    '.usa-text': 'usa',
+    '.europe-text': 'europe',
+    '.other-text': 'other_region',
+    '.lang-text': 'language_study',
+    '.english-text': 'english',
+    '.chinese-text': 'chinese',
+    '.russian-text': 'russian',
+    '.cost-text': 'cost_per_year',
+    '.ranking-text': 'ranking',
+    '.top50-text': 'top_50',
+    '.top100-text': 'top_100',
+    '.top500-text': 'top_500',
+    '.other-rank-text': 'other',
+    '.major-text': 'major',
+    '.cs-text': 'cs',
+    '.business-text': 'business',
+    '.engineering-text': 'engineering',
+    '.medicine-text': 'medicine',
+    '.economics-text': 'economics',
+    '.ns-text': 'natural_sciences',
+    '.hum-text': 'humanities',
+    '.law-text': 'law',
+    '.reset-text': 'reset_filters',
+    '.found-text': 'found',
+    '.unis-text': 'universities',
+    '.opt-match': 'match',
+    '.opt-rank': 'by_ranking',
+    '.opt-cheap': 'cheaper_first',
+    '.opt-exp': 'expensive_first',
+    '.opt-sal': 'by_salary',
+    '.rec-title': 'personal_rec',
+    '.all-matching': 'all_matching',
+    '.fav-empty-title': 'fav_empty_title',
+    '.fav-empty-desc': 'fav_empty_desc',
+    '.analytics-title': 'analytics_title',
+    '.checklist-title-main': 'checklist_title'
+  };
+
+  // Update tab texts
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    const tabName = tab.dataset.tab;
+    const span = tab.querySelector('.tab-text');
+    if (span) span.textContent = t(tabName === 'search' ? 'search' : tabName === 'recommendations' ? 'recommendations' : tabName === 'favorites' ? 'favorites' : tabName === 'analytics' ? 'analytics' : 'checklist');
+  });
+
+  Object.entries(map).forEach(([selector, key]) => {
+    if (!key) return;
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.tagName === 'OPTION') el.textContent = t(key);
+      else if (!el.querySelector('i, span.badge')) el.textContent = t(key);
+    });
+  });
+
+  // Update compare bar text
+  const compareInfo = document.querySelector('.compare-info');
+  if (compareInfo) {
+    compareInfo.innerHTML = t('compare_selected') + ': <span id="compare-count">' + compareList.size + '</span> / 5';
+  }
+
+  // Update onboarding
+  document.querySelectorAll('.onboarding-step').forEach(step => {
+    const s = step.dataset.step;
+    if (s === '1') {
+      step.querySelector('.onboarding-title').textContent = t('goal_title');
+      step.querySelector('.onboarding-subtitle').textContent = t('goal_subtitle');
+    }
+    if (s === '2') {
+      step.querySelector('.onboarding-title').textContent = t('region_title');
+      step.querySelector('.onboarding-subtitle').textContent = t('region_subtitle');
+    }
+    if (s === '3') {
+      step.querySelector('.onboarding-title').textContent = t('budget_title');
+      step.querySelector('.onboarding-subtitle').textContent = t('budget_subtitle') + ' USD';
+      const label = step.querySelector('.range-slider label');
+      if (label) label.querySelector('span:first-child').textContent = t('budget_label');
+    }
+    if (s === '4') {
+      step.querySelector('.onboarding-title').textContent = t('lang_title');
+      step.querySelector('.onboarding-subtitle').textContent = t('lang_subtitle');
+    }
+  });
+
+  // Update option cards in onboarding
+  const goalOptions = document.getElementById('goal-options');
+  if (goalOptions) {
+    const goalMap = {career: 'career', immigration: 'immigration', prestige: 'prestige', budget: 'budget_goal', experience: 'experience', startup: 'startup'};
+    goalOptions.querySelectorAll('.option-card').forEach(card => {
+      const val = card.dataset.value;
+      const label = card.querySelector('.label');
+      const desc = card.querySelector('.desc');
+      if (label) label.textContent = t(goalMap[val]);
+      if (desc) desc.textContent = t(val + '_desc');
+    });
+  }
+
+  const regionOptions = document.getElementById('region-options');
+  if (regionOptions) {
+    const regionMap = {china: 'china', usa: 'usa', europe: 'europe', other: 'other_region'};
+    const regionDesc = {china: 'china_desc', usa: 'usa_desc', europe: 'europe_desc', other: 'other_desc'};
+    regionOptions.querySelectorAll('.option-card').forEach(card => {
+      const val = card.dataset.value;
+      const label = card.querySelector('.label');
+      const desc = card.querySelector('.desc');
+      if (label) label.textContent = t(regionMap[val]);
+      if (desc) desc.textContent = t(regionDesc[val]);
+    });
+  }
+
+  const langOptions = document.getElementById('lang-options');
+  if (langOptions) {
+    const langMap = {english: 'english', chinese: 'chinese', russian: 'russian', any: 'any_lang'};
+    const langDesc = {english: 'IELTS/TOEFL', chinese: 'HSK', russian: 'russian_desc', any: 'any_desc'};
+    langOptions.querySelectorAll('.option-card').forEach(card => {
+      const val = card.dataset.value;
+      const label = card.querySelector('.label');
+      const desc = card.querySelector('.desc');
+      if (label) label.textContent = t(langMap[val]);
+      if (desc) desc.textContent = t(langDesc[val]);
+    });
+  }
+
+  // Update buttons
+  const btnNext = document.getElementById('btn-step1-next');
+  if (btnNext) btnNext.innerHTML = t('next') + ' <i class="fas fa-arrow-right"></i>';
+  const btnNext2 = document.getElementById('btn-step2-next');
+  if (btnNext2) btnNext2.innerHTML = t('next') + ' <i class="fas fa-arrow-right"></i>';
+  const btnNext3 = document.getElementById('btn-step3-next');
+  if (btnNext3) btnNext3.innerHTML = t('next') + ' <i class="fas fa-arrow-right"></i>';
+  const btnFinish = document.getElementById('btn-step4-finish');
+  if (btnFinish) btnFinish.innerHTML = t('start') + ' <i class="fas fa-rocket"></i>';
+
+  ['btn-step2-back', 'btn-step3-back', 'btn-step4-back'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.innerHTML = '<i class="fas fa-arrow-left"></i> ' + t('back');
+  });
+}
+
+// Onboarding
+function initOnboarding() {
+  document.querySelectorAll('#goal-options .option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('#goal-options .option-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      userProfile.goal = card.dataset.value;
+      document.getElementById('btn-step1-next').disabled = false;
+    });
+  });
+
+  document.querySelectorAll('#region-options .option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('selected');
+      userProfile.regions = Array.from(document.querySelectorAll('#region-options .option-card.selected')).map(c => c.dataset.value);
+      document.getElementById('btn-step2-next').disabled = userProfile.regions.length === 0;
+    });
+  });
+
+  const budgetRange = document.getElementById('budget-range');
+  budgetRange.addEventListener('input', (e) => {
+    userProfile.budget = parseInt(e.target.value);
+    document.getElementById('budget-value').textContent = '$' + userProfile.budget.toLocaleString() + ' ' + t('per_year');
+    document.getElementById('budget-label').textContent = '$' + userProfile.budget.toLocaleString();
+  });
+
+  document.querySelectorAll('#lang-options .option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (card.dataset.value === 'any') {
+        document.querySelectorAll('#lang-options .option-card').forEach(c => { if (c.dataset.value !== 'any') c.classList.remove('selected'); });
+        card.classList.toggle('selected');
+      } else {
+        document.querySelector('#lang-options .option-card[data-value="any"]').classList.remove('selected');
+        card.classList.toggle('selected');
+      }
+      userProfile.languages = Array.from(document.querySelectorAll('#lang-options .option-card.selected')).map(c => c.dataset.value);
+      document.getElementById('btn-step4-finish').disabled = userProfile.languages.length === 0;
+    });
+  });
+
+  document.getElementById('btn-step1-next').addEventListener('click', () => goToStep(2));
+  document.getElementById('btn-step2-back').addEventListener('click', () => goToStep(1));
+  document.getElementById('btn-step2-next').addEventListener('click', () => goToStep(3));
+  document.getElementById('btn-step3-back').addEventListener('click', () => goToStep(2));
+  document.getElementById('btn-step3-next').addEventListener('click', () => goToStep(4));
+  document.getElementById('btn-step4-back').addEventListener('click', () => goToStep(3));
+  document.getElementById('btn-step4-finish').addEventListener('click', finishOnboarding);
+}
+
+function goToStep(step) {
+  document.querySelectorAll('.onboarding-step').forEach(s => s.classList.remove('active'));
+  document.querySelector('.onboarding-step[data-step="' + step + '"]').classList.add('active');
+  currentStep = step;
+  document.querySelectorAll('.step-dot').forEach((dot, i) => {
+    dot.classList.remove('active', 'completed');
+    if (i + 1 < step) dot.classList.add('completed');
+    else if (i + 1 === step) dot.classList.add('active');
+  });
+}
+
+function finishOnboarding() {
+  document.getElementById('onboarding').classList.add('hidden');
+  document.getElementById('app').classList.add('active');
+  document.querySelectorAll('#filter-country input').forEach(cb => {
+    cb.checked = userProfile.regions.includes(cb.value) || userProfile.regions.length === 0;
+  });
+  document.getElementById('price-max').value = userProfile.budget;
+  document.querySelectorAll('#filter-lang input').forEach(cb => {
+    cb.checked = userProfile.languages.includes(cb.value) || userProfile.languages.includes('any');
+  });
+  updateCounts();
+  renderUniversities();
+  renderRecommendations();
+  renderAnalytics();
+  renderChecklist();
+  updateRecProfile();
+}
+
+function restartOnboarding() {
+  document.getElementById('onboarding').classList.remove('hidden');
+  document.getElementById('app').classList.remove('active');
+  goToStep(1);
+  userProfile = { goal: null, regions: [], budget: 15000, languages: [] };
+  document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('btn-step1-next').disabled = true;
+  document.getElementById('btn-step2-next').disabled = true;
+  document.getElementById('btn-step4-finish').disabled = true;
+}
+
+// Filters
+function getActiveFilters() {
+  const countries = Array.from(document.querySelectorAll('#filter-country input:checked')).map(cb => cb.value);
+  const languages = Array.from(document.querySelectorAll('#filter-lang input:checked')).map(cb => cb.value);
+  const rankings = Array.from(document.querySelectorAll('#filter-ranking input:checked')).map(cb => cb.value);
+  const majors = Array.from(document.querySelectorAll('#filter-major input:checked')).map(cb => cb.value);
+  const priceMin = parseInt(document.getElementById('price-min').value) || 0;
+  const priceMax = parseInt(document.getElementById('price-max').value) || 100000;
+  return { countries, languages, rankings, majors, priceMin, priceMax };
+}
+
+function filterUniversities() {
+  const f = getActiveFilters();
+  return UNIVERSITIES.filter(u => {
+    if (!f.countries.includes(u.country)) return false;
+    if (!u.languages.some(l => f.languages.includes(l))) return false;
+    if (!f.rankings.includes(u.rankingTier)) return false;
+    if (!u.majors.some(m => f.majors.includes(m))) return false;
+    const totalCost = u.tuition + u.living;
+    if (totalCost < f.priceMin || totalCost > f.priceMax) return false;
+    return true;
+  });
+}
+
+function resetFilters() {
+  document.querySelectorAll('.checkbox-list input').forEach(cb => cb.checked = true);
+  document.getElementById('price-min').value = 0;
+  document.getElementById('price-max').value = 100000;
+  renderUniversities();
+}
+
+function updateCounts() {
+  const counts = { china: 0, usa: 0, europe: 0, other: 0 };
+  UNIVERSITIES.forEach(u => { if (counts[u.country] !== undefined) counts[u.country]++; });
+  document.getElementById('count-china').textContent = counts.china;
+  document.getElementById('count-usa').textContent = counts.usa;
+  document.getElementById('count-europe').textContent = counts.europe;
+  document.getElementById('count-other').textContent = counts.other;
+}
+
+// Scoring
+function calculateMatchScore(uni) {
+  let score = 50;
+  switch(userProfile.goal) {
+    case 'career': score += (uni.salary / 1500); score += (uni.employment - 90) * 2; break;
+    case 'immigration': score += uni.visaEase * 0.4; if (uni.country === 'europe' || uni.country === 'other') score += 15; break;
+    case 'prestige': score += (500 - uni.ranking) * 0.15; break;
+    case 'budget': const total = uni.tuition + uni.living; score += (50000 - total) * 0.001; score += uni.roi * 3; break;
+    case 'experience': score += 10; if (uni.country === 'china') score += 15; break;
+    case 'startup': if (uni.country === 'usa') score += 20; score += (uni.salary / 2000); break;
+  }
+  const totalCost = uni.tuition + uni.living;
+  if (totalCost <= userProfile.budget) score += 15;
+  else if (totalCost <= userProfile.budget * 1.5) score += 5;
+  if (userProfile.languages.includes('any') || uni.languages.some(l => userProfile.languages.includes(l))) score += 10;
+  if (userProfile.regions.includes(uni.country)) score += 10;
+  return Math.min(100, Math.max(0, Math.round(score)));
+}
+
+// Rendering
+function renderUniversities() {
+  const filtered = filterUniversities();
+  const sortValue = document.getElementById('sort-select').value;
+  filtered.forEach(u => { u.matchScore = calculateMatchScore(u); });
+  filtered.sort((a, b) => {
+    switch(sortValue) {
+      case 'ranking': return a.ranking - b.ranking;
+      case 'price_asc': return (a.tuition + a.living) - (b.tuition + b.living);
+      case 'price_desc': return (b.tuition + b.living) - (a.tuition + a.living);
+      case 'salary': return b.salary - a.salary;
+      default: return b.matchScore - a.matchScore;
+    }
+  });
+  const grid = document.getElementById('uni-grid');
+  document.getElementById('results-count').textContent = filtered.length;
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="empty-state-icon">🔍</div><h3>' + t('no_results') + '</h3><p>' + t('no_results_desc') + '</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map((uni, i) => renderUniCard(uni, i)).join('');
+}
+
+function renderUniCard(uni, index) {
+  const totalCost = uni.tuition + uni.living;
+  const isFav = favorites.has(uni.id);
+  const isCompared = compareList.has(uni.id);
+  const matchScore = uni.matchScore || calculateMatchScore(uni);
+  let rankBadgeClass = '';
+  if (uni.ranking <= 10) rankBadgeClass = 'gold';
+  else if (uni.ranking <= 50) rankBadgeClass = 'silver';
+  const langMap = { english: 'EN', chinese: '中文', russian: 'RU', german: 'DE', french: 'FR', italian: 'IT', czech: 'CZ', spanish: 'ES', japanese: 'JP', korean: 'KR', norwegian: 'NO' };
+  const langCls = { english: 'lang-en', chinese: 'lang-cn', russian: 'lang-ru' };
+  const langTags = uni.languages.map(l => '<span class="uni-tag ' + (langCls[l] || '') + '">' + (langMap[l] || l) + '</span>').join('');
+  return `
+    <div class="uni-card ${isCompared ? 'compared' : ''} ${isFav ? 'favorite' : ''} animate-in" style="animation-delay:${index * 0.05}s">
+      <div class="uni-card-header">
+        <div class="uni-logo">${uni.logo}</div>
+        <div class="uni-header-info">
+          <div class="uni-name">${uni.name}</div>
+          <div class="uni-location">${uni.flag} ${uni.city}</div>
+          <div class="uni-ranking">
+            <span class="rank-badge ${rankBadgeClass}">QS #${uni.ranking}</span>
+            <span class="rank-badge" style="background:#dbeafe;color:#1e40af">${matchScore}% match</span>
+          </div>
+        </div>
+      </div>
+      <div class="uni-card-body">
+        <div class="uni-tags">${langTags}<span class="uni-tag deadline">⏰ ${formatDeadline(uni.deadline)}</span></div>
+        <div class="uni-details">
+          <div class="detail-item"><div class="label">${t('tuition')}</div><div class="value price">${formatMoney(uni.tuition)}</div></div>
+          <div class="detail-item"><div class="label">${t('living')}</div><div class="value">${formatMoney(uni.living)}</div></div>
+          <div class="detail-item"><div class="label">${t('total_year')}</div><div class="value">${formatMoney(totalCost)}</div></div>
+          <div class="detail-item"><div class="label">${t('salary_grad')}</div><div class="value">${formatMoney(uni.salary)}</div></div>
+        </div>
+        <div class="uni-progress">
+          <div class="progress-label"><span class="label">${t('employment')}</span><span class="value">${uni.employment}%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${uni.employment}%"></div></div>
+        </div>
+        <div class="uni-progress">
+          <div class="progress-label"><span class="label">${t('roi')}</span><span class="value">${uni.roi}/10</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${uni.roi * 10}%"></div></div>
+        </div>
+      </div>
+      <div class="uni-card-footer">
+        <button class="card-btn card-btn-outline fav-btn" onclick="toggleFavorite(${uni.id})"><i class="${isFav ? 'fas' : 'far'} fa-heart"></i> ${isFav ? t('in_fav') : t('add_fav')}</button>
+        <button class="card-btn ${isCompared ? 'card-btn-primary added' : 'card-btn-primary'}" onclick="toggleCompare(${uni.id})"><i class="fas ${isCompared ? 'fa-check' : 'fa-plus'}"></i> ${isCompared ? t('added') : t('compare')}</button>
+      </div>
+    </div>`;
+}
+
+function formatDeadline(dateStr) {
+  const date = new Date(dateStr);
+  const now = new Date('2026-05-04');
+  const diff = Math.ceil((date - now) / (1000 * 60 * 60 * 24));
+  if (diff < 0) return 'Closed';
+  if (diff < 30) return diff + 'd';
+  return Math.ceil(diff / 30) + 'mo';
+}
+
+// Favorites
+function toggleFavorite(id) {
+  if (favorites.has(id)) { favorites.delete(id); showToast(t('removed_fav'), 'info'); }
+  else { favorites.add(id); showToast(t('added_fav'), 'success'); }
+  updateFavBadge();
+  renderUniversities();
+  if (currentTab === 'favorites') renderFavorites();
+}
+
+function updateFavBadge() {
+  const badge = document.getElementById('fav-badge');
+  if (favorites.size > 0) { badge.textContent = favorites.size; badge.style.display = 'flex'; }
+  else { badge.style.display = 'none'; }
+}
+
+function renderFavorites() {
+  const grid = document.getElementById('favorites-grid');
+  const empty = document.getElementById('fav-empty');
+  const favs = UNIVERSITIES.filter(u => favorites.has(u.id));
+  document.getElementById('fav-count').textContent = favs.length;
+  if (favs.length === 0) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = favs.map((u, i) => renderUniCard(u, i)).join('');
+}
+
+// Comparison
+function toggleCompare(id) {
+  if (compareList.has(id)) { compareList.delete(id); showToast(t('removed_compare'), 'info'); }
+  else {
+    if (compareList.size >= 5) { showToast(t('max_compare'), 'error'); return; }
+    compareList.add(id); showToast(t('added_compare'), 'success');
+  }
+  updateCompareBar();
+  renderUniversities();
+}
+
+function updateCompareBar() {
+  const bar = document.getElementById('compare-bar');
+  const thumbs = document.getElementById('compare-thumbs');
+  const count = document.getElementById('compare-count');
+  if (compareList.size === 0) { bar.classList.remove('active'); return; }
+  bar.classList.add('active');
+  count.textContent = compareList.size;
+  thumbs.innerHTML = Array.from(compareList).map(id => {
+    const uni = UNIVERSITIES.find(u => u.id === id);
+    return '<div class="compare-thumb">' + uni.logo + '<div class="remove" onclick="event.stopPropagation(); toggleCompare(' + id + ')"><i class="fas fa-times"></i></div></div>';
+  }).join('');
+}
+
+function clearComparison() {
+  compareList.clear();
+  updateCompareBar();
+  renderUniversities();
+}
+
+function openComparisonModal() {
+  const compared = Array.from(compareList).map(id => UNIVERSITIES.find(u => u.id === id));
+  if (compared.length < 2) { showToast(t('select_min_two'), 'error'); return; }
+  const rows = [
+    { label: t('ranking') + ' QS', key: 'ranking', format: v => '#'+v, lowerBetter: true },
+    { label: t('tuition'), key: 'tuition', format: v => formatMoneyRaw(v), lowerBetter: true },
+    { label: t('living') + ' / ' + t('per_year'), key: 'living', format: v => formatMoneyRaw(v), lowerBetter: true },
+    { label: t('total_year'), key: null, format: (_, u) => formatMoneyRaw(u.tuition + u.living), lowerBetter: true },
+    { label: t('salary_grad'), key: 'salary', format: v => formatMoneyRaw(v), lowerBetter: false },
+    { label: t('employment'), key: 'employment', format: v => v+'%', lowerBetter: false },
+    { label: 'ROI', key: 'roi', format: v => v+'/10', lowerBetter: false },
+    { label: t('visa_after'), key: 'visaEase', format: v => v+'/100', lowerBetter: false },
+    { label: t('ielts_min'), key: 'ielts', format: v => v || '—', lowerBetter: true },
+    { label: t('deadline'), key: 'deadline', format: v => formatDeadline(v), lowerBetter: false },
+  ];
+  let html = '<table class="comparison-table"><thead><tr><th>' + t('parameter') + '</th>';
+  compared.forEach(uni => {
+    html += '<th class="uni-col"><div class="uni-col-header"><div class="uni-col-logo">' + uni.logo + '</div><div><div class="uni-col-name">' + uni.name + '</div><div class="uni-col-location">' + uni.flag + ' ' + uni.city + '</div></div></div></th>';
+  });
+  html += '</tr></thead><tbody>';
+  rows.forEach(row => {
+    const numericValues = compared.map(u => row.key ? (typeof u[row.key] === 'number' ? u[row.key] : null) : null);
+    let bestIdx = -1, worstIdx = -1;
+    const validNums = numericValues.filter(v => v !== null);
+    if (validNums.length > 0) {
+      const bestVal = row.lowerBetter ? Math.min(...validNums) : Math.max(...validNums);
+      const worstVal = row.lowerBetter ? Math.max(...validNums) : Math.min(...validNums);
+      bestIdx = numericValues.indexOf(bestVal);
+      worstIdx = numericValues.indexOf(worstVal);
+    }
+    html += '<tr><td><strong>' + row.label + '</strong></td>';
+    compared.forEach((uni, i) => {
+      let val = row.key ? row.format(uni[row.key]) : row.format(null, uni);
+      let cls = '';
+      if (i === bestIdx && compared.length > 1) cls = 'highlight-best';
+      else if (i === worstIdx && compared.length > 1 && row.key !== 'deadline') cls = 'highlight-worst';
+      html += '<td class="' + cls + '">' + val + '</td>';
+    });
+    html += '</tr>';
+  });
+  html += '<tr><td><strong>' + t('pros') + '</strong></td>';
+  compared.forEach(uni => { html += '<td>' + uni.pros.map(p => '• ' + p).join('<br>') + '</td>'; });
+  html += '</tr>';
+  const maxSalary = Math.max(...compared.map(u => u.salary));
+  html += '<tr><td><strong>' + t('salary_compare') + '</strong></td>';
+  compared.forEach(uni => {
+    const pct = (uni.salary / maxSalary) * 100;
+    html += '<td><div class="chart-row"><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:' + pct + '%; background:var(--success)"></div></div><div class="chart-label">' + formatMoney(uni.salary) + '</div></div></td>';
+  });
+  html += '</tr>';
+  const maxCost = Math.max(...compared.map(u => u.tuition + u.living));
+  html += '<tr><td><strong>' + t('cost_compare') + '</strong></td>';
+  compared.forEach(uni => {
+    const pct = ((uni.tuition + uni.living) / maxCost) * 100;
+    html += '<td><div class="chart-row"><div class="chart-bar-bg"><div class="chart-bar-fill" style="width:' + pct + '%; background:var(--danger)"></div></div><div class="chart-label">' + formatMoney(uni.tuition + uni.living) + '</div></div></td>';
+  });
+  html += '</tr></tbody></table>';
+  document.getElementById('comparison-content').innerHTML = html;
+  document.getElementById('comparison-modal').classList.add('active');
+}
+
+function closeComparisonModal() {
+  document.getElementById('comparison-modal').classList.remove('active');
+}
+
+// Recommendations
+function renderRecommendations() {
+  const scored = UNIVERSITIES.map(u => ({ ...u, matchScore: calculateMatchScore(u) }));
+  scored.sort((a, b) => b.matchScore - a.matchScore);
+  const top3 = scored.slice(0, 3);
+  const recCards = document.getElementById('rec-cards');
+  recCards.innerHTML = top3.map((uni, i) => {
+    const reasons = [];
+    if (userProfile.goal === 'career' && uni.salary > 80000) reasons.push('High graduate salary');
+    if (userProfile.goal === 'career' && uni.employment > 95) reasons.push('Excellent employment rate');
+    if (userProfile.goal === 'immigration' && uni.visaEase > 70) reasons.push('Easy post-study visa');
+    if (userProfile.goal === 'prestige' && uni.ranking < 20) reasons.push('Top-20 worldwide');
+    if (userProfile.goal === 'budget' && uni.roi > 9) reasons.push('Excellent ROI');
+    if (userProfile.goal === 'budget' && uni.tuition === 0) reasons.push('Free tuition');
+    if (userProfile.goal === 'startup' && uni.country === 'usa') reasons.push('Startup ecosystem');
+    if (uni.languages.some(l => userProfile.languages.includes(l))) reasons.push('Language match');
+    if (userProfile.regions.includes(uni.country)) reasons.push('Selected region');
+    if (uni.tuition + uni.living <= userProfile.budget) reasons.push('Within budget');
+    return '<div class="rec-card"><div class="rec-match"><span class="rec-match-label">' + t('match_score') + '</span><span class="rec-match-value">' + uni.matchScore + '%</span></div><div class="rec-uni-name">' + uni.logo + ' ' + uni.name + '</div><div class="rec-uni-location">' + uni.flag + ' ' + uni.city + ' • QS #' + uni.ranking + '</div><div class="rec-reasons">' + reasons.slice(0, 4).map(r => '<div class="rec-reason"><i class="fas fa-check-circle"></i> ' + r + '</div>').join('') + '</div></div>';
+  }).join('');
+  const allGrid = document.getElementById('rec-all-grid');
+  allGrid.innerHTML = scored.slice(3).map((u, i) => renderUniCard(u, i)).join('');
+}
+
+function updateRecProfile() {
+  const goalMap = { career: 'career', immigration: 'immigration', prestige: 'prestige', budget: 'budget_goal', experience: 'experience', startup: 'startup' };
+  const regionMap = { china: 'china', usa: 'usa', europe: 'europe', other: 'other_region' };
+  const text = t(goalMap[userProfile.goal] || 'any') + ', ' + userProfile.regions.map(r => t(regionMap[r] || r)).join(', ') + ', ' + t('budget_label') + ' ' + formatMoneyRaw(userProfile.budget);
+  document.getElementById('rec-profile').textContent = text;
+}
+
+// Analytics
+function renderAnalytics() {
+  const filtered = filterUniversities();
+  if (filtered.length === 0) { document.getElementById('analytics-content').innerHTML = '<p>No data</p>'; return; }
+  const avgTuition = Math.round(filtered.reduce((s, u) => s + u.tuition, 0) / filtered.length);
+  const avgLiving = Math.round(filtered.reduce((s, u) => s + u.living, 0) / filtered.length);
+  const avgSalary = Math.round(filtered.reduce((s, u) => s + u.salary, 0) / filtered.length);
+  const avgROI = (filtered.reduce((s, u) => s + u.roi, 0) / filtered.length).toFixed(1);
+  const avgEmployment = Math.round(filtered.reduce((s, u) => s + u.employment, 0) / filtered.length);
+  const byCountry = {};
+  filtered.forEach(u => { if (!byCountry[u.country]) byCountry[u.country] = []; byCountry[u.country].push(u); });
+  let countryStats = '';
+  Object.entries(byCountry).forEach(([country, unis]) => {
+    const avgSal = Math.round(unis.reduce((s, u) => s + u.salary, 0) / unis.length);
+    const avgCost = Math.round(unis.reduce((s, u) => s + u.tuition + u.living, 0) / unis.length);
+    const names = { china: '🇨🇳 ' + t('china'), usa: '🇺🇸 ' + t('usa'), europe: '🇪🇺 ' + t('europe'), other: '🌏 ' + t('other_region') };
+    countryStats += '<div class="stat-row"><span class="stat-label">' + (names[country] || country) + '</span><span class="stat-value">' + formatMoneyRaw(avgSal) + ' ' + t('salary_grad') + ' / ' + formatMoneyRaw(avgCost) + ' ' + t('total_year') + '</span></div>';
+  });
+  const topROI = [...filtered].sort((a, b) => b.roi - a.roi).slice(0, 5);
+  const maxROI = Math.max(...topROI.map(u => u.roi));
+  document.getElementById('analytics-content').innerHTML = `
+    <div class="analytics-card"><h3>📈 ${t('avg_stats')}</h3>
+      <div class="stat-row"><span class="stat-label">${t('avg_tuition')}</span><span class="stat-value">${formatMoneyRaw(avgTuition)}</span></div>
+      <div class="stat-row"><span class="stat-label">${t('avg_living')}</span><span class="stat-value">${formatMoneyRaw(avgLiving)}</span></div>
+      <div class="stat-row"><span class="stat-label">${t('avg_salary')}</span><span class="stat-value positive">${formatMoneyRaw(avgSalary)}</span></div>
+      <div class="stat-row"><span class="stat-label">${t('avg_roi')}</span><span class="stat-value positive">${avgROI}/10</span></div>
+      <div class="stat-row"><span class="stat-label">${t('employment_rate')}</span><span class="stat-value">${avgEmployment}%</span></div>
+    </div>
+    <div class="analytics-card"><h3>🌍 ${t('by_region')}</h3>${countryStats}</div>
+    <div class="analytics-card" style="grid-column:1/-1;"><h3>📊 ${t('roi_chart')}</h3>
+      <div class="roi-chart">${topROI.map(u => '<div class="roi-bar-wrapper"><div class="roi-bar-value">' + u.roi + '</div><div class="roi-bar" style="height:' + ((u.roi / maxROI) * 160) + 'px"></div><div class="roi-bar-label">' + u.logo + ' ' + u.name.slice(0, 12) + (u.name.length > 12 ? '...' : '') + '</div></div>').join('')}</div>
+    </div>
+    <div class="analytics-card"><h3>💡 ${t('admission_forecast')}</h3>
+      <div class="stat-row"><span class="stat-label">${t('probability')}</span><span class="stat-value">${Math.round(filtered.reduce((s, u) => s + Math.min(95, 100 - u.ranking/10), 0) / filtered.length)}%</span></div>
+      <div class="stat-row"><span class="stat-label">${t('recommended_ielts')}</span><span class="stat-value">${Math.max(...filtered.map(u => parseFloat(u.ielts) || 0)).toFixed(1)}+</span></div>
+      <div class="stat-row"><span class="stat-label">${t('nearest_deadline')}</span><span class="stat-value">${formatDeadline(filtered.sort((a,b) => new Date(a.deadline) - new Date(b.deadline))[0]?.deadline)}</span></div>
+    </div>`;
+}
+
+// Checklist
+function renderChecklist() {
+  const sections = [
+    { title: '📄 ' + t('documents'), items: [t('doc_passport'), t('doc_diploma'), t('doc_transcript'), t('doc_recommend'), t('doc_sop'), t('doc_cv'), t('doc_ielts'), t('doc_hsk')] },
+    { title: '💰 ' + t('finance'), items: [t('fin_bank'), t('fin_fee'), t('fin_scholarship'), t('fin_account'), t('fin_insurance')] },
+    { title: '🛂 ' + t('visa_logistics'), items: [t('visa_apply'), t('visa_medical'), t('visa_housing'), t('visa_flight'), t('visa_register')] }
+  ];
+  document.getElementById('checklist-content').innerHTML = sections.map((section, si) => {
+    const checkedCount = section.items.filter((_, ii) => checklistState[si + '-' + ii]).length;
+    const progress = section.items.length > 0 ? (checkedCount / section.items.length) * 100 : 0;
+    return '<div class="checklist-card"><div class="checklist-title">' + section.title + '</div>' + section.items.map((item, ii) => {
+      const key = si + '-' + ii;
+      const checked = checklistState[key] ? 'checked' : '';
+      return '<label class="checklist-item ' + checked + '"><input type="checkbox" ' + (checked ? 'checked' : '') + ' onchange="toggleChecklistItem(\'' + key + '\')"><span>' + item + '</span></label>';
+    }).join('') + '<div class="checklist-progress"><div class="checklist-progress-fill" style="width:' + progress + '%"></div></div><div class="checklist-progress-text">' + checkedCount + ' ' + t('done_of') + ' ' + section.items.length + '</div></div>';
+  }).join('');
+}
+
+function toggleChecklistItem(key) {
+  checklistState[key] = !checklistState[key];
+  renderChecklist();
+}
+
+// Tabs
+function showTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.tab-content').forEach(t => { t.style.display = t.dataset.tab === tab ? 'block' : 'none'; });
+  if (tab === 'favorites') renderFavorites();
+  if (tab === 'recommendations') { renderRecommendations(); updateRecProfile(); }
+  if (tab === 'analytics') renderAnalytics();
+  if (tab === 'checklist') renderChecklist();
+}
+
+// Toast
+function showToast(message, type) {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+  toast.innerHTML = '<i class="fas ' + icon + '"></i> <span>' + message + '</span>';
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// Mobile
+function toggleMobileFilters() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+}
+
+function sortUniversities() {
+  renderUniversities();
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  initOnboarding();
+  updateCounts();
+  document.querySelectorAll('.checkbox-list input, .price-range input').forEach(el => {
+    el.addEventListener('change', renderUniversities);
+  });
+  document.getElementById('comparison-modal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('comparison-modal')) closeComparisonModal();
+  });
+  updateAllText();
+});
+</script>
+</body>
+</html>
