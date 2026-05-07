@@ -15,8 +15,8 @@
 /* ============================================================
    INTERACTIVE CALCULATOR — NIHAO STUDY
    ============================================================ */
-.calc-section{background:var(--gray-50,#F8F9FA);padding:96px 0 72px}
-.calc-wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.calc-section{background:var(--gray-50,#F8F9FA);padding:96px 0 72px;overflow-x:hidden}
+.calc-wrap{max-width:1200px;margin:0 auto;padding:0 24px;overflow-x:hidden}
 
 .calc-hero-bar{
   display:flex;align-items:flex-start;justify-content:space-between;
@@ -33,14 +33,21 @@
 
 /* ── Scenarios ── */
 .scenarios-row{
-  display:flex;gap:.65rem;margin-bottom:1.25rem;flex-wrap:wrap;
+  display:flex;gap:.65rem;margin-bottom:1.25rem;
+  overflow-x:auto;overflow-y:hidden;
+  flex-wrap:nowrap;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding-bottom:4px;
+  margin-left:-2px;padding-left:2px;
 }
+.scenarios-row::-webkit-scrollbar{display:none}
 .scenario-btn{
   display:flex;align-items:center;gap:.5rem;padding:.55rem 1.05rem;
   border-radius:20px;border:1.5px solid var(--gray-200,#E9ECEF);
   background:#fff;font-size:.82rem;font-weight:600;color:var(--gray-700,#343A40);
   cursor:pointer;transition:all .2s;font-family:inherit;
-  white-space:nowrap;
+  white-space:nowrap;flex-shrink:0;
 }
 .scenario-btn:hover{border-color:#C41E3A;color:#C41E3A;background:#fff9f9}
 .scenario-btn.active{border-color:#C41E3A;background:#C41E3A;color:#fff}
@@ -337,6 +344,15 @@
   .calc-summary{grid-template-columns:1fr 1fr;gap:.75rem}
   .smart-rec-inner{flex-direction:column}
   .sr-right{align-items:stretch;width:100%}
+  .budget-row{flex-wrap:nowrap}
+  .budget-val{min-width:90px;font-size:1.05rem}
+  .budget-labels{font-size:.65rem}
+}
+@media(max-width:400px){
+  .needs-grid{grid-template-columns:1fr}
+  .calc-summary{grid-template-columns:1fr}
+  .calc-step-card{padding:.9rem 1rem}
+  .tc-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
