@@ -18,7 +18,6 @@
 .calc-section{background:var(--gray-50,#F8F9FA);padding:96px 0 72px}
 .calc-wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 
-/* ── Header bar ── */
 .calc-hero-bar{
   display:flex;align-items:flex-start;justify-content:space-between;
   margin-bottom:2rem;flex-wrap:wrap;gap:1rem;
@@ -32,57 +31,87 @@
   background:#fff;cursor:pointer;
 }
 
-/* ── Step cards ── */
-.calc-steps{display:flex;flex-direction:column;gap:1.25rem;margin-bottom:1.5rem}
+/* ── Scenarios ── */
+.scenarios-row{
+  display:flex;gap:.65rem;margin-bottom:1.25rem;flex-wrap:wrap;
+}
+.scenario-btn{
+  display:flex;align-items:center;gap:.5rem;padding:.55rem 1.05rem;
+  border-radius:20px;border:1.5px solid var(--gray-200,#E9ECEF);
+  background:#fff;font-size:.82rem;font-weight:600;color:var(--gray-700,#343A40);
+  cursor:pointer;transition:all .2s;font-family:inherit;
+  white-space:nowrap;
+}
+.scenario-btn:hover{border-color:#C41E3A;color:#C41E3A;background:#fff9f9}
+.scenario-btn.active{border-color:#C41E3A;background:#C41E3A;color:#fff}
+.scenario-btn i{font-size:.8rem}
+
+/* ── Steps ── */
+.calc-steps{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:1.25rem}
 .calc-step-card{
   background:#fff;border-radius:18px;border:1.5px solid var(--gray-200,#E9ECEF);
-  padding:1.25rem 1.5rem;
+  padding:1.1rem 1.4rem;
 }
-.csc-hdr{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.csc-hdr{display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem}
 .csc-num{
-  width:28px;height:28px;border-radius:50%;
-  background:#C41E3A;color:#fff;font-weight:800;font-size:.82rem;
+  width:26px;height:26px;border-radius:50%;
+  background:#C41E3A;color:#fff;font-weight:800;font-size:.78rem;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-.csc-ttl{font-weight:700;font-size:.95rem;color:#1A1A2E}
-.csc-sub{font-size:.78rem;color:var(--gray-500,#6C757D);margin-top:.05rem}
+.csc-ttl{font-weight:700;font-size:.92rem;color:#1A1A2E}
+.csc-sub{font-size:.75rem;color:var(--gray-500,#6C757D);margin-top:.05rem}
 
-/* Need cards grid */
-.needs-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;
-}
+/* Need cards */
+.needs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
 .need-card{
-  display:flex;align-items:center;gap:.65rem;
-  padding:.7rem .9rem;border-radius:12px;
-  border:1.5px solid var(--gray-200,#E9ECEF);
-  cursor:pointer;transition:all .2s;background:#fff;
-  user-select:none;
+  display:flex;align-items:center;gap:.6rem;padding:.65rem .85rem;
+  border-radius:11px;border:1.5px solid var(--gray-200,#E9ECEF);
+  cursor:pointer;transition:all .2s;background:#fff;user-select:none;
 }
 .need-card:hover{border-color:#C41E3A;background:#fff9f9}
 .need-card.sel{border-color:#C41E3A;background:#fee8ec}
 .need-icon{
-  width:36px;height:36px;border-radius:9px;flex-shrink:0;
+  width:34px;height:34px;border-radius:9px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  background:var(--gray-100,#F1F3F5);font-size:.9rem;color:var(--gray-500,#6C757D);
-  transition:all .2s;
+  background:var(--gray-100,#F1F3F5);font-size:.85rem;
+  color:var(--gray-500,#6C757D);transition:all .2s;
 }
 .need-card.sel .need-icon{background:#C41E3A;color:#fff}
 .need-info{flex:1;min-width:0}
-.need-lbl{font-size:.83rem;font-weight:700;color:#343A40;line-height:1.25}
-.need-price{font-size:.7rem;color:var(--gray-500,#6C757D);margin-top:.1rem}
+.need-lbl{font-size:.8rem;font-weight:700;color:#343A40;line-height:1.25}
+.need-price{font-size:.67rem;color:var(--gray-400,#ADB5BD);margin-top:.08rem}
 .need-check{
-  width:18px;height:18px;border-radius:5px;border:1.5px solid var(--gray-300,#DEE2E6);
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
+  width:17px;height:17px;border-radius:5px;border:1.5px solid var(--gray-300,#DEE2E6);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;
 }
 .need-card.sel .need-check{background:#C41E3A;border-color:#C41E3A}
-.need-card.sel .need-check::after{content:'✓';color:#fff;font-size:.62rem;font-weight:800}
+.need-card.sel .need-check::after{content:'✓';color:#fff;font-size:.58rem;font-weight:800}
 
-/* Budget slider */
+/* DIY counter chip */
+.needs-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:.75rem;flex-wrap:wrap;gap:.5rem;
+}
+.diy-chip{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--gray-100,#F1F3F5);border-radius:20px;
+  padding:.3rem .85rem;font-size:.78rem;font-weight:600;color:var(--gray-700,#343A40);
+  transition:all .3s;
+}
+.diy-chip.has-val{background:#fee2e2;color:#dc2626}
+.diy-chip i{font-size:.7rem}
+.clear-btn{
+  font-size:.75rem;color:var(--gray-400,#ADB5BD);cursor:pointer;
+  font-weight:600;font-family:inherit;background:none;border:none;
+  transition:color .2s;
+}
+.clear-btn:hover{color:#C41E3A}
+
+/* Budget */
 .budget-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .budget-val{
-  font-size:1.3rem;font-weight:800;color:#C41E3A;
-  min-width:110px;text-align:right;flex-shrink:0;
+  font-size:1.25rem;font-weight:800;color:#C41E3A;
+  min-width:120px;text-align:right;flex-shrink:0;
 }
 .budget-slider{
   flex:1;height:6px;-webkit-appearance:none;appearance:none;
@@ -95,16 +124,81 @@
 }
 .budget-labels{
   display:flex;justify-content:space-between;
-  font-size:.72rem;color:var(--gray-400,#ADB5BD);margin-top:.35rem;
+  font-size:.7rem;color:var(--gray-400,#ADB5BD);margin-top:.3rem;
 }
 
-/* ── Package result grid ── */
+/* ── Smart Recommendation box ── */
+.smart-rec{
+  border-radius:18px;overflow:hidden;margin-bottom:1.25rem;
+  display:none;animation:recIn .4s cubic-bezier(.16,1,.3,1) both;
+}
+.smart-rec.visible{display:block}
+@keyframes recIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.smart-rec-inner{
+  background:linear-gradient(135deg,#1A1A2E 0%,#2d1a2e 100%);
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.25rem;flex-wrap:wrap;
+}
+.sr-left{flex:1;min-width:200px}
+.sr-tag{
+  display:inline-flex;align-items:center;gap:.35rem;
+  background:rgba(232,184,75,.18);color:#E8B84B;
+  font-size:.7rem;font-weight:700;padding:.2rem .65rem;border-radius:20px;
+  margin-bottom:.6rem;
+}
+.sr-title{color:#fff;font-size:1.05rem;font-weight:800;margin-bottom:.3rem;line-height:1.3}
+.sr-desc{color:rgba(255,255,255,.6);font-size:.8rem}
+.sr-stats{
+  display:flex;gap:1.5rem;margin-top:.75rem;flex-wrap:wrap;
+}
+.sr-stat{text-align:center}
+.sr-stat-val{font-size:1.2rem;font-weight:800;color:#E8B84B}
+.sr-stat-lbl{font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.1rem}
+.sr-right{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end;flex-shrink:0}
+.sr-pkg{
+  background:rgba(255,255,255,.07);border-radius:12px;
+  padding:.65rem 1rem;text-align:center;min-width:140px;
+}
+.sr-pkg-name{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:.2rem}
+.sr-pkg-price{font-size:1.2rem;font-weight:800;color:#fff}
+.sr-pkg.featured{background:#C41E3A}
+.sr-pkg.combo{background:#E8B84B}
+.sr-pkg.combo .sr-pkg-price{color:#1A1A2E}
+.sr-pkg.combo .sr-pkg-name{color:rgba(26,26,46,.7)}
+.sr-cta{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:#E8B84B;color:#1A1A2E;font-weight:700;font-size:.85rem;
+  padding:.65rem 1.25rem;border-radius:10px;text-align:center;
+  transition:opacity .2s;width:100%;justify-content:center;
+}
+.sr-cta:hover{opacity:.88}
+
+/* DIY Risk bar */
+.risk-bar{
+  background:#fff3f4;border:1px solid #fecaca;border-radius:14px;
+  padding:.85rem 1.1rem;margin-bottom:1.25rem;
+  display:none;
+}
+.risk-bar.visible{display:block}
+.risk-bar-hdr{
+  display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;
+  font-size:.82rem;font-weight:700;color:#dc2626;
+}
+.risk-items{display:flex;gap:.5rem;flex-wrap:wrap}
+.risk-item{
+  display:flex;align-items:center;gap:.35rem;
+  background:#fee2e2;border-radius:20px;padding:.25rem .7rem;
+  font-size:.72rem;font-weight:600;color:#b91c1c;
+}
+
+/* ── Cards grid ── */
 .tc-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:.875rem;margin-bottom:1.5rem;align-items:start;
+  gap:.875rem;margin-bottom:1.25rem;align-items:start;
 }
 .tc-card{
-  background:#fff;border-radius:18px;
+  background:#fff;border-radius:16px;
   border:1.5px solid var(--gray-200,#E9ECEF);
   overflow:hidden;display:flex;flex-direction:column;
   transition:transform .22s ease,box-shadow .22s ease,opacity .22s ease,border-color .22s ease;
@@ -115,116 +209,107 @@
   box-shadow:0 4px 20px rgba(196,30,58,.18);
   transform:translateY(-3px);
 }
-.tc-card.tc-dim{opacity:.45;filter:grayscale(.4)}
-.tc-card.tc-over-budget{border-color:var(--gray-300,#DEE2E6)}
+.tc-card.tc-dim{opacity:.38;filter:grayscale(.5);pointer-events:none}
+.tc-card.tc-over-budget .tc-price{color:var(--gray-400,#ADB5BD)}
 
-/* Match badge */
 .tc-match{
   display:flex;align-items:center;justify-content:space-between;
-  padding:.55rem .9rem;font-size:.72rem;font-weight:700;
-  border-bottom:1px solid var(--gray-100,#F1F3F5);
+  padding:.5rem .85rem;font-size:.7rem;font-weight:700;
+  border-bottom:1px solid var(--gray-100,#F1F3F5);background:var(--gray-50,#F8F9FA);
 }
 .tc-match-score{display:flex;align-items:center;gap:.35rem}
-.tc-match-bar{
-  width:50px;height:5px;background:var(--gray-100,#F1F3F5);border-radius:3px;overflow:hidden;
-}
-.tc-match-fill{height:100%;border-radius:3px;background:#C41E3A;transition:width .4s ease}
+.tc-match-bar{width:44px;height:4px;background:var(--gray-200,#E9ECEF);border-radius:2px;overflow:hidden}
+.tc-match-fill{height:100%;border-radius:2px;background:#C41E3A;transition:width .4s ease}
 .tc-match-pct{color:#C41E3A}
 .tc-budget-tag{
-  font-size:.65rem;padding:.15rem .5rem;border-radius:20px;
+  font-size:.62rem;padding:.12rem .45rem;border-radius:20px;
   background:#dcfce7;color:#16a34a;
 }
 .tc-budget-tag.over{background:#fee2e2;color:#dc2626}
 
-.tc-head{padding:.85rem 1rem .65rem}
+.tc-head{padding:.8rem .95rem .6rem}
 .tc-badge{
-  display:inline-block;font-size:.63rem;font-weight:700;
-  padding:.18rem .55rem;border-radius:20px;margin-bottom:.4rem;
+  display:inline-block;font-size:.6rem;font-weight:700;
+  padding:.15rem .5rem;border-radius:20px;margin-bottom:.35rem;
   background:var(--gray-100,#F1F3F5);color:var(--gray-600,#495057);
 }
 .tc-card.tc-best .tc-badge{background:#C41E3A;color:#fff}
 .tc-badge-gold{background:#E8B84B!important;color:#1A1A2E!important}
-.tc-name{font-size:.95rem;font-weight:800;color:#1A1A2E;line-height:1.2;margin-bottom:.1rem}
-.tc-sub{font-size:.72rem;color:var(--gray-500,#6C757D)}
+.tc-name{font-size:.9rem;font-weight:800;color:#1A1A2E;line-height:1.2;margin-bottom:.08rem}
+.tc-sub{font-size:.68rem;color:var(--gray-500,#6C757D)}
 
-.tc-price-block{padding:.7rem 1rem;border-top:1px solid var(--gray-100,#F1F3F5);border-bottom:1px solid var(--gray-100,#F1F3F5)}
-.tc-price{font-size:1.45rem;font-weight:800;color:#C41E3A}
+.tc-price-block{padding:.6rem .95rem;border-top:1px solid var(--gray-100,#F1F3F5);border-bottom:1px solid var(--gray-100,#F1F3F5)}
+.tc-price{font-size:1.35rem;font-weight:800;color:#C41E3A;transition:color .3s}
 .tc-savings-badge{
-  display:inline-flex;align-items:center;gap:.25rem;
+  display:inline-flex;align-items:center;gap:.22rem;
   background:#dcfce7;color:#16a34a;
-  font-size:.65rem;font-weight:700;padding:.15rem .5rem;
-  border-radius:20px;margin-top:.3rem;
+  font-size:.62rem;font-weight:700;padding:.12rem .45rem;
+  border-radius:20px;margin-top:.25rem;
 }
 
-.tc-services{flex:1;padding:.6rem 1rem}
+.tc-services{flex:1;padding:.55rem .95rem}
 .tc-svc-row{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:.35rem;padding:.35rem 0;border-bottom:1px solid var(--gray-50,#F8F9FA);
+  display:flex;align-items:center;gap:.3rem;
+  padding:.3rem 0;border-bottom:1px solid var(--gray-50,#F8F9FA);
 }
 .tc-svc-row:last-child{border-bottom:none}
 .tc-svc-row.highlighted .tc-svc-name{color:#C41E3A;font-weight:700}
-.tc-svc-name{font-size:.75rem;color:#495057;line-height:1.25;flex:1}
-.tc-svc-mkt{font-size:.68rem;font-weight:600;color:var(--gray-300,#DEE2E6);text-decoration:line-through;white-space:nowrap;flex-shrink:0}
-.tc-svc-check{font-size:.7rem;flex-shrink:0;color:#adb5bd}
+.tc-svc-name{font-size:.72rem;color:#495057;line-height:1.25;flex:1}
+.tc-svc-mkt{font-size:.64rem;font-weight:600;color:var(--gray-300,#DEE2E6);text-decoration:line-through;white-space:nowrap;flex-shrink:0}
+.tc-svc-check{font-size:.65rem;flex-shrink:0;color:#adb5bd;width:12px}
 .tc-svc-row.highlighted .tc-svc-check{color:#C41E3A}
 
 .tc-foot{
-  padding:.7rem 1rem;
+  padding:.65rem .95rem;
   background:var(--gray-50,#F8F9FA);
   border-top:1px solid var(--gray-100,#F1F3F5);
 }
 .tc-market-row{
   display:flex;justify-content:space-between;align-items:center;
-  font-size:.75rem;margin-bottom:.25rem;
+  font-size:.72rem;margin-bottom:.22rem;
 }
 .tc-market-lbl{color:var(--gray-500,#6C757D)}
-.tc-market-val{font-weight:700;color:var(--gray-500,#6C757D);text-decoration:line-through}
+.tc-market-val{font-weight:700;color:var(--gray-400,#ADB5BD);text-decoration:line-through}
 .tc-save-row{
   display:flex;justify-content:space-between;align-items:center;
-  font-size:.8rem;font-weight:700;
+  font-size:.77rem;font-weight:700;
 }
 .tc-save-lbl{color:#16a34a}
 .tc-save-val{color:#16a34a}
 .tc-cta{
-  display:block;text-align:center;padding:.55rem;margin-top:.6rem;
-  background:#C41E3A;color:#fff;border-radius:10px;
-  font-size:.8rem;font-weight:700;transition:opacity .2s;
+  display:block;text-align:center;padding:.52rem;margin-top:.55rem;
+  background:#C41E3A;color:#fff;border-radius:9px;
+  font-size:.77rem;font-weight:700;transition:opacity .2s;
 }
 .tc-card.tc-best .tc-cta{background:#E8B84B;color:#1A1A2E}
 .tc-cta:hover{opacity:.88}
 
-/* Summary bar */
+/* ── Summary bar ── */
 .calc-summary{
   background:linear-gradient(135deg,#1A1A2E,#252545);
-  border-radius:18px;padding:1.25rem 1.75rem;color:#fff;
-  display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto;
-  align-items:center;gap:1rem;
+  border-radius:18px;padding:1.2rem 1.75rem;color:#fff;
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto;
+  align-items:center;gap:.75rem;
 }
 .csb-item{text-align:center}
-.csb-lbl{font-size:.72rem;opacity:.55;margin-bottom:.25rem}
-.csb-val{font-size:1.3rem;font-weight:800}
+.csb-lbl{font-size:.68rem;opacity:.5;margin-bottom:.2rem}
+.csb-val{font-size:1.2rem;font-weight:800}
 .csb-val.red{color:#fca5a5}
 .csb-val.green{color:#6ee7b7}
 .csb-val.gold{color:#E8B84B}
-.csb-divider{width:1px;height:50px;background:rgba(255,255,255,.12);margin:0 auto}
+.csb-val.blue{color:#93c5fd}
+.csb-divider{width:1px;height:44px;background:rgba(255,255,255,.1);margin:0 auto}
 .csb-cta .btn--gold{
   display:inline-flex;align-items:center;gap:.4rem;
-  background:#E8B84B;color:#1A1A2E;font-weight:700;font-size:.88rem;
-  padding:.7rem 1.4rem;border-radius:10px;transition:opacity .2s;
+  background:#E8B84B;color:#1A1A2E;font-weight:700;font-size:.85rem;
+  padding:.65rem 1.2rem;border-radius:10px;transition:opacity .2s;white-space:nowrap;
 }
 .csb-cta .btn--gold:hover{opacity:.88}
 
-/* No needs selected state */
-.calc-no-needs{
-  text-align:center;padding:2rem;color:var(--gray-400,#ADB5BD);
-  font-size:.9rem;display:none;
-}
-
 /* Price blur */
 .price-locked .price__amount{
-  filter:blur(7px);
-  transition:filter .4s cubic-bezier(.16,1,.3,1);
-  user-select:none;
+  filter:blur(7px);transition:filter .4s cubic-bezier(.16,1,.3,1);user-select:none;
 }
 .price-locked{position:relative;cursor:pointer}
 .price-lock-hint{
@@ -240,19 +325,18 @@
 @media(max-width:1100px){
   .tc-grid{grid-template-columns:repeat(2,1fr)}
   .needs-grid{grid-template-columns:repeat(2,1fr)}
+  .calc-summary{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .csb-divider{display:none}
 }
 @media(max-width:640px){
   .tc-grid{grid-template-columns:1fr}
-  .needs-grid{grid-template-columns:1fr}
+  .needs-grid{grid-template-columns:1fr 1fr}
   .calc-hero-bar{flex-direction:column;align-items:flex-start}
-  .calc-summary{
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-    text-align:center;
-  }
-  .csb-divider{width:100%;height:1px}
-  .csb-cta{width:100%}
-  .csb-cta .btn--gold{width:100%;justify-content:center}
+  .scenarios-row{gap:.4rem}
+  .scenario-btn{padding:.45rem .75rem;font-size:.75rem}
+  .calc-summary{grid-template-columns:1fr 1fr;gap:.75rem}
+  .smart-rec-inner{flex-direction:column}
+  .sr-right{align-items:stretch;width:100%}
 }
 </style>
 </head>
@@ -510,7 +594,7 @@
       <div class="section__header">
         <span class="section__tag">Персональный подбор</span>
         <h2 class="section__title">Рассчитайте свой пакет</h2>
-        <p class="section__desc">Выберите что вам нужно — калькулятор подберёт лучший тариф и покажет реальную экономию</p>
+        <p class="section__desc">Выберите ситуацию или отметьте что нужно — калькулятор найдёт лучший вариант и покажет реальную экономию</p>
       </div>
       <div class="calc-cur-group">
         <label for="lp-cur">Валюта</label>
@@ -525,46 +609,91 @@
       </div>
     </div>
 
+    <!-- Quick scenarios -->
+    <div class="scenarios-row" id="scenarios-row">
+      <button class="scenario-btn" data-sc="full_apply" onclick="lpScenario('full_apply')">
+        <i class="fas fa-graduation-cap"></i> Хочу поступить в Китай
+      </button>
+      <button class="scenario-btn" data-sc="language" onclick="lpScenario('language')">
+        <i class="fas fa-language"></i> Учу китайский / готовлюсь к HSK
+      </button>
+      <button class="scenario-btn" data-sc="max" onclick="lpScenario('max')">
+        <i class="fas fa-trophy"></i> Максимум шансов — всё и сразу
+      </button>
+      <button class="scenario-btn" data-sc="consult_only" onclick="lpScenario('consult_only')">
+        <i class="fas fa-comments"></i> Нужна только консультация
+      </button>
+    </div>
+
     <div class="calc-steps">
 
-      <!-- Step 1: What do you need -->
+      <!-- Step 1 -->
       <div class="calc-step-card">
         <div class="csc-hdr">
           <div class="csc-num">1</div>
           <div>
             <div class="csc-ttl">Что вам нужно?</div>
-            <div class="csc-sub">Выберите один или несколько пунктов — найдём подходящий пакет</div>
+            <div class="csc-sub">Выберите всё подходящее — получите точную рекомендацию</div>
           </div>
         </div>
-        <div class="needs-grid" id="needs-grid"><!-- rendered by JS --></div>
+        <div class="needs-grid" id="needs-grid"></div>
+        <div class="needs-meta">
+          <div class="diy-chip" id="diy-chip">
+            <i class="fas fa-person-digging"></i>
+            <span id="diy-chip-txt">Выберите потребности выше</span>
+          </div>
+          <button class="clear-btn" onclick="lpClearNeeds()">
+            <i class="fas fa-xmark"></i> Сбросить
+          </button>
+        </div>
       </div>
 
-      <!-- Step 2: Budget -->
+      <!-- Step 2 -->
       <div class="calc-step-card">
         <div class="csc-hdr">
           <div class="csc-num">2</div>
           <div>
             <div class="csc-ttl">Ваш бюджет</div>
-            <div class="csc-sub">Тарифы вне бюджета будут отмечены</div>
+            <div class="csc-sub">Пакеты вне бюджета будут отмечены</div>
           </div>
         </div>
         <div class="budget-row">
           <input type="range" class="budget-slider" id="budget-slider"
-            min="50000" max="600000" step="10000" value="300000">
+            min="50000" max="700000" step="10000" value="300000">
           <div class="budget-val" id="budget-val">₸ 300 000</div>
         </div>
         <div class="budget-labels">
-          <span>₸ 50 000</span>
-          <span>₸ 200 000</span>
-          <span>₸ 400 000</span>
-          <span>₸ 600 000</span>
+          <span>₸ 50 000</span><span>₸ 200 000</span><span>₸ 400 000</span><span>₸ 700 000</span>
         </div>
       </div>
 
     </div>
 
-    <!-- Step 3: Results -->
-    <div class="tc-grid" id="tc-grid"><!-- rendered by JS --></div>
+    <!-- Smart recommendation -->
+    <div class="smart-rec" id="smart-rec">
+      <div class="smart-rec-inner">
+        <div class="sr-left">
+          <div class="sr-tag"><i class="fas fa-wand-magic-sparkles"></i> Персональная рекомендация</div>
+          <div class="sr-title" id="sr-title">Лучший вариант для вас</div>
+          <div class="sr-desc" id="sr-desc">Покрывает все ваши потребности</div>
+          <div class="sr-stats" id="sr-stats"></div>
+        </div>
+        <div class="sr-right" id="sr-right">
+          <a href="#services" class="sr-cta"><i class="fas fa-arrow-right"></i> <span id="sr-cta-txt">Выбрать пакет</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIY risk -->
+    <div class="risk-bar" id="risk-bar">
+      <div class="risk-bar-hdr">
+        <i class="fas fa-triangle-exclamation"></i> Риски при самостоятельном поступлении:
+      </div>
+      <div class="risk-items" id="risk-items"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="tc-grid" id="tc-grid"></div>
 
     <!-- Summary -->
     <div class="calc-summary" id="calc-summary">
@@ -574,7 +703,7 @@
       </div>
       <div class="csb-divider"></div>
       <div class="csb-item">
-        <div class="csb-lbl">Лучший пакет</div>
+        <div class="csb-lbl">С NIHAO STUDY</div>
         <div class="csb-val gold" id="csb-pkg">—</div>
       </div>
       <div class="csb-divider"></div>
@@ -1239,24 +1368,36 @@
 
 <script>
 /* ============================================================
-   INTERACTIVE TARIFF CALCULATOR
+   INTERACTIVE TARIFF CALCULATOR v3
    ============================================================ */
 (function(){
   const RATES = {KZT:1, USD:0.00222, RUB:0.20, CNY:0.016, KGS:0.193, UZS:2844};
   const SYMS  = {KZT:'₸', USD:'$', RUB:'₽', CNY:'¥', KGS:'с', UZS:"so'm"};
-  let cur = 'KZT';
-  let budget = 300000;
+  let cur = 'KZT', budget = 300000;
   const selNeeds = new Set();
+  let activeScenario = null;
 
-  /* ── Needs (each with estimated DIY market price in KZT) ── */
+  /* ── Needs ── */
   const NEEDS = [
-    {id:'consult', lbl:'Консультация и стратегия',   icon:'fa-comments',          diy:55000,  desc:'~₸55 000 самостоятельно'},
-    {id:'docs',    lbl:'Сбор и подготовка документов',icon:'fa-folder-open',       diy:160000, desc:'~₸160 000 самостоятельно'},
-    {id:'letter',  lbl:'Мотивационное письмо',        icon:'fa-pen-to-square',     diy:120000, desc:'~₸120 000 у копирайтера'},
-    {id:'apply',   lbl:'Подача документов в вузы',    icon:'fa-paper-plane',       diy:80000,  desc:'~₸80 000 через агента'},
-    {id:'chinese', lbl:'Изучение китайского языка',   icon:'fa-language',          diy:200000, desc:'~₸200 000 частный репетитор'},
-    {id:'hsk',     lbl:'Подготовка к HSK / CSCA',     icon:'fa-graduation-cap',    diy:90000,  desc:'~₸90 000 курсы подготовки'},
+    {id:'consult',    lbl:'Консультация и стратегия',      icon:'fa-comments',         diy:55000,   risk:'Неправильный выбор вуза'},
+    {id:'choice',     lbl:'Выбор специальности и вуза',    icon:'fa-map-location-dot', diy:45000,   risk:'Несовместимость профиля'},
+    {id:'docs',       lbl:'Сбор и оформление документов',  icon:'fa-folder-open',      diy:160000,  risk:'Ошибки в документах'},
+    {id:'letter',     lbl:'Мотивационное письмо',          icon:'fa-pen-to-square',    diy:120000,  risk:'Слабое мотивационное письмо'},
+    {id:'apply',      lbl:'Подача документов в вузы',      icon:'fa-paper-plane',      diy:80000,   risk:'Пропуск дедлайнов'},
+    {id:'deadline',   lbl:'Контроль дедлайнов',            icon:'fa-clock',            diy:40000,   risk:'Потеря места из-за дедлайна'},
+    {id:'visa',       lbl:'Помощь с визой X1/X2',          icon:'fa-passport',         diy:80000,   risk:'Отказ в визе'},
+    {id:'scholarship',lbl:'Стипендия HSK / Правительство', icon:'fa-medal',            diy:100000,  risk:'Упущенная стипендия'},
+    {id:'chinese',    lbl:'Курс китайского с нуля',        icon:'fa-language',         diy:200000,  risk:'Языковой барьер'},
+    {id:'hsk',        lbl:'Подготовка к HSK / CSCA',       icon:'fa-graduation-cap',   diy:90000,   risk:'Провал экзамена'},
   ];
+
+  /* ── Scenarios ── */
+  const SCENARIOS = {
+    full_apply:   ['consult','choice','docs','letter','apply','deadline','visa'],
+    language:     ['chinese','hsk'],
+    max:          ['consult','choice','docs','letter','apply','deadline','visa','scholarship','chinese','hsk'],
+    consult_only: ['consult','choice'],
+  };
 
   /* ── Tariffs ── */
   const TARIFFS = [
@@ -1264,31 +1405,31 @@
       id:'lite', name:'Пакет Лайт', badge:'Популярный старт', badgeClass:'',
       sub:'Стратегия поступления', priceKzt:100000, href:'#contact',
       cta:'Записаться на Лайт',
-      covers:['consult'],
+      covers:['consult','choice'],
       services:[
-        {n:'Индивидуальная консультация (~1 ч)',          mkt:25000, need:'consult'},
-        {n:'Анализ профиля: язык, оценки, бюджет',        mkt:20000, need:'consult'},
-        {n:'Подбор подходящих университетов',              mkt:35000, need:'consult'},
-        {n:'Требования и дедлайны каждого вуза',           mkt:25000, need:'consult'},
-        {n:'Полный список необходимых документов',         mkt:20000, need:'docs'},
-        {n:'Пошаговый план и тайминг подачи',              mkt:25000, need:'consult'},
-        {n:'Поддержка в процессе подготовки',              mkt:30000, need:'consult'},
+        {n:'Индивидуальная консультация (~1 ч)',        mkt:25000, need:'consult'},
+        {n:'Анализ профиля: язык, оценки, бюджет',      mkt:20000, need:'consult'},
+        {n:'Выбор специальности и подбор вузов',        mkt:35000, need:'choice'},
+        {n:'Требования и дедлайны каждого вуза',        mkt:25000, need:'consult'},
+        {n:'Полный список необходимых документов',      mkt:20000, need:'consult'},
+        {n:'Пошаговый план и тайминг подачи',           mkt:25000, need:'choice'},
+        {n:'Поддержка в процессе подготовки',           mkt:30000, need:'consult'},
       ]
     },
     {
       id:'full', name:'Полное сопровождение', badge:'Рекомендуем', badgeClass:'tc-badge-gold',
       sub:'Под ключ — от заявки до визы', priceKzt:550000, href:'#contact',
       cta:'Записаться на сопровождение',
-      covers:['consult','docs','letter','apply'],
+      covers:['consult','choice','docs','letter','apply','deadline','visa','scholarship'],
       services:[
-        {n:'Консультация + стратегия поступления',         mkt:55000, need:'consult'},
-        {n:'Подбор университетов и требований',            mkt:55000, need:'consult'},
-        {n:'Полный сбор пакета документов',                mkt:160000,need:'docs'},
-        {n:'Мотивационное письмо (проф. текст)',           mkt:120000,need:'letter'},
-        {n:'Проверка и коррекция документов',              mkt:80000, need:'docs'},
-        {n:'Заполнение форм университетов',                mkt:60000, need:'apply'},
-        {n:'Подача документов в вузы',                     mkt:45000, need:'apply'},
-        {n:'Контроль дедлайнов + сопровождение',           mkt:40000, need:'apply'},
+        {n:'Консультация + стратегия + выбор вуза',     mkt:80000, need:'consult'},
+        {n:'Полный сбор пакета документов',              mkt:160000,need:'docs'},
+        {n:'Мотивационное письмо (проф. текст)',         mkt:120000,need:'letter'},
+        {n:'Проверка и коррекция всех документов',      mkt:80000, need:'docs'},
+        {n:'Заполнение форм + подача в вузы',           mkt:80000, need:'apply'},
+        {n:'Контроль дедлайнов и статусов',             mkt:45000, need:'deadline'},
+        {n:'Помощь с оформлением визы X1/X2',           mkt:80000, need:'visa'},
+        {n:'Поддержка до получения зачисления',         mkt:60000, need:'scholarship'},
       ]
     },
     {
@@ -1297,112 +1438,215 @@
       cta:'Записаться на курс',
       covers:['chinese','hsk'],
       services:[
-        {n:'Курс китайского с нуля до разговорного',       mkt:120000,need:'chinese'},
-        {n:'Параллельная подготовка к HSK и CSCA',         mkt:90000, need:'hsk'},
-        {n:'5 занятий/нед × 1.5 ч (40 ч/мес)',            mkt:50000, need:'chinese'},
-        {n:'Мини-группы до 5 человек',                     mkt:30000, need:'chinese'},
-        {n:'Системная программа с контролем прогресса',    mkt:20000, need:'chinese'},
-        {n:'Разбор формата экзамена и стратегия',          mkt:30000, need:'hsk'},
-        {n:'Поддержка преподавателя между занятиями',      mkt:25000, need:'chinese'},
+        {n:'Курс китайского с нуля до разговорного',   mkt:120000,need:'chinese'},
+        {n:'Параллельная подготовка к HSK и CSCA',      mkt:90000, need:'hsk'},
+        {n:'5 занятий/нед × 1.5 ч (40 ч/мес)',         mkt:50000, need:'chinese'},
+        {n:'Мини-группы до 5 человек',                  mkt:30000, need:'chinese'},
+        {n:'Системная программа с контролем прогресса', mkt:20000, need:'chinese'},
+        {n:'Разбор формата экзамена и стратегия',       mkt:30000, need:'hsk'},
+        {n:'Поддержка преподавателя между занятиями',   mkt:25000, need:'chinese'},
       ]
     },
     {
-      id:'hsk', name:'Подготовка к экзамену', badge:'Целевая подготовка', badgeClass:'',
+      id:'hsk_exam', name:'Подготовка к экзамену', badge:'Целевая подготовка', badgeClass:'',
       sub:'HSK или CSCA — на выбор', priceKzt:120000, href:'#contact',
       cta:'Выбрать экзамен',
-      covers:['hsk'],
+      covers:['hsk','scholarship'],
       services:[
-        {n:'Интенсивная подготовка к HSK или CSCA',        mkt:90000, need:'hsk'},
-        {n:'Разбор формата и типовых заданий',             mkt:30000, need:'hsk'},
-        {n:'Практические тесты с проверкой',               mkt:40000, need:'hsk'},
-        {n:'Детальный разбор ошибок',                      mkt:25000, need:'hsk'},
-        {n:'Мини-группы до 5 человек',                     mkt:25000, need:'hsk'},
-        {n:'Поддержка преподавателя',                      mkt:20000, need:'hsk'},
-        {n:'Авторская стратегия максимального балла',      mkt:35000, need:'hsk'},
+        {n:'Интенсивная подготовка к HSK или CSCA',    mkt:90000, need:'hsk'},
+        {n:'Разбор формата и типовых заданий',          mkt:30000, need:'hsk'},
+        {n:'Практические тесты с проверкой',            mkt:40000, need:'hsk'},
+        {n:'Детальный разбор ошибок',                   mkt:25000, need:'hsk'},
+        {n:'Мини-группы до 5 человек',                  mkt:25000, need:'hsk'},
+        {n:'Поддержка преподавателя',                   mkt:20000, need:'hsk'},
+        {n:'Стратегия максимального балла',             mkt:35000, need:'scholarship'},
       ]
     },
   ];
 
+  /* ── Helpers ── */
   function fmt(kzt) {
     if (!kzt && kzt !== 0) return '—';
     const v = Math.round(kzt * RATES[cur]);
     if (cur === 'UZS') return v.toLocaleString('ru') + ' ' + SYMS[cur];
-    return SYMS[cur] + ' ' + v.toLocaleString('ru');
+    return SYMS[cur] + ' ' + v.toLocaleString('ru');
   }
-
   function matchScore(t) {
-    if (selNeeds.size === 0) return 100;
-    let matched = 0;
-    selNeeds.forEach(need => { if (t.covers.includes(need)) matched++; });
-    return Math.round(matched / selNeeds.size * 100);
+    if (!selNeeds.size) return 100;
+    let m = 0;
+    selNeeds.forEach(n => { if (t.covers.includes(n)) m++; });
+    return Math.round(m / selNeeds.size * 100);
   }
-
   function diyTotal() {
-    let sum = 0;
-    selNeeds.forEach(id => { const n = NEEDS.find(x=>x.id===id); if(n) sum += n.diy; });
-    return sum;
+    let s = 0;
+    selNeeds.forEach(id => { const n = NEEDS.find(x=>x.id===id); if(n) s += n.diy; });
+    return s;
   }
 
-  function bestTariff() {
-    if (selNeeds.size === 0) return TARIFFS.find(t=>t.id==='full');
-    let best = null, bestScore = -1;
-    TARIFFS.forEach(t => {
-      const score = matchScore(t);
-      if (score > bestScore || (score === bestScore && t.priceKzt < best.priceKzt)) {
-        bestScore = score; best = t;
+  /* Recommend: single best OR two-package combo */
+  function calcRecommendation() {
+    if (!selNeeds.size) return {type:'default', pkg: TARIFFS.find(t=>t.id==='full')};
+
+    // Score each tariff
+    const scored = TARIFFS.map(t => ({t, score: matchScore(t)}))
+      .sort((a,b) => b.score - a.score);
+
+    const best = scored[0];
+
+    // Check if any two-combo covers 100%
+    let bestCombo = null, bestComboScore = best.score;
+    for (let i = 0; i < scored.length; i++) {
+      for (let j = i+1; j < scored.length; j++) {
+        const combined = new Set([...scored[i].t.covers, ...scored[j].t.covers]);
+        let covered = 0;
+        selNeeds.forEach(n => { if (combined.has(n)) covered++; });
+        const score = Math.round(covered / selNeeds.size * 100);
+        if (score > bestComboScore && score > best.score) {
+          bestComboScore = score;
+          bestCombo = {a: scored[i].t, b: scored[j].t, score};
+        }
       }
-    });
-    return best;
+    }
+
+    if (bestCombo && bestCombo.score >= 90 && best.score < 80) {
+      return {type:'combo', ...bestCombo};
+    }
+    return {type:'single', pkg: best.t, score: best.score};
   }
 
-  /* ── Render needs grid ── */
+  /* ── Render needs ── */
   function renderNeeds() {
     document.getElementById('needs-grid').innerHTML = NEEDS.map(n => `
       <div class="need-card${selNeeds.has(n.id)?' sel':''}" onclick="lpToggleNeed('${n.id}')">
         <div class="need-icon"><i class="fas ${n.icon}"></i></div>
         <div class="need-info">
           <div class="need-lbl">${n.lbl}</div>
-          <div class="need-price">${n.desc}</div>
+          <div class="need-price">DIY: ${fmt(n.diy)}</div>
         </div>
         <div class="need-check"></div>
-      </div>
-    `).join('');
+      </div>`).join('');
+
+    // DIY chip
+    const diy = diyTotal();
+    const chip = document.getElementById('diy-chip');
+    const txt  = document.getElementById('diy-chip-txt');
+    if (selNeeds.size) {
+      chip.classList.add('has-val');
+      txt.textContent = `Самостоятельно: ${fmt(diy)} (${selNeeds.size} потребност${selNeeds.size===1?'ь':selNeeds.size<5?'и':'ей'})`;
+    } else {
+      chip.classList.remove('has-val');
+      txt.textContent = 'Выберите потребности выше';
+    }
+  }
+
+  /* ── Render smart recommendation ── */
+  function renderRec() {
+    const rec = calcRecommendation();
+    const recEl = document.getElementById('smart-rec');
+    const riskEl = document.getElementById('risk-bar');
+
+    if (!selNeeds.size) {
+      recEl.classList.remove('visible');
+      riskEl.classList.remove('visible');
+      return;
+    }
+    recEl.classList.add('visible');
+
+    // Risks
+    const risks = [];
+    selNeeds.forEach(id => {
+      const n = NEEDS.find(x=>x.id===id);
+      if (n && n.risk) risks.push(n.risk);
+    });
+    if (risks.length) {
+      riskEl.classList.add('visible');
+      document.getElementById('risk-items').innerHTML = risks.map(r =>
+        `<div class="risk-item"><i class="fas fa-circle-xmark"></i>${r}</div>`
+      ).join('');
+    } else {
+      riskEl.classList.remove('visible');
+    }
+
+    // Recommendation content
+    if (rec.type === 'combo') {
+      const totalPrice = rec.a.priceKzt + rec.b.priceKzt;
+      document.getElementById('sr-title').textContent =
+        `Рекомендуем комбо: ${rec.a.name} + ${rec.b.name}`;
+      document.getElementById('sr-desc').textContent =
+        `Закрывает ${rec.score}% ваших потребностей — лучший результат с двумя пакетами`;
+      document.getElementById('sr-stats').innerHTML = `
+        <div class="sr-stat"><div class="sr-stat-val">${rec.score}%</div><div class="sr-stat-lbl">покрытие</div></div>
+        <div class="sr-stat"><div class="sr-stat-val">${fmt(totalPrice)}</div><div class="sr-stat-lbl">вместе</div></div>
+        <div class="sr-stat"><div class="sr-stat-val">${fmt(diyTotal() - totalPrice)}</div><div class="sr-stat-lbl">экономия</div></div>`;
+      document.getElementById('sr-right').innerHTML = `
+        <div class="sr-pkg"><div class="sr-pkg-name">${rec.a.name}</div><div class="sr-pkg-price">${fmt(rec.a.priceKzt)}</div></div>
+        <div class="sr-pkg combo"><div class="sr-pkg-name">+ ${rec.b.name}</div><div class="sr-pkg-price">${fmt(rec.b.priceKzt)}</div></div>
+        <a href="#services" class="sr-cta"><i class="fas fa-arrow-right"></i> Выбрать оба пакета</a>`;
+    } else {
+      const pkg = rec.pkg;
+      const diy = diyTotal();
+      const save = diy - pkg.priceKzt;
+      const mkt = pkg.services.reduce((s,sv)=>s+sv.mkt,0);
+      const savePct = Math.round((mkt - pkg.priceKzt) / mkt * 100);
+      document.getElementById('sr-title').textContent = pkg.name;
+      document.getElementById('sr-desc').textContent =
+        selNeeds.size
+          ? `Закрывает ${rec.score||100}% ваших потребностей · Рыночная стоимость выше на ${savePct}%`
+          : 'Наш самый популярный пакет — полное сопровождение до зачисления';
+      document.getElementById('sr-stats').innerHTML = `
+        <div class="sr-stat"><div class="sr-stat-val">${rec.score||100}%</div><div class="sr-stat-lbl">совпадение</div></div>
+        ${save > 0 ? `<div class="sr-stat"><div class="sr-stat-val">${fmt(save)}</div><div class="sr-stat-lbl">экономия</div></div>` : ''}
+        <div class="sr-stat"><div class="sr-stat-val">${savePct}%</div><div class="sr-stat-lbl">дешевле рынка</div></div>`;
+      document.getElementById('sr-right').innerHTML = `
+        <div class="sr-pkg featured">
+          <div class="sr-pkg-name">${pkg.name}</div>
+          <div class="sr-pkg-price">${fmt(pkg.priceKzt)}</div>
+        </div>
+        <a href="#services" class="sr-cta"><i class="fas fa-arrow-right"></i> ${pkg.cta}</a>`;
+      document.getElementById('sr-cta-txt').textContent = pkg.cta;
+    }
   }
 
   /* ── Render tariff cards ── */
   function renderCards() {
-    const best = bestTariff();
+    const rec = calcRecommendation();
+    const bestIds = rec.type === 'combo' ? [rec.a.id, rec.b.id]
+                  : rec.type === 'single' ? [rec.pkg.id]
+                  : ['full'];
+
     document.getElementById('tc-grid').innerHTML = TARIFFS.map(t => {
-      const mktTotal = t.services.reduce((s,sv)=>s+sv.mkt, 0);
+      const mktTotal = t.services.reduce((s,sv)=>s+sv.mkt,0);
       const save = mktTotal - t.priceKzt;
       const savePct = Math.round(save / mktTotal * 100);
       const score = matchScore(t);
-      const isBest = best && t.id === best.id;
+      const isBest = bestIds.includes(t.id);
       const overBudget = t.priceKzt > budget;
       const isDim = selNeeds.size > 0 && score === 0;
+      const badgeTxt = isBest && selNeeds.size > 0 ? '★ Рекомендуем' : t.badge;
+      const badgeCls = isBest && selNeeds.size > 0 ? '' : t.badgeClass;
       return `
 <div class="tc-card${isBest?' tc-best':''}${isDim?' tc-dim':''}${overBudget?' tc-over-budget':''}">
   <div class="tc-match">
     <div class="tc-match-score">
       <div class="tc-match-bar"><div class="tc-match-fill" style="width:${score}%"></div></div>
-      <span class="tc-match-pct">${score}% совпадение</span>
+      <span class="tc-match-pct">${score}%</span>
     </div>
     <span class="tc-budget-tag${overBudget?' over':''}">${overBudget?'вне бюджета':'в бюджете'}</span>
   </div>
   <div class="tc-head">
-    <div class="tc-badge ${t.badgeClass}">${isBest && selNeeds.size>0 ? '★ Рекомендуем' : t.badge}</div>
+    <div class="tc-badge ${badgeCls}">${badgeTxt}</div>
     <div class="tc-name">${t.name}</div>
     <div class="tc-sub">${t.sub}</div>
   </div>
   <div class="tc-price-block">
     <div class="tc-price">${fmt(t.priceKzt)}</div>
-    <div class="tc-savings-badge"><i class="fas fa-arrow-down"></i> экономия ${savePct}% от рыночной</div>
+    <div class="tc-savings-badge"><i class="fas fa-arrow-down"></i> ${savePct}% дешевле рынка</div>
   </div>
   <div class="tc-services">
-    ${t.services.map(sv => {
-      const isHighlighted = selNeeds.has(sv.need);
-      return `<div class="tc-svc-row${isHighlighted?' highlighted':''}">
-        <span class="tc-svc-check"><i class="fas ${isHighlighted?'fa-circle-check':'fa-circle'}"></i></span>
+    ${t.services.map(sv=>{
+      const hi = selNeeds.has(sv.need);
+      return `<div class="tc-svc-row${hi?' highlighted':''}">
+        <span class="tc-svc-check"><i class="fas ${hi?'fa-circle-check':'fa-circle'}"></i></span>
         <span class="tc-svc-name">${sv.n}</span>
         <span class="tc-svc-mkt">${fmt(sv.mkt)}</span>
       </div>`;
@@ -1417,42 +1661,66 @@
       <span class="tc-save-lbl">Вы экономите</span>
       <span class="tc-save-val">${fmt(save)}</span>
     </div>
-    <a href="${t.href}" class="tc-cta">${isBest && selNeeds.size>0 ? '★ ' : ''}${t.cta}</a>
+    <a href="${t.href}" class="tc-cta">${isBest && selNeeds.size>0?'★ ':''}${t.cta}</a>
   </div>
 </div>`;
     }).join('');
   }
 
-  /* ── Render summary bar ── */
+  /* ── Render summary ── */
   function renderSummary() {
-    const best = bestTariff();
+    const rec = calcRecommendation();
     const diy = diyTotal();
-    const pkgPrice = best ? best.priceKzt : 0;
-    const save = diy - pkgPrice;
+    let pkgPrice = 0;
+    if (rec.type === 'combo') pkgPrice = rec.a.priceKzt + rec.b.priceKzt;
+    else if (rec.type === 'single') pkgPrice = rec.pkg.priceKzt;
+    else pkgPrice = TARIFFS.find(t=>t.id==='full').priceKzt;
+    const save = diy > 0 ? diy - pkgPrice : 0;
     document.getElementById('csb-diy').textContent  = diy > 0 ? fmt(diy) : '—';
-    document.getElementById('csb-pkg').textContent  = best ? fmt(pkgPrice) : '—';
+    document.getElementById('csb-pkg').textContent  = fmt(pkgPrice);
     document.getElementById('csb-save').textContent = save > 0 ? fmt(save) : '—';
   }
 
   /* ── Budget display ── */
   function updateBudgetDisplay() {
-    const sym = SYMS[cur] === '$' ? '$' : SYMS[cur];
-    const v = Math.round(budget * RATES[cur]);
     const el = document.getElementById('budget-val');
-    if (el) el.textContent = (cur === 'UZS')
-      ? v.toLocaleString('ru') + ' ' + SYMS[cur]
-      : SYMS[cur] + ' ' + v.toLocaleString('ru');
+    if (el) el.textContent = fmt(budget);
   }
 
-  function render() { renderNeeds(); renderCards(); renderSummary(); updateBudgetDisplay(); }
+  function render() {
+    renderNeeds(); renderRec(); renderCards(); renderSummary();
+  }
 
-  /* ── Public handlers ── */
+  /* ── Public API ── */
   window.lpToggleNeed = function(id) {
     if (selNeeds.has(id)) selNeeds.delete(id); else selNeeds.add(id);
-    renderNeeds(); renderCards(); renderSummary();
+    activeScenario = null;
+    document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active'));
+    render();
   };
 
-  /* ── Budget slider ── */
+  window.lpScenario = function(sc) {
+    selNeeds.clear();
+    if (activeScenario === sc) {
+      activeScenario = null;
+      document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active'));
+    } else {
+      (SCENARIOS[sc] || []).forEach(id => selNeeds.add(id));
+      activeScenario = sc;
+      document.querySelectorAll('.scenario-btn').forEach(b=>{
+        b.classList.toggle('active', b.dataset.sc === sc);
+      });
+    }
+    render();
+  };
+
+  window.lpClearNeeds = function() {
+    selNeeds.clear();
+    activeScenario = null;
+    document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active'));
+    render();
+  };
+
   const slider = document.getElementById('budget-slider');
   if (slider) {
     slider.addEventListener('input', function() {
@@ -1462,7 +1730,6 @@
     });
   }
 
-  /* ── Currency ── */
   document.getElementById('lp-cur').addEventListener('change', function(){
     cur = this.value; render();
   });
