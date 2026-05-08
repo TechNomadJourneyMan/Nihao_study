@@ -354,6 +354,191 @@
   .calc-step-card{padding:.9rem 1rem}
   .tc-grid{grid-template-columns:1fr}
 }
+
+/* ============================================================
+   TARIFF MODAL
+   ============================================================ */
+.tariff-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.tariff-overlay.open { opacity: 1; pointer-events: all; }
+.tariff-modal {
+  background: #0f1628;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+  padding: 32px;
+  position: relative;
+  transform: scale(0.95) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.tariff-overlay.open .tariff-modal { transform: scale(1) translateY(0); }
+.tariff-modal__close {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: background 0.2s, color 0.2s;
+  padding: 0;
+}
+.tariff-modal__close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.tariff-modal__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-right: 36px;
+}
+.tariff-modal__icon {
+  width: 48px; height: 48px;
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+.tariff-modal__badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 9px;
+  border-radius: 100px;
+  margin-bottom: 6px;
+}
+.tariff-modal__name { font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0 0 3px; line-height: 1.2; }
+.tariff-modal__sub  { font-size: 0.78rem; color: rgba(255,255,255,0.42); display: block; }
+.tariff-modal__price-block { text-align: right; flex-shrink: 0; }
+.tariff-modal__price { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+.tariff-modal__price-note { font-size: 0.68rem; color: rgba(255,255,255,0.35); margin-top: 3px; }
+.tariff-modal__for {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.55;
+  padding: 13px 15px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  margin: 0 0 20px;
+}
+.tariff-modal__section-label {
+  display: block;
+  font-size: 0.63rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 10px;
+}
+.tariff-modal__features { list-style: none; padding: 0; margin: 0 0 20px; }
+.tariff-modal__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.74);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  line-height: 1.45;
+}
+.tariff-modal__features li:last-child { border-bottom: none; }
+.tariff-modal__features li i { font-size: 0.75rem; margin-top: 3px; flex-shrink: 0; }
+.tariff-modal__outcome { border-radius: 12px; padding: 14px 16px; margin-bottom: 24px; }
+.tariff-modal__outcome .outcome__label {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.tariff-modal__outcome .outcome__text { font-size: 0.875rem; font-weight: 600; line-height: 1.45; margin: 0; }
+.tariff-modal__cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.tariff-modal__cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* Tier colors */
+.tariff-modal[data-tier="lite"]     .tariff-modal__icon  { background: rgba(96,165,250,0.14);  color: #60A5FA; }
+.tariff-modal[data-tier="full"]     .tariff-modal__icon  { background: rgba(232,184,75,0.14);  color: #E8B84B; }
+.tariff-modal[data-tier="fast"]     .tariff-modal__icon  { background: rgba(52,211,153,0.14);  color: #34D399; }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__icon  { background: rgba(167,139,250,0.14); color: #A78BFA; }
+.tariff-modal[data-tier="lite"]     .tariff-modal__badge { background: rgba(96,165,250,0.12);  color: #60A5FA; }
+.tariff-modal[data-tier="full"]     .tariff-modal__badge { background: rgba(232,184,75,0.14);  color: #E8B84B; }
+.tariff-modal[data-tier="fast"]     .tariff-modal__badge { background: rgba(52,211,153,0.12);  color: #34D399; }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__badge { background: rgba(167,139,250,0.12); color: #A78BFA; }
+.tariff-modal[data-tier="lite"]     .tariff-modal__price { color: #60A5FA; }
+.tariff-modal[data-tier="full"]     .tariff-modal__price { color: #E8B84B; }
+.tariff-modal[data-tier="fast"]     .tariff-modal__price { color: #34D399; }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__price { color: #A78BFA; }
+.tariff-modal[data-tier="lite"]     .tariff-modal__features li i { color: #60A5FA; }
+.tariff-modal[data-tier="full"]     .tariff-modal__features li i { color: #E8B84B; }
+.tariff-modal[data-tier="fast"]     .tariff-modal__features li i { color: #34D399; }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__features li i { color: #A78BFA; }
+.tariff-modal[data-tier="lite"]     .tariff-modal__outcome { background: rgba(96,165,250,0.07);  border: 1px solid rgba(96,165,250,0.18); }
+.tariff-modal[data-tier="full"]     .tariff-modal__outcome { background: rgba(232,184,75,0.07);  border: 1px solid rgba(232,184,75,0.2);  }
+.tariff-modal[data-tier="fast"]     .tariff-modal__outcome { background: rgba(52,211,153,0.07);  border: 1px solid rgba(52,211,153,0.18); }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__outcome { background: rgba(167,139,250,0.07); border: 1px solid rgba(167,139,250,0.18);}
+.tariff-modal[data-tier="lite"]     .tariff-modal__outcome .outcome__label { color: rgba(96,165,250,0.7);  }
+.tariff-modal[data-tier="full"]     .tariff-modal__outcome .outcome__label { color: rgba(232,184,75,0.7);  }
+.tariff-modal[data-tier="fast"]     .tariff-modal__outcome .outcome__label { color: rgba(52,211,153,0.7);  }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__outcome .outcome__label { color: rgba(167,139,250,0.7); }
+.tariff-modal[data-tier="lite"]     .tariff-modal__outcome .outcome__text { color: #60A5FA; }
+.tariff-modal[data-tier="full"]     .tariff-modal__outcome .outcome__text { color: #E8B84B; }
+.tariff-modal[data-tier="fast"]     .tariff-modal__outcome .outcome__text { color: #34D399; }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__outcome .outcome__text { color: #A78BFA; }
+.tariff-modal[data-tier="lite"]     .tariff-modal__cta { background: #60A5FA; color: #0a0e1b; }
+.tariff-modal[data-tier="full"]     .tariff-modal__cta { background: linear-gradient(135deg,#E8B84B,#f5d080); color: #0a0e1b; box-shadow: 0 4px 20px rgba(232,184,75,0.3); }
+.tariff-modal[data-tier="fast"]     .tariff-modal__cta { background: #34D399; color: #0a0e1b; }
+.tariff-modal[data-tier="hsk_exam"] .tariff-modal__cta { background: #A78BFA; color: #0a0e1b; }
+.tariff-modal[data-tier="full"]     .tariff-modal__cta:hover { box-shadow: 0 8px 32px rgba(232,184,75,0.45); }
+
+@media (max-width: 560px) {
+  .tariff-overlay { align-items: flex-end; padding: 0; }
+  .tariff-modal { border-radius: 20px 20px 0 0; padding: 24px 20px; max-height: 92vh; }
+  .tariff-modal__top { flex-direction: column; gap: 8px; }
+  .tariff-modal__price-block { text-align: left; }
+}
+
+/* end tariff modal */
 </style>
 </head>
 <body>
@@ -365,11 +550,11 @@
       <img src="/logo.svg" alt="NIHAO STUDY логотип" class="logo__img" />
     </a>
     <nav class="nav" id="nav">
-      <a href="#services" class="nav__link" data-i18n="nav_services">Услуги</a>
+      <a href="#calculator" class="nav__link" data-i18n="nav_services">Услуги</a>
       <a href="#universities" class="nav__link" data-i18n="nav_unis">Вузы</a>
       <a href="#process" class="nav__link" data-i18n="nav_process">Процесс</a>
       <a href="#cases" class="nav__link" data-i18n="nav_cases">Кейсы</a>
-      <a href="#faq" class="nav__link">FAQ</a>
+      <a href="#faq" class="nav__link" data-i18n="nav_faq">FAQ</a>
       <a href="/uniselect.html" class="nav__link nav__link--highlight" data-i18n="nav_uniselect">Подобрать вуз</a>
       <div class="nav__lang-row">
         <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">РУ</button>
@@ -411,23 +596,23 @@
     </div>
     <div class="hero__stats">
       <div class="stat">
-        <span class="stat__num">200+</span>
-        <span class="stat__label">студентов поступили</span>
+        <span class="stat__num" data-i18n="stat1_num">200+</span>
+        <span class="stat__label" data-i18n="stat1_label">студентов поступили</span>
       </div>
       <div class="stat__divider"></div>
       <div class="stat">
-        <span class="stat__num">9</span>
-        <span class="stat__label">вузов C9 лиги</span>
+        <span class="stat__num" data-i18n="stat2_num">9</span>
+        <span class="stat__label" data-i18n="stat2_label">вузов C9 лиги</span>
       </div>
       <div class="stat__divider"></div>
       <div class="stat">
-        <span class="stat__num">87%</span>
-        <span class="stat__label">получили стипендию</span>
+        <span class="stat__num" data-i18n="stat3_num">87%</span>
+        <span class="stat__label" data-i18n="stat3_label">получили стипендию</span>
       </div>
     </div>
   </div>
   <div class="hero__scroll">
-    <span>Узнать больше</span>
+    <span data-i18n="hero_scroll">Узнать больше</span>
     <div class="scroll-arrow"></div>
   </div>
 </section>
@@ -436,40 +621,40 @@
 <section class="why-china section" id="why">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Почему Китай</span>
-      <h2 class="section__title">Китай — умный выбор прямо сейчас</h2>
-      <p class="section__desc">Пока другие платят за Европу и США, наши студенты получают диплом топового вуза и знание китайского — главного языка будущего</p>
+      <span class="section__tag" data-i18n="why_tag">Почему Китай</span>
+      <h2 class="section__title" data-i18n="why_title">Китай — умный выбор прямо сейчас</h2>
+      <p class="section__desc" data-i18n="why_desc">Пока другие платят за Европу и США, наши студенты получают диплом топового вуза и знание китайского — главного языка будущего</p>
     </div>
     <div class="why-grid">
       <div class="why-card">
         <div class="why-card__icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
-        <h3>Дешевле в 3–5 раз</h3>
-        <p>Стоимость обучения и жизни значительно ниже Европы и США при сопоставимом уровне образования</p>
+        <h3 data-i18n="why1_h">Дешевле в 3–5 раз</h3>
+        <p data-i18n="why1_p">Стоимость обучения и жизни значительно ниже Европы и США при сопоставимом уровне образования</p>
       </div>
       <div class="why-card">
         <div class="why-card__icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <h3>Гранты и стипендии</h3>
-        <p>Полное или частичное покрытие учёбы и жилья. Реально получить при правильной подготовке заявки</p>
+        <h3 data-i18n="why2_h">Гранты и стипендии</h3>
+        <p data-i18n="why2_p">Полное или частичное покрытие учёбы и жилья. Реально получить при правильной подготовке заявки</p>
       </div>
       <div class="why-card">
         <div class="why-card__icon"><i class="fa-solid fa-rocket"></i></div>
-        <h3>Карьера в крупнейшей экономике</h3>
-        <p>Диплом + китайский язык = конкурентное преимущество на рынке труда. Alibaba, Huawei, ByteDance</p>
+        <h3 data-i18n="why3_h">Карьера в крупнейшей экономике</h3>
+        <p data-i18n="why3_p">Диплом + китайский язык = конкурентное преимущество на рынке труда. Alibaba, Huawei, ByteDance</p>
       </div>
       <div class="why-card">
         <div class="why-card__icon"><i class="fa-solid fa-globe"></i></div>
-        <h3>Программы на английском</h3>
-        <p>Можно учиться на английском, параллельно изучая китайский. Не нужно знать язык с нуля</p>
+        <h3 data-i18n="why4_h">Программы на английском</h3>
+        <p data-i18n="why4_p">Можно учиться на английском, параллельно изучая китайский. Не нужно знать язык с нуля</p>
       </div>
       <div class="why-card">
         <div class="why-card__icon"><i class="fa-solid fa-people-group"></i></div>
-        <h3>Международная среда</h3>
-        <p>Студенты со всего мира, широкий нетворкинг и деловые связи с первых курсов</p>
+        <h3 data-i18n="why5_h">Международная среда</h3>
+        <p data-i18n="why5_p">Студенты со всего мира, широкий нетворкинг и деловые связи с первых курсов</p>
       </div>
       <div class="why-card">
         <div class="why-card__icon"><i class="fa-solid fa-building-columns"></i></div>
-        <h3>Стажировки и практика</h3>
-        <p>Прямые связи университетов с индустрией: Alibaba, Tencent, Huawei и сотнями других компаний</p>
+        <h3 data-i18n="why6_h">Стажировки и практика</h3>
+        <p data-i18n="why6_p">Прямые связи университетов с индустрией: Alibaba, Tencent, Huawei и сотнями других компаний</p>
       </div>
     </div>
   </div>
@@ -479,37 +664,37 @@
 <section class="problem section section--dark" id="problem">
   <div class="container">
     <div class="section__header section__header--light">
-      <span class="section__tag section__tag--light">Боль клиентов</span>
-      <h2 class="section__title">Почему большинство теряют время и деньги</h2>
+      <span class="section__tag section__tag--light" data-i18n="prob_tag">Боль клиентов</span>
+      <h2 class="section__title" data-i18n="prob_title">Почему большинство теряют время и деньги</h2>
     </div>
     <div class="problem__grid">
       <div class="problem__card">
         <span class="problem__num">01</span>
-        <h3>Не знают, какой вуз им подходит</h3>
-        <p>Подают куда попало и получают отказы — или переплачивают за вуз ниже своего уровня</p>
+        <h3 data-i18n="prob1_h">Не знают, какой вуз им подходит</h3>
+        <p data-i18n="prob1_p">Подают куда попало и получают отказы — или переплачивают за вуз ниже своего уровня</p>
       </div>
       <div class="problem__card">
         <span class="problem__num">02</span>
-        <h3>Ошибки в мотивационном письме</h3>
-        <p>Шаблонные письма, которые комиссия видит насквозь. Одна ошибка = отказ даже при хорошем GPA</p>
+        <h3 data-i18n="prob2_h">Ошибки в мотивационном письме</h3>
+        <p data-i18n="prob2_p">Шаблонные письма, которые комиссия видит насквозь. Одна ошибка = отказ даже при хорошем GPA</p>
       </div>
       <div class="problem__card">
         <span class="problem__num">03</span>
-        <h3>Пропущенные дедлайны</h3>
-        <p>Китайские университеты имеют строгие окна подачи. Опоздание на день — потеря целого года</p>
+        <h3 data-i18n="prob3_h">Пропущенные дедлайны</h3>
+        <p data-i18n="prob3_p">Китайские университеты имеют строгие окна подачи. Опоздание на день — потеря целого года</p>
       </div>
       <div class="problem__card">
         <span class="problem__num">04</span>
-        <h3>Месяцы изучения системы с нуля</h3>
-        <p>Разбираться в требованиях каждого вуза самостоятельно — это работа на несколько месяцев</p>
+        <h3 data-i18n="prob4_h">Месяцы изучения системы с нуля</h3>
+        <p data-i18n="prob4_p">Разбираться в требованиях каждого вуза самостоятельно — это работа на несколько месяцев</p>
       </div>
     </div>
     <div class="problem__solution">
       <div class="solution__text">
-        <span class="solution__label">Решение</span>
-        <p>NIHAO STUDY берёт на себя весь этот хаос — вы фокусируетесь на учёбе, мы на поступлении</p>
+        <span class="solution__label" data-i18n="sol_label">Решение</span>
+        <p data-i18n="sol_text">NIHAO STUDY берёт на себя весь этот хаос — вы фокусируетесь на учёбе, мы на поступлении</p>
       </div>
-      <a href="#contact" class="btn btn--white">Хочу без хаоса →</a>
+      <a href="#contact" class="btn btn--white" data-i18n="sol_btn">Хочу без хаоса →</a>
     </div>
   </div>
 </section>
@@ -519,68 +704,68 @@
   <div class="container">
     <div class="approach__inner">
       <div class="approach__left">
-        <span class="section__tag">Наш подход</span>
-        <h2 class="section__title">Мы не просто помогаем с документами — мы доводим до поступления</h2>
-        <p class="approach__text">Большинство агентств дают список вузов и список документов — и оставляют вас один на один с системой. Мы работаем иначе.</p>
+        <span class="section__tag" data-i18n="appr_tag">Наш подход</span>
+        <h2 class="section__title" data-i18n="appr_title">Мы не просто помогаем с документами — мы доводим до поступления</h2>
+        <p class="approach__text" data-i18n="appr_text">Большинство агентств дают список вузов и список документов — и оставляют вас один на один с системой. Мы работаем иначе.</p>
         <div class="approach__compare">
           <div class="compare__col compare__col--bad">
-            <div class="compare__header">Другие агентства</div>
+            <div class="compare__header" data-i18n="appr_bad_h">Другие агентства</div>
             <ul>
-              <li>Шаблонный список вузов</li>
-              <li>Список документов в PDF</li>
-              <li>«Дальше сами»</li>
-              <li>Нет контроля дедлайнов</li>
-              <li>Ошибки = ваша проблема</li>
+              <li data-i18n="appr_bad1">Шаблонный список вузов</li>
+              <li data-i18n="appr_bad2">Список документов в PDF</li>
+              <li data-i18n="appr_bad3">«Дальше сами»</li>
+              <li data-i18n="appr_bad4">Нет контроля дедлайнов</li>
+              <li data-i18n="appr_bad5">Ошибки = ваша проблема</li>
             </ul>
           </div>
           <div class="compare__col compare__col--good">
-            <div class="compare__header">NIHAO STUDY</div>
+            <div class="compare__header" data-i18n="appr_good_h">NIHAO STUDY</div>
             <ul>
-              <li>Подбор под ваш профиль</li>
-              <li>Полная подготовка документов</li>
-              <li>Поддержка до оффера</li>
-              <li>Контроль всех дедлайнов</li>
-              <li>Проверка и коррекция всего</li>
+              <li data-i18n="appr_good1">Подбор под ваш профиль</li>
+              <li data-i18n="appr_good2">Полная подготовка документов</li>
+              <li data-i18n="appr_good3">Поддержка до оффера</li>
+              <li data-i18n="appr_good4">Контроль всех дедлайнов</li>
+              <li data-i18n="appr_good5">Проверка и коррекция всего</li>
             </ul>
           </div>
         </div>
-        <a href="#contact" class="btn btn--primary">Начать с консультации</a>
+        <a href="#contact" class="btn btn--primary" data-i18n="appr_btn">Начать с консультации</a>
       </div>
       <div class="approach__right">
         <div class="approach__img-block">
           <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80" alt="Студенты из Казахстана учатся в Китае" loading="lazy" />
           <div class="approach__img-badge">
             <i class="fa-solid fa-shield-halved"></i>
-            <span>Честная оценка шансов</span>
+            <span data-i18n="appr_badge">Честная оценка шансов</span>
           </div>
         </div>
         <div class="approach__visual">
           <div class="visual__card">
             <div class="visual__icon"><i class="fa-solid fa-crosshairs"></i></div>
             <div class="visual__text">
-              <strong>Только Китай</strong>
-              <span>Узкая специализация = глубокая экспертиза</span>
+              <strong data-i18n="vc1_h">Только Китай</strong>
+              <span data-i18n="vc1_p">Узкая специализация = глубокая экспертиза</span>
             </div>
           </div>
           <div class="visual__card">
             <div class="visual__icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
             <div class="visual__text">
-              <strong>Честная оценка</strong>
-              <span>Без завышенных ожиданий — только реальные шансы</span>
+              <strong data-i18n="vc2_h">Честная оценка</strong>
+              <span data-i18n="vc2_p">Без завышенных ожиданий — только реальные шансы</span>
             </div>
           </div>
           <div class="visual__card">
             <div class="visual__icon"><i class="fa-solid fa-user-group"></i></div>
             <div class="visual__text">
-              <strong>Ограниченный набор</strong>
-              <span>Работаем с небольшим числом студентов = качество</span>
+              <strong data-i18n="vc3_h">Ограниченный набор</strong>
+              <span data-i18n="vc3_p">Работаем с небольшим числом студентов = качество</span>
             </div>
           </div>
           <div class="visual__card">
             <div class="visual__icon"><i class="fa-solid fa-trophy"></i></div>
             <div class="visual__text">
-              <strong>Результат = поступление</strong>
-              <span>Не «консультация», а реальное место в вузе</span>
+              <strong data-i18n="vc4_h">Результат = поступление</strong>
+              <span data-i18n="vc4_p">Не «консультация», а реальное место в вузе</span>
             </div>
           </div>
         </div>
@@ -594,7 +779,7 @@
   <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80" alt="Пекин, Китай" loading="lazy" />
   <div class="photo-banner__overlay">
     <div class="container">
-      <p class="photo-banner__quote">«Китай — это не риск. Это возможность для тех, кто успел»</p>
+      <p class="photo-banner__quote" data-i18n="photo_quote">«Китай — это не риск. Это возможность для тех, кто успел»</p>
     </div>
   </div>
 </div>
@@ -608,9 +793,9 @@
     <!-- Header -->
     <div class="calc-hero-bar">
       <div class="section__header">
-        <span class="section__tag">Персональный подбор</span>
-        <h2 class="section__title">Рассчитайте свой пакет</h2>
-        <p class="section__desc">Выберите ситуацию или отметьте что нужно — калькулятор найдёт лучший вариант и покажет реальную экономию</p>
+        <span class="section__tag" data-i18n="calc_tag">Персональный подбор</span>
+        <h2 class="section__title" data-i18n="calc_title">Рассчитайте свой пакет</h2>
+        <p class="section__desc" data-i18n="calc_desc">Выберите ситуацию или отметьте что нужно — калькулятор найдёт лучший вариант и покажет реальную экономию</p>
       </div>
       <div class="calc-cur-group">
         <label for="lp-cur">Валюта</label>
@@ -628,16 +813,16 @@
     <!-- Quick scenarios -->
     <div class="scenarios-row" id="scenarios-row">
       <button class="scenario-btn" data-sc="full_apply" onclick="lpScenario('full_apply')">
-        <i class="fas fa-graduation-cap"></i> Хочу поступить в Китай
+        <i class="fas fa-graduation-cap"></i> <span data-i18n="calc_sc_apply">Хочу поступить в Китай</span>
       </button>
       <button class="scenario-btn" data-sc="language" onclick="lpScenario('language')">
-        <i class="fas fa-language"></i> Учу китайский / готовлюсь к HSK
+        <i class="fas fa-language"></i> <span data-i18n="calc_sc_lang">Учу китайский / готовлюсь к HSK</span>
       </button>
       <button class="scenario-btn" data-sc="max" onclick="lpScenario('max')">
-        <i class="fas fa-trophy"></i> Максимум шансов — всё и сразу
+        <i class="fas fa-trophy"></i> <span data-i18n="calc_sc_max">Максимум шансов — всё и сразу</span>
       </button>
       <button class="scenario-btn" data-sc="consult_only" onclick="lpScenario('consult_only')">
-        <i class="fas fa-comments"></i> Нужна только консультация
+        <i class="fas fa-comments"></i> <span data-i18n="calc_sc_consult">Нужна только консультация</span>
       </button>
     </div>
 
@@ -648,18 +833,18 @@
         <div class="csc-hdr">
           <div class="csc-num">1</div>
           <div>
-            <div class="csc-ttl">Что вам нужно?</div>
-            <div class="csc-sub">Выберите всё подходящее — получите точную рекомендацию</div>
+            <div class="csc-ttl" data-i18n="calc_step1_ttl">Что вам нужно?</div>
+            <div class="csc-sub" data-i18n="calc_step1_sub">Выберите всё подходящее — получите точную рекомендацию</div>
           </div>
         </div>
         <div class="needs-grid" id="needs-grid"></div>
         <div class="needs-meta">
           <div class="diy-chip" id="diy-chip">
             <i class="fas fa-person-digging"></i>
-            <span id="diy-chip-txt">Выберите потребности выше</span>
+            <span id="diy-chip-txt" data-i18n="calc_diy_ph">Выберите потребности выше</span>
           </div>
           <button class="clear-btn" onclick="lpClearNeeds()">
-            <i class="fas fa-xmark"></i> Сбросить
+            <i class="fas fa-xmark"></i> <span data-i18n="calc_clear">Сбросить</span>
           </button>
         </div>
       </div>
@@ -669,8 +854,8 @@
         <div class="csc-hdr">
           <div class="csc-num">2</div>
           <div>
-            <div class="csc-ttl">Ваш бюджет</div>
-            <div class="csc-sub">Пакеты вне бюджета будут отмечены</div>
+            <div class="csc-ttl" data-i18n="calc_step2_ttl">Ваш бюджет</div>
+            <div class="csc-sub" data-i18n="calc_step2_sub">Пакеты вне бюджета будут отмечены</div>
           </div>
         </div>
         <div class="budget-row">
@@ -689,13 +874,13 @@
     <div class="smart-rec" id="smart-rec">
       <div class="smart-rec-inner">
         <div class="sr-left">
-          <div class="sr-tag"><i class="fas fa-wand-magic-sparkles"></i> Персональная рекомендация</div>
-          <div class="sr-title" id="sr-title">Лучший вариант для вас</div>
-          <div class="sr-desc" id="sr-desc">Покрывает все ваши потребности</div>
+          <div class="sr-tag"><i class="fas fa-wand-magic-sparkles"></i> <span data-i18n="calc_rec_tag">Персональная рекомендация</span></div>
+          <div class="sr-title" id="sr-title" data-i18n="calc_rec_title">Лучший вариант для вас</div>
+          <div class="sr-desc" id="sr-desc" data-i18n="calc_rec_desc">Покрывает все ваши потребности</div>
           <div class="sr-stats" id="sr-stats"></div>
         </div>
         <div class="sr-right" id="sr-right">
-          <a href="#services" class="sr-cta"><i class="fas fa-arrow-right"></i> <span id="sr-cta-txt">Выбрать пакет</span></a>
+          <a href="#contact" class="sr-cta" onclick="openTariffModal('full'); return false;"><i class="fas fa-arrow-right"></i> <span id="sr-cta-txt" data-i18n="calc_rec_cta">Выбрать пакет</span></a>
         </div>
       </div>
     </div>
@@ -703,7 +888,7 @@
     <!-- DIY risk -->
     <div class="risk-bar" id="risk-bar">
       <div class="risk-bar-hdr">
-        <i class="fas fa-triangle-exclamation"></i> Риски при самостоятельном поступлении:
+        <i class="fas fa-triangle-exclamation"></i> <span data-i18n="calc_risk_hdr">Риски при самостоятельном поступлении:</span>
       </div>
       <div class="risk-items" id="risk-items"></div>
     </div>
@@ -714,146 +899,25 @@
     <!-- Summary -->
     <div class="calc-summary" id="calc-summary">
       <div class="csb-item">
-        <div class="csb-lbl">Самостоятельно</div>
+        <div class="csb-lbl" data-i18n="calc_sum_diy">Самостоятельно</div>
         <div class="csb-val red" id="csb-diy">—</div>
       </div>
       <div class="csb-divider"></div>
       <div class="csb-item">
-        <div class="csb-lbl">С NIHAO STUDY</div>
+        <div class="csb-lbl" data-i18n="calc_sum_us">С NIHAO STUDY</div>
         <div class="csb-val gold" id="csb-pkg">—</div>
       </div>
       <div class="csb-divider"></div>
       <div class="csb-item">
-        <div class="csb-lbl">Ваша экономия</div>
+        <div class="csb-lbl" data-i18n="calc_sum_save">Ваша экономия</div>
         <div class="csb-val green" id="csb-save">—</div>
       </div>
       <div class="csb-divider"></div>
       <div class="csb-cta">
-        <a href="#services" class="btn--gold"><i class="fas fa-arrow-down"></i> Выбрать тариф</a>
+        <a href="#contact" class="btn--gold" onclick="openTariffModal('full'); return false;"><i class="fas fa-arrow-down"></i> <span data-i18n="calc_sum_cta">Выбрать тариф</span></a>
       </div>
     </div>
 
-  </div>
-</section>
-
-<section class="services section section--gray" id="services">
-  <div class="container">
-    <div class="section__header">
-      <span class="section__tag">Услуги и цены</span>
-      <h2 class="section__title">Выберите формат работы</h2>
-      <p class="section__desc">Четыре формата работы — выберите тот, что подходит вашей ситуации</p>
-    </div>
-    <div class="services__grid">
-
-      <div class="service-card">
-        <div class="service-card__badge">Популярный старт</div>
-        <div class="service-card__header">
-          <h3>Пакет Лайт</h3>
-          <span class="service-card__subtitle">Стратегия поступления</span>
-        </div>
-        <div class="service-card__price price-locked" onclick="unlockPrices()">
-          <span class="price__amount">100 000</span>
-          <span class="price__currency">₸</span>
-          <div class="price-lock-hint"><i class="fas fa-lock"></i> Нажмите</div>
-        </div>
-        <p class="service-card__for">Для тех, кто хочет чёткий план и действует самостоятельно</p>
-        <ul class="service-card__features">
-          <li><i class="fa-solid fa-check"></i>Индивидуальная консультация ~1 час</li>
-          <li><i class="fa-solid fa-check"></i>Анализ вашего профиля (язык, оценки, бюджет)</li>
-          <li><i class="fa-solid fa-check"></i>Подбор подходящих университетов</li>
-          <li><i class="fa-solid fa-check"></i>Требования каждого вуза</li>
-          <li><i class="fa-solid fa-check"></i>Полный список документов</li>
-          <li><i class="fa-solid fa-check"></i>Пошаговый план и тайминг подачи</li>
-          <li><i class="fa-solid fa-check"></i>Мини-консультации в процессе</li>
-        </ul>
-        <div class="service-card__result">
-          <span>Результат:</span> Чёткий план — что, куда и когда подавать
-        </div>
-        <a href="#contact" class="btn btn--outline btn--full">Записаться на Лайт</a>
-      </div>
-
-      <div class="service-card service-card--featured">
-        <div class="service-card__badge service-card__badge--gold">Рекомендуем</div>
-        <div class="service-card__header">
-          <h3>Полное сопровождение</h3>
-          <span class="service-card__subtitle">Под ключ — от заявки до визы</span>
-        </div>
-        <div class="service-card__price price-locked" onclick="unlockPrices()">
-          <span class="price__amount">550 000</span>
-          <span class="price__currency">₸</span>
-          <div class="price-lock-hint"><i class="fas fa-lock"></i> Нажмите</div>
-        </div>
-        <p class="service-card__for">Для тех, кто хочет результат с минимальным стрессом</p>
-        <ul class="service-card__features">
-          <li><i class="fa-solid fa-check"></i>Всё из пакета Лайт</li>
-          <li><i class="fa-solid fa-check"></i>Полный сбор документов</li>
-          <li><i class="fa-solid fa-check"></i>Сильное мотивационное письмо</li>
-          <li><i class="fa-solid fa-check"></i>Проверка и коррекция всех документов</li>
-          <li><i class="fa-solid fa-check"></i>Заполнение форм университетов</li>
-          <li><i class="fa-solid fa-check"></i>Подача документов</li>
-          <li><i class="fa-solid fa-check"></i>Сопровождение на всех этапах</li>
-          <li><i class="fa-solid fa-check"></i>Контроль дедлайнов</li>
-        </ul>
-        <div class="service-card__result">
-          <span>Результат:</span> Поступление с минимумом ошибок и стресса
-        </div>
-        <a href="#contact" class="btn btn--primary btn--full">Записаться на сопровождение</a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card__badge">Для начинающих</div>
-        <div class="service-card__header">
-          <h3>Быстрый старт</h3>
-          <span class="service-card__subtitle">Китайский язык с нуля</span>
-        </div>
-        <div class="service-card__price price-locked" onclick="unlockPrices()">
-          <span class="price__amount">130 000</span>
-          <span class="price__currency">₸</span>
-          <div class="price-lock-hint"><i class="fas fa-lock"></i> Нажмите</div>
-        </div>
-        <p class="service-card__for">Для тех, кто хочет освоить язык и подготовиться к экзаменам</p>
-        <ul class="service-card__features">
-          <li><i class="fa-solid fa-check"></i>Китайский с нуля до разговорного</li>
-          <li><i class="fa-solid fa-check"></i>Подготовка к HSK и CSCA</li>
-          <li><i class="fa-solid fa-check"></i>5 занятий/нед × 1.5 часа</li>
-          <li><i class="fa-solid fa-check"></i>Мини-группы до 5 человек</li>
-          <li><i class="fa-solid fa-check"></i>Системная программа с контролем</li>
-          <li><i class="fa-solid fa-check"></i>Разбор формата экзамена</li>
-          <li><i class="fa-solid fa-check"></i>Поддержка преподавателя</li>
-        </ul>
-        <div class="service-card__result">
-          <span>Результат:</span> Нужный уровень языка и рост шансов на стипендию
-        </div>
-        <a href="#contact" class="btn btn--outline btn--full">Записаться на курс</a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card__header">
-          <h3>Подготовка к экзамену</h3>
-          <span class="service-card__subtitle">HSK или CSCA — на выбор</span>
-        </div>
-        <div class="service-card__price price-locked" onclick="unlockPrices()">
-          <span class="price__amount">120 000</span>
-          <span class="price__currency">₸ / экзамен</span>
-          <div class="price-lock-hint"><i class="fas fa-lock"></i> Нажмите</div>
-        </div>
-        <p class="service-card__for">Для тех, кто уже знает язык и хочет сдать конкретный экзамен</p>
-        <ul class="service-card__features">
-          <li><i class="fa-solid fa-check"></i>Подготовка только к HSK <strong>или</strong> только к CSCA</li>
-          <li><i class="fa-solid fa-check"></i>Разбор формата и типовых заданий</li>
-          <li><i class="fa-solid fa-check"></i>Практические тесты и разбор ошибок</li>
-          <li><i class="fa-solid fa-check"></i>Мини-группы до 5 человек</li>
-          <li><i class="fa-solid fa-check"></i>Поддержка преподавателя</li>
-          <li><i class="fa-solid fa-check"></i>Стратегия набора максимального балла</li>
-        </ul>
-        <div class="service-card__result">
-          <span>Результат:</span> Сдать HSK или CSCA и повысить шансы на стипендию
-        </div>
-        <a href="#contact" class="btn btn--outline btn--full">Выбрать экзамен</a>
-      </div>
-
-    </div>
-    <p class="services__note">* При выборе двух экзаменов (HSK + CSCA) — 120 000 ₸ за каждый. Комиссии университетов при подаче оплачиваются отдельно.</p>
   </div>
 </section>
 
@@ -861,57 +925,57 @@
 <section class="process section" id="process">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Как мы работаем</span>
-      <h2 class="section__title">7 шагов от заявки до поступления</h2>
+      <span class="section__tag" data-i18n="process_tag">Как мы работаем</span>
+      <h2 class="section__title" data-i18n="process_title">7 шагов от заявки до поступления</h2>
     </div>
     <div class="process__steps">
       <div class="process__step">
         <div class="step__num">01</div>
         <div class="step__content">
-          <h3>Консультация</h3>
-          <p>Знакомимся, разбираем вашу ситуацию: цели, уровень языка, оценки, бюджет</p>
+          <h3 data-i18n="step1_h">Консультация</h3>
+          <p data-i18n="step1_p">Знакомимся, разбираем вашу ситуацию: цели, уровень языка, оценки, бюджет</p>
         </div>
       </div>
       <div class="process__step">
         <div class="step__num">02</div>
         <div class="step__content">
-          <h3>Стратегия</h3>
-          <p>Определяем цели и формируем персональную стратегию поступления</p>
+          <h3 data-i18n="step2_h">Стратегия</h3>
+          <p data-i18n="step2_p">Определяем цели и формируем персональную стратегию поступления</p>
         </div>
       </div>
       <div class="process__step">
         <div class="step__num">03</div>
         <div class="step__content">
-          <h3>Языковая подготовка</h3>
-          <p>Если нужно — проходим HSK/CSCA курсы для достижения нужного уровня</p>
+          <h3 data-i18n="step3_h">Языковая подготовка</h3>
+          <p data-i18n="step3_p">Если нужно — проходим HSK/CSCA курсы для достижения нужного уровня</p>
         </div>
       </div>
       <div class="process__step">
         <div class="step__num">04</div>
         <div class="step__content">
-          <h3>Подбор вузов</h3>
-          <p>Выбираем университеты, которые соответствуют вашему профилю и целям</p>
+          <h3 data-i18n="step4_h">Подбор вузов</h3>
+          <p data-i18n="step4_p">Выбираем университеты, которые соответствуют вашему профилю и целям</p>
         </div>
       </div>
       <div class="process__step">
         <div class="step__num">05</div>
         <div class="step__content">
-          <h3>Документы</h3>
-          <p>Готовим, проверяем и подаём все документы в нужном формате и срок</p>
+          <h3 data-i18n="step5_h">Документы</h3>
+          <p data-i18n="step5_p">Готовим, проверяем и подаём все документы в нужном формате и срок</p>
         </div>
       </div>
       <div class="process__step">
         <div class="step__num">06</div>
         <div class="step__content">
-          <h3>Оффер</h3>
-          <p>Получаем письмо о зачислении от университета — это главный результат</p>
+          <h3 data-i18n="step6_h">Оффер</h3>
+          <p data-i18n="step6_p">Получаем письмо о зачислении от университета — это главный результат</p>
         </div>
       </div>
       <div class="process__step">
         <div class="step__num">07</div>
         <div class="step__content">
-          <h3>Виза и отъезд</h3>
-          <p>Помогаем с визой, документами для выезда и подготовкой к жизни в Китае</p>
+          <h3 data-i18n="step7_h">Виза и отъезд</h3>
+          <p data-i18n="step7_p">Помогаем с визой, документами для выезда и подготовкой к жизни в Китае</p>
         </div>
       </div>
     </div>
@@ -922,9 +986,9 @@
 <section class="universities section section--gray" id="universities">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Университеты</span>
-      <h2 class="section__title">Вузы, в которые мы помогаем поступить</h2>
-      <p class="section__desc">Работаем со всеми 9 университетами C9 League — элитного объединения, аналога Ivy League в Китае</p>
+      <span class="section__tag" data-i18n="unis_tag">Университеты</span>
+      <h2 class="section__title" data-i18n="unis_title">Вузы, в которые мы помогаем поступить</h2>
+      <p class="section__desc" data-i18n="unis_desc">Работаем со всеми 9 университетами C9 League — элитного объединения, аналога Ivy League в Китае</p>
     </div>
     <div class="uni-grid">
       <!-- Tsinghua: ворота 二校门 — главный символ университета -->
@@ -938,7 +1002,7 @@
           <div class="uni-card__name-zh">清华大学</div>
           <p>Лидер в AI и технологиях. Высокая конкуренция — нужна сильная заявка</p>
           <div class="uni-card__tags"><span>IT</span><span>AI</span><span>Engineering</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- PKU: Бoya Tower и озеро Weiming — главный символ PKU -->
@@ -952,7 +1016,7 @@
           <div class="uni-card__name-zh">北京大学</div>
           <p>Сильная теоретическая база, международное признание, широкий спектр специальностей</p>
           <div class="uni-card__tags"><span>Науки</span><span>Медицина</span><span>Право</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- SJTU: кампус Минхан в Шанхае -->
@@ -966,7 +1030,7 @@
           <div class="uni-card__name-zh">上海交通大学</div>
           <p>Один из лучших технических университетов. Сильные программы AI и кибербезопасности</p>
           <div class="uni-card__tags"><span>IT</span><span>Кибербезопасность</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- Zhejiang: кампус Цзыцзиньган в Ханчжоу -->
@@ -980,7 +1044,7 @@
           <div class="uni-card__name-zh">浙江大学</div>
           <p>Тесные связи с Alibaba и индустрией. Современные IT-программы и стажировки</p>
           <div class="uni-card__tags"><span>IT</span><span>Бизнес</span><span>Стажировки</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- HIT: главный корпус Харбинского политеха -->
@@ -994,7 +1058,7 @@
           <div class="uni-card__name-zh">哈尔滨工业大学</div>
           <p>Сильные программы по инженерии и робототехнике. Доступные цены, высокое качество</p>
           <div class="uni-card__tags"><span>Робототехника</span><span>Engineering</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- Fudan: главные ворота кампуса Хандань в Шанхае -->
@@ -1008,7 +1072,7 @@
           <div class="uni-card__name-zh">复旦大学</div>
           <p>Флагман гуманитарных и социальных наук. Сильная медицина, экономика, международные отношения</p>
           <div class="uni-card__tags"><span>Медицина</span><span>Экономика</span><span>Право</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- Nanjing: главный корпус кампуса Гулоу -->
@@ -1022,7 +1086,7 @@
           <div class="uni-card__name-zh">南京大学</div>
           <p>Один из старейших вузов Китая. Мировые позиции в физике, химии и науках о Земле</p>
           <div class="uni-card__tags"><span>Физика</span><span>Химия</span><span>Науки</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- USTC: кампус в Хэфэе (Анхой) -->
@@ -1036,7 +1100,7 @@
           <div class="uni-card__name-zh">中国科学技术大学</div>
           <p>Элита точных наук. Основан Китайской академией наук — уникальная связка науки и образования</p>
           <div class="uni-card__tags"><span>Физика</span><span>Квантовые науки</span><span>AI</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
       <!-- Xi'an Jiaotong: 1-й учебный корпус -->
@@ -1050,7 +1114,7 @@
           <div class="uni-card__name-zh">西安交通大学</div>
           <p>Исторически сильный технический вуз. Лидер в энергетике, материаловедении и машиностроении</p>
           <div class="uni-card__tags"><span>Энергетика</span><span>Машиностроение</span><span>Материаловедение</span></div>
-          <span class="uni-card__more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="uni-card__more" data-i18n="unis_more">Подробнее <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
     </div>
@@ -1065,8 +1129,8 @@
 <section class="cases section" id="cases">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Кейсы</span>
-      <h2 class="section__title">Студенты, которым мы помогли</h2>
+      <span class="section__tag" data-i18n="cases_tag">Кейсы</span>
+      <h2 class="section__title" data-i18n="cases_title">Студенты, которым мы помогли</h2>
     </div>
     <div class="cases__grid">
       <div class="case-card">
@@ -1076,12 +1140,12 @@
           <div class="case-card__location">Алматы, Казахстан</div>
         </div>
         <div class="case-card__result">
-          <span class="result__label">Поступила в</span>
+          <span class="result__label" data-i18n="case_enrolled_f">Поступила в</span>
           <span class="result__uni">Tsinghua University</span>
           <span class="result__year">2024</span>
         </div>
         <p class="case-card__text">«Раньше не знала с чего начать. NIHAO STUDY разобрали мою ситуацию, подготовили документы и помогли написать письмо, которое выделило меня среди сотен кандидатов»</p>
-        <div class="case-card__package">Пакет Стандарт</div>
+        <div class="case-card__package" data-i18n="case_pkg_std">Пакет Стандарт</div>
       </div>
       <div class="case-card">
         <div class="case-card__avatar">ДМ</div>
@@ -1090,12 +1154,12 @@
           <div class="case-card__location">Астана, Казахстан</div>
         </div>
         <div class="case-card__result">
-          <span class="result__label">Поступил в</span>
+          <span class="result__label" data-i18n="case_enrolled_m">Поступил в</span>
           <span class="result__uni">Zhejiang University</span>
-          <span class="result__year">2024 + стипендия</span>
+          <span class="result__year" data-i18n="case_scholarship_yr">2024 + стипендия</span>
         </div>
         <p class="case-card__text">«Хотел в Alibaba на стажировку. Подобрали Zhejiang — именно там связи с Alibaba. Ещё и стипендию получил. Без этих ребят не разобрался бы сам»</p>
-        <div class="case-card__package">Пакет Стандарт</div>
+        <div class="case-card__package" data-i18n="case_pkg_std">Пакет Стандарт</div>
       </div>
       <div class="case-card">
         <div class="case-card__avatar">СК</div>
@@ -1104,15 +1168,15 @@
           <div class="case-card__location">Шымкент, Казахстан</div>
         </div>
         <div class="case-card__result">
-          <span class="result__label">Поступила в</span>
+          <span class="result__label" data-i18n="case_enrolled_f">Поступила в</span>
           <span class="result__uni">Peking University</span>
           <span class="result__year">2025</span>
         </div>
         <p class="case-card__text">«Мама была против Китая — думала это рискованно. NIHAO STUDY провели отдельную консультацию для родителей и объяснили всё. Теперь мама довольна не меньше меня»</p>
-        <div class="case-card__package">Пакет Лайт + Курсы</div>
+        <div class="case-card__package" data-i18n="case_pkg_lite_c">Пакет Лайт + Курсы</div>
       </div>
     </div>
-    <p class="cases__disclaimer">* Имена изменены с согласия студентов</p>
+    <p class="cases__disclaimer" data-i18n="cases_disc">* Имена изменены с согласия студентов</p>
   </div>
 </section>
 
@@ -1148,51 +1212,51 @@
 <section class="testimonials section" id="testimonials">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Отзывы</span>
-      <h2 class="section__title">Что говорят наши студенты и родители</h2>
+      <span class="section__tag" data-i18n="test_tag">Отзывы</span>
+      <h2 class="section__title" data-i18n="test_title">Что говорят наши студенты и родители</h2>
     </div>
     <div class="testimonials__grid">
       <div class="testimonial">
         <div class="testimonial__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>«Сын поступил в Harbin Institute of Technology. Мы с мужем очень переживали насчёт Китая. NIHAO STUDY объяснили всё — от жилья до учёбы. Теперь спокойны»</p>
+        <p data-i18n="rev1_text">«Сын поступил в Harbin Institute of Technology. Мы с мужем очень переживали насчёт Китая. NIHAO STUDY объяснили всё — от жилья до учёбы. Теперь спокойны»</p>
         <div class="testimonial__author">
           <div class="testimonial__avatar">ЗН</div>
           <div>
             <strong>Зарина Н.</strong>
-            <span>Мама студента, Алматы</span>
+            <span data-i18n="rev1_role">Мама студента, Алматы</span>
           </div>
         </div>
       </div>
       <div class="testimonial">
         <div class="testimonial__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>«Брал Лайт-пакет. За час консультации получил столько конкретики, сколько не мог найти сам за 3 месяца. Чёткий план, честные слова о шансах»</p>
+        <p data-i18n="rev2_text">«Брал Лайт-пакет. За час консультации получил столько конкретики, сколько не мог найти сам за 3 месяца. Чёткий план, честные слова о шансах»</p>
         <div class="testimonial__author">
           <div class="testimonial__avatar">АТ</div>
           <div>
             <strong>Азиз Т.</strong>
-            <span>Студент, Ташкент</span>
+            <span data-i18n="rev2_role">Студент, Ташкент</span>
           </div>
         </div>
       </div>
       <div class="testimonial">
         <div class="testimonial__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>«Курсы китайского очень понравились — небольшая группа, живой препод, реальный прогресс. За 4 месяца с нуля до HSK 3. Теперь готовлюсь к поступлению»</p>
+        <p data-i18n="rev3_text">«Курсы китайского очень понравились — небольшая группа, живой препод, реальный прогресс. За 4 месяца с нуля до HSK 3. Теперь готовлюсь к поступлению»</p>
         <div class="testimonial__author">
           <div class="testimonial__avatar">МА</div>
           <div>
             <strong>Марьям А.</strong>
-            <span>Студентка курсов, Астана</span>
+            <span data-i18n="rev3_role">Студентка курсов, Астана</span>
           </div>
         </div>
       </div>
       <div class="testimonial">
         <div class="testimonial__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>«Выбрал Стандарт. Не пожалел ни разу. Они реально сделали всё — я просто подписывал и отправлял. Поступил в Zhejiang с первой попытки»</p>
+        <p data-i18n="rev4_text">«Выбрал Стандарт. Не пожалел ни разу. Они реально сделали всё — я просто подписывал и отправлял. Поступил в Zhejiang с первой попытки»</p>
         <div class="testimonial__author">
           <div class="testimonial__avatar">ЕК</div>
           <div>
             <strong>Ерлан К.</strong>
-            <span>Студент, Алматы</span>
+            <span data-i18n="rev4_role">Студент, Алматы</span>
           </div>
         </div>
       </div>
@@ -1205,39 +1269,39 @@
   <div class="container">
     <div class="faq__inner">
       <div class="faq__left">
-        <span class="section__tag">FAQ</span>
-        <h2 class="section__title">Частые вопросы</h2>
-        <p>Не нашли ответ? Мы ответим лично.</p>
-        <a href="#contact" class="btn btn--primary" style="margin-top:1.5rem">Задать вопрос</a>
+        <span class="section__tag" data-i18n="faq_tag">FAQ</span>
+        <h2 class="section__title" data-i18n="faq_title">Частые вопросы</h2>
+        <p data-i18n="faq_no_answer">Не нашли ответ? Мы ответим лично.</p>
+        <a href="#contact" class="btn btn--primary" style="margin-top:1.5rem" data-i18n="faq_btn">Задать вопрос</a>
       </div>
       <div class="faq__list">
         <div class="faq__item">
-          <button class="faq__question">Можно ли поступить без знания китайского?</button>
-          <div class="faq__answer">Да. Многие вузы предлагают программы на английском языке. Либо можно пройти языковую подготовку — наши курсы HSK доведут вас до нужного уровня за несколько месяцев.</div>
+          <button class="faq__question" data-i18n="faq1_q">Можно ли поступить без знания китайского?</button>
+          <div class="faq__answer" data-i18n="faq1_a">Да. Многие вузы предлагают программы на английском языке. Либо можно пройти языковую подготовку — наши курсы HSK доведут вас до нужного уровня за несколько месяцев.</div>
         </div>
         <div class="faq__item">
-          <button class="faq__question">Сколько стоит учёба и жизнь в Китае?</button>
-          <div class="faq__answer">В среднем: обучение $2 000–6 000/год, общежитие $500–1 500/год, питание и быт $100–200/мес. Итого от $5 000 в год — значительно дешевле Европы и США.</div>
+          <button class="faq__question" data-i18n="faq2_q">Сколько стоит учёба и жизнь в Китае?</button>
+          <div class="faq__answer" data-i18n="faq2_a">В среднем: обучение $2 000–6 000/год, общежитие $500–1 500/год, питание и быт $100–200/мес. Итого от $5 000 в год — значительно дешевле Европы и США.</div>
         </div>
         <div class="faq__item">
-          <button class="faq__question">Реально ли получить стипендию?</button>
-          <div class="faq__answer">Да, реально. 87% наших студентов получили ту или иную форму финансовой поддержки. Главное — правильно подготовить заявку и мотивационное письмо. Именно это мы и делаем.</div>
+          <button class="faq__question" data-i18n="faq3_q">Реально ли получить стипендию?</button>
+          <div class="faq__answer" data-i18n="faq3_a">Да, реально. 87% наших студентов получили ту или иную форму финансовой поддержки. Главное — правильно подготовить заявку и мотивационное письмо. Именно это мы и делаем.</div>
         </div>
         <div class="faq__item">
-          <button class="faq__question">Признаётся ли китайский диплом в Казахстане?</button>
-          <div class="faq__answer">Да. Дипломы ведущих китайских университетов признаются в Казахстане и большинстве стран СНГ. При необходимости помогаем с нострификацией.</div>
+          <button class="faq__question" data-i18n="faq4_q">Признаётся ли китайский диплом в Казахстане?</button>
+          <div class="faq__answer" data-i18n="faq4_a">Да. Дипломы ведущих китайских университетов признаются в Казахстане и большинстве стран СНГ. При необходимости помогаем с нострификацией.</div>
         </div>
         <div class="faq__item">
-          <button class="faq__question">Чем вы отличаетесь от других агентств?</button>
-          <div class="faq__answer">Три ключевых отличия: (1) Специализируемся только на Китае — это глубокая экспертиза. (2) Даём честную оценку шансов без завышенных обещаний. (3) Работаем с ограниченным числом студентов — каждый получает реальное внимание.</div>
+          <button class="faq__question" data-i18n="faq5_q">Чем вы отличаетесь от других агентств?</button>
+          <div class="faq__answer" data-i18n="faq5_a">Три ключевых отличия: (1) Специализируемся только на Китае — это глубокая экспертиза. (2) Даём честную оценку шансов без завышенных обещаний. (3) Работаем с ограниченным числом студентов — каждый получает реальное внимание.</div>
         </div>
         <div class="faq__item">
-          <button class="faq__question">Как долго длится процесс поступления?</button>
-          <div class="faq__answer">В среднем 3–6 месяцев от первой консультации до получения оффера. Зависит от выбранных вузов и вашей готовности. Если нужна языковая подготовка — добавьте 3–6 месяцев.</div>
+          <button class="faq__question" data-i18n="faq6_q">Как долго длится процесс поступления?</button>
+          <div class="faq__answer" data-i18n="faq6_a">В среднем 3–6 месяцев от первой консультации до получения оффера. Зависит от выбранных вузов и вашей готовности. Если нужна языковая подготовка — добавьте 3–6 месяцев.</div>
         </div>
         <div class="faq__item">
-          <button class="faq__question">Что если меня не примут?</button>
-          <div class="faq__answer">Мы делаем всё возможное для минимизации этого риска. Если вуз отказал — разбираем причины и корректируем стратегию. Часто подаём в несколько вузов одновременно для повышения шансов.</div>
+          <button class="faq__question" data-i18n="faq7_q">Что если меня не примут?</button>
+          <div class="faq__answer" data-i18n="faq7_a">Мы делаем всё возможное для минимизации этого риска. Если вуз отказал — разбираем причины и корректируем стратегию. Часто подаём в несколько вузов одновременно для повышения шансов.</div>
         </div>
       </div>
     </div>
@@ -1249,14 +1313,14 @@
   <div class="container">
     <div class="contact__inner">
       <div class="contact__left">
-        <span class="section__tag">Записаться</span>
-        <h2 class="section__title">Получите бесплатную консультацию</h2>
-        <p>За 30 минут разберём вашу ситуацию и честно скажем, какие у вас шансы и с чего начать</p>
+        <span class="section__tag" data-i18n="contact_tag">Записаться</span>
+        <h2 class="section__title" data-i18n="contact_title">Получите бесплатную консультацию</h2>
+        <p data-i18n="contact_sub">За 30 минут разберём вашу ситуацию и честно скажем, какие у вас шансы и с чего начать</p>
         <div class="contact__features">
-          <div class="contact__feature"><i class="fa-solid fa-check"></i>Анализ вашего профиля</div>
-          <div class="contact__feature"><i class="fa-solid fa-check"></i>Подбор реальных вариантов</div>
-          <div class="contact__feature"><i class="fa-solid fa-check"></i>Честная оценка шансов</div>
-          <div class="contact__feature"><i class="fa-solid fa-check"></i>Без давления и обязательств</div>
+          <div class="contact__feature"><i class="fa-solid fa-check"></i><span data-i18n="contact_feat1">Анализ вашего профиля</span></div>
+          <div class="contact__feature"><i class="fa-solid fa-check"></i><span data-i18n="contact_feat2">Подбор реальных вариантов</span></div>
+          <div class="contact__feature"><i class="fa-solid fa-check"></i><span data-i18n="contact_feat3">Честная оценка шансов</span></div>
+          <div class="contact__feature"><i class="fa-solid fa-check"></i><span data-i18n="contact_feat4">Без давления и обязательств</span></div>
         </div>
         <div class="contact__channels">
           <a href="tel:+77075181605" class="channel">
@@ -1268,24 +1332,24 @@
             <span>WhatsApp</span>
           </a>
         </div>
-        <div class="contact__urgency">
+        <div class="contact__urgency" data-i18n="contact_urgency">
           <i class="fa-solid fa-bolt"></i> Берём ограниченное число студентов — места ограничены
         </div>
       </div>
       <div class="contact__right">
         <form class="contact__form" id="contact-form">
           <div class="form__group">
-            <label>Ваше имя *</label>
-            <input type="text" placeholder="Имя" required />
+            <label data-i18n="form_name">Ваше имя *</label>
+            <input type="text" placeholder="Имя" data-i18n-ph="form_name_ph" required />
           </div>
           <div class="form__group">
-            <label>Телефон / WhatsApp *</label>
+            <label data-i18n="form_phone">Телефон / WhatsApp *</label>
             <input type="tel" placeholder="+7 (___) ___ __ __" required />
           </div>
           <div class="form__group">
-            <label>Текущий статус</label>
+            <label data-i18n="form_status">Текущий статус</label>
             <select>
-              <option value="">Выберите...</option>
+              <option value="" data-i18n="form_status_ph">Выберите...</option>
               <option>Школьник (10–11 класс)</option>
               <option>Студент вуза</option>
               <option>Родитель абитуриента</option>
@@ -1293,21 +1357,21 @@
             </select>
           </div>
           <div class="form__group">
-            <label>Интересующий пакет</label>
-            <select>
-              <option value="">Выберите...</option>
-              <option>Пакет Лайт — 100 000 ₸</option>
-              <option>Полное сопровождение — 550 000 ₸</option>
-              <option>Быстрый старт (язык) — 130 000 ₸</option>
-              <option>Подготовка к HSK — 120 000 ₸</option>
-              <option>Подготовка к CSCA — 120 000 ₸</option>
-              <option>Ещё не решил(а)</option>
+            <label data-i18n="form_package">Интересующий пакет</label>
+            <select id="contact-package">
+              <option value="" data-i18n="form_package_ph">Выберите...</option>
+              <option value="lite">Пакет Лайт — 100 000 ₸</option>
+              <option value="full">Полное сопровождение — 550 000 ₸</option>
+              <option value="fast">Быстрый старт (язык) — 130 000 ₸</option>
+              <option value="hsk">Подготовка к HSK — 120 000 ₸</option>
+              <option value="csca">Подготовка к CSCA — 120 000 ₸</option>
+              <option value="none">Ещё не решил(а)</option>
             </select>
           </div>
-          <button type="submit" class="btn btn--primary btn--full btn--lg">
+          <button type="submit" class="btn btn--primary btn--full btn--lg" data-i18n="contact_btn">
             Записаться на бесплатную консультацию
           </button>
-          <p class="form__note">Мы свяжемся с вами в течение 2 часов</p>
+          <p class="form__note" data-i18n="contact_note">Мы свяжемся с вами в течение 2 часов</p>
         </form>
       </div>
     </div>
@@ -1322,7 +1386,7 @@
         <a href="/" class="logo logo--white">
           <img src="/logo.svg" alt="NIHAO STUDY логотип" class="logo__img logo__img--footer" />
         </a>
-        <p>Специализированная академия по поступлению в университеты Китая. Работаем с 2021 года.</p>
+        <p data-i18n="footer_desc">Специализированная академия по поступлению в университеты Китая. Работаем с 2021 года.</p>
         <div class="footer__socials">
           <a href="https://www.instagram.com/nihao_study_china" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://t.me/nihao_study_china" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
@@ -1332,32 +1396,32 @@
       </div>
       <div class="footer__nav">
         <div class="footer__col">
-          <h4>Услуги</h4>
-          <a href="#services">Пакет Лайт</a>
-          <a href="#services">Полное сопровождение</a>
-          <a href="#services">Быстрый старт</a>
-          <a href="#services">Подготовка к HSK / CSCA</a>
+          <h4 data-i18n="footer_services">Услуги</h4>
+          <a href="#contact" onclick="openTariffModal('lite'); return false;" data-i18n="footer_pkg_lite">Пакет Лайт</a>
+          <a href="#contact" onclick="openTariffModal('full'); return false;" data-i18n="footer_pkg_full">Полное сопровождение</a>
+          <a href="#contact" onclick="openTariffModal('fast'); return false;" data-i18n="footer_pkg_fast">Быстрый старт</a>
+          <a href="#contact" onclick="openTariffModal('hsk_exam'); return false;" data-i18n="footer_pkg_hsk">Подготовка к HSK / CSCA</a>
         </div>
         <div class="footer__col">
-          <h4>Академия</h4>
-          <a href="#approach">О нас</a>
-          <a href="#cases">Кейсы</a>
-          <a href="#testimonials">Отзывы</a>
+          <h4 data-i18n="footer_academy">Академия</h4>
+          <a href="#approach" data-i18n="footer_about">О нас</a>
+          <a href="#cases" data-i18n="footer_cases">Кейсы</a>
+          <a href="#testimonials" data-i18n="footer_reviews">Отзывы</a>
           <a href="#faq">FAQ</a>
         </div>
         <div class="footer__col">
-          <h4>Контакты</h4>
+          <h4 data-i18n="footer_contacts">Контакты</h4>
           <a href="tel:+77075181605">+7 707 518 1605</a>
           <a href="https://wa.me/77075181605">WhatsApp</a>
-          <a href="#contact">Записаться</a>
+          <a href="#contact" data-i18n="nav_cta">Записаться</a>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 NIHAO STUDY. Все права защищены.</p>
+      <p data-i18n="footer_copy">© 2026 NIHAO STUDY. Все права защищены.</p>
       <div class="footer__links">
-        <a href="#">Политика конфиденциальности</a>
-        <a href="#">Оферта</a>
+        <a href="#" data-i18n="footer_privacy">Политика конфиденциальности</a>
+        <a href="#" data-i18n="footer_offer">Оферта</a>
       </div>
     </div>
   </div>
@@ -1367,6 +1431,35 @@
 <a href="https://wa.me/77075181605" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
+
+<!-- ========== TARIFF MODAL ========== -->
+<div class="tariff-overlay" id="tariff-overlay" role="dialog" aria-modal="true">
+  <div class="tariff-modal" id="tariff-modal">
+    <button class="tariff-modal__close" onclick="closeTariffModal()" aria-label="Закрыть">
+      <i class="fas fa-xmark"></i>
+    </button>
+    <div class="tariff-modal__top">
+      <div>
+        <div class="tariff-modal__icon" id="tm-icon"></div>
+        <div class="tariff-modal__badge" id="tm-badge"></div>
+        <h3 class="tariff-modal__name" id="tm-name"></h3>
+        <span class="tariff-modal__sub" id="tm-sub"></span>
+      </div>
+      <div class="tariff-modal__price-block">
+        <div class="tariff-modal__price" id="tm-price"></div>
+        <div class="tariff-modal__price-note" id="tm-price-note"></div>
+      </div>
+    </div>
+    <p class="tariff-modal__for" id="tm-for"></p>
+    <span class="tariff-modal__section-label">Что включено</span>
+    <ul class="tariff-modal__features" id="tm-features"></ul>
+    <div class="tariff-modal__outcome" id="tm-outcome">
+      <span class="outcome__label">Результат</span>
+      <p class="outcome__text" id="tm-outcome-text"></p>
+    </div>
+    <a class="tariff-modal__cta" id="tm-cta" href="#contact"></a>
+  </div>
+</div>
 
 <!-- Success Modal -->
 <div class="modal" id="success-modal">
@@ -1597,7 +1690,7 @@
       document.getElementById('sr-right').innerHTML = `
         <div class="sr-pkg"><div class="sr-pkg-name">${rec.a.name}</div><div class="sr-pkg-price">${fmt(rec.a.priceKzt)}</div></div>
         <div class="sr-pkg combo"><div class="sr-pkg-name">+ ${rec.b.name}</div><div class="sr-pkg-price">${fmt(rec.b.priceKzt)}</div></div>
-        <a href="#services" class="sr-cta"><i class="fas fa-arrow-right"></i> Выбрать оба пакета</a>`;
+        <a href="#contact" class="sr-cta" onclick="openTariffModal('${rec.a.id}'); return false;"><i class="fas fa-arrow-right"></i> Выбрать оба пакета</a>`;
     } else {
       const pkg = rec.pkg;
       const diy = diyTotal();
@@ -1618,7 +1711,7 @@
           <div class="sr-pkg-name">${pkg.name}</div>
           <div class="sr-pkg-price">${fmt(pkg.priceKzt)}</div>
         </div>
-        <a href="#services" class="sr-cta"><i class="fas fa-arrow-right"></i> ${pkg.cta}</a>`;
+        <a href="#contact" class="sr-cta" onclick="openTariffModal('${pkg.id}'); return false;"><i class="fas fa-arrow-right"></i> ${pkg.cta}</a>`;
       document.getElementById('sr-cta-txt').textContent = pkg.cta;
     }
   }
@@ -1677,7 +1770,7 @@
       <span class="tc-save-lbl">Вы экономите</span>
       <span class="tc-save-val">${fmt(save)}</span>
     </div>
-    <a href="${t.href}" class="tc-cta">${isBest && selNeeds.size>0?'★ ':''}${t.cta}</a>
+    <a href="${t.href}" class="tc-cta" onclick="openTariffModal('${t.id}'); return false;">${isBest && selNeeds.size>0?'★ ':''}${t.cta}</a>
   </div>
 </div>`;
     }).join('');
@@ -1756,15 +1849,154 @@
 /* ============================================================
    PRICE BLUR / UNLOCK
    ============================================================ */
-window.unlockPrices = function() {
-  document.querySelectorAll('.price-locked').forEach(el=>{
-    el.classList.remove('price-locked');
-    el.classList.add('price-unlocked');
-  });
+/* ============================================================
+   TARIFF MODAL — DATA & LOGIC
+   ============================================================ */
+var MODAL_DATA = {
+  lite: {
+    icon: 'fa-compass',
+    badge: 'Популярный старт',
+    name: 'Пакет Лайт',
+    sub: 'Стратегия поступления',
+    price: '100 000 ₸',
+    priceNote: 'разовая оплата',
+    for: 'Для тех, кто хочет чёткий план и действует самостоятельно — без переплаты за лишние услуги.',
+    features: [
+      'Индивидуальная консультация ~1 час',
+      'Анализ профиля: язык, оценки, бюджет, цели',
+      'Подбор 3–5 подходящих университетов с обоснованием',
+      'Требования и дедлайны каждого вуза',
+      'Полный список необходимых документов',
+      'Пошаговый план и тайминг подачи заявки',
+      'Мини-консультации в процессе подготовки',
+    ],
+    outcome: 'Чёткий план действий — что, куда и когда подавать. Вы знаете каждый шаг и действуете самостоятельно с уверенностью.',
+    cta: 'Записаться на Лайт',
+  },
+  full: {
+    icon: 'fa-graduation-cap',
+    badge: 'Рекомендуем',
+    name: 'Полное сопровождение',
+    sub: 'Под ключ — от заявки до визы',
+    price: '550 000 ₸',
+    priceNote: 'полный цикл до зачисления',
+    for: 'Для тех, кто хочет поступить в топовый вуз Китая с минимальным стрессом и максимальным результатом.',
+    features: [
+      'Всё из пакета Лайт (консультация, стратегия, выбор вуза)',
+      'Полный сбор и проверка пакета документов',
+      'Написание мотивационного письма (профессиональный текст)',
+      'Проверка и коррекция всех документов',
+      'Заполнение онлайн-форм университетов',
+      'Подача документов во все выбранные вузы',
+      'Контроль дедлайнов и статусов заявок',
+      'Сопровождение на каждом этапе — всегда на связи',
+      'Помощь с оформлением студенческой визы X1/X2',
+      'Поддержка вплоть до получения оффера о зачислении',
+    ],
+    outcome: 'Оффер от топового университета с минимумом ошибок и стресса. Вы просто подписываете документы — мы делаем всё остальное.',
+    cta: 'Записаться на сопровождение',
+  },
+  fast: {
+    icon: 'fa-language',
+    badge: 'Для начинающих',
+    name: 'Быстрый старт',
+    sub: 'Китайский язык с нуля',
+    price: '130 000 ₸',
+    priceNote: 'за месяц обучения',
+    for: 'Для тех, кто хочет освоить китайский с нуля, подготовиться к HSK/CSCA и повысить шансы на государственную стипендию.',
+    features: [
+      'Китайский язык с нуля до разговорного уровня',
+      'Параллельная подготовка к HSK 1–4 и CSCA',
+      '5 занятий в неделю × 1.5 часа (≈40 ч/мес)',
+      'Мини-группы до 5 человек — личное внимание преподавателя',
+      'Системная программа с отслеживанием прогресса',
+      'Разбор формата экзамена и тактика сдачи',
+      'Поддержка преподавателя между занятиями',
+      'Практика на реальных материалах из экзаменов',
+    ],
+    outcome: 'Уровень языка, достаточный для поступления и повышения шансов на государственную стипендию Китая.',
+    cta: 'Записаться на курс',
+  },
+  hsk_exam: {
+    icon: 'fa-pen-to-square',
+    badge: 'Целевая подготовка',
+    name: 'Подготовка к экзамену',
+    sub: 'HSK или CSCA — на выбор',
+    price: '120 000 ₸',
+    priceNote: 'за один экзамен',
+    for: 'Для тех, кто уже знает китайский и хочет сдать конкретный экзамен с максимальным баллом.',
+    features: [
+      'Интенсивная подготовка к HSK или CSCA (на выбор)',
+      'Детальный разбор формата и структуры экзамена',
+      'Практические тесты в формате реального экзамена',
+      'Детальный анализ ошибок, работа над слабыми местами',
+      'Мини-группы до 5 человек',
+      'Поддержка преподавателя между занятиями',
+      'Стратегия набора максимального балла',
+      'При выборе обоих (HSK + CSCA) — 120 000 ₸ за каждый',
+    ],
+    outcome: 'Успешная сдача HSK или CSCA с нужным баллом для поступления и получения стипендии.',
+    cta: 'Записаться на подготовку',
+  },
 };
-document.querySelectorAll('.service-card .btn').forEach(btn=>{
-  btn.addEventListener('click', unlockPrices);
-});
+
+window.openTariffModal = function(tierId) {
+  var data = MODAL_DATA[tierId];
+  if (!data) return;
+  var modal   = document.getElementById('tariff-modal');
+  var overlay = document.getElementById('tariff-overlay');
+  modal.setAttribute('data-tier', tierId);
+  document.getElementById('tm-icon').innerHTML  = '<i class="fas ' + data.icon + '"></i>';
+  document.getElementById('tm-badge').textContent = data.badge;
+  document.getElementById('tm-name').textContent  = data.name;
+  document.getElementById('tm-sub').textContent   = data.sub;
+  document.getElementById('tm-price').textContent = data.price;
+  document.getElementById('tm-price-note').textContent = data.priceNote;
+  document.getElementById('tm-for').textContent   = data.for;
+  document.getElementById('tm-features').innerHTML = data.features
+    .map(function(f){ return '<li><i class="fa-solid fa-circle-check"></i>' + f + '</li>'; }).join('');
+  document.getElementById('tm-outcome-text').textContent = data.outcome;
+  var cta = document.getElementById('tm-cta');
+  cta.textContent = data.cta;
+  cta.onclick = function(e) { e.preventDefault(); bookTariff(tierId); };
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeTariffModal = function() {
+  document.getElementById('tariff-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+var TIER_TO_PACKAGE = {
+  lite:     'lite',
+  full:     'full',
+  fast:     'fast',
+  hsk_exam: 'hsk'
+};
+
+window.bookTariff = function(tierId) {
+  closeTariffModal();
+  var sel = document.getElementById('contact-package');
+  if (sel) sel.value = TIER_TO_PACKAGE[tierId] || '';
+  var contactSection = document.getElementById('contact');
+  if (contactSection) {
+    var top = contactSection.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+};
+
+(function(){
+  var overlay = document.getElementById('tariff-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) closeTariffModal();
+    });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeTariffModal();
+  });
+})();
 </script>
 
 </body>

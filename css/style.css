@@ -1252,7 +1252,7 @@ input, select, textarea { font-family: inherit; }
   .uni-grid { grid-template-columns: repeat(2, 1fr); }
   .quiz__inner { grid-template-columns: 1fr; }
   .faq__inner { grid-template-columns: 1fr; gap: 40px; }
-  .contact__inner { grid-template-columns: 1fr; gap: 40px; }
+  .contact__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .footer__top { grid-template-columns: 1fr; gap: 40px; }
 }
 
@@ -1323,8 +1323,12 @@ input, select, textarea { font-family: inherit; }
   .faq__inner { grid-template-columns: 1fr; gap: 32px; }
 
   /* Contact */
-  .contact__inner { grid-template-columns: 1fr; gap: 32px; }
+  .contact__inner { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .contact__left, .contact__right { min-width: 0; }
   .contact__form { padding: 24px 20px; }
+  .contact__form .btn--full { width: 100%; box-sizing: border-box; }
+  .contact__channels { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .channel { flex: 1 1 140px; }
 
   /* Footer */
   .footer__top { grid-template-columns: 1fr; gap: 32px; }
