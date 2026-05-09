@@ -164,6 +164,7 @@ const SITE_TRANSLATIONS = {
     rev3_role: 'Студентка курсов, Астана',
     rev4_text: '«Выбрал Стандарт. Не пожалел ни разу. Они реально сделали всё — я просто подписывал и отправлял. Поступил в Zhejiang с первой попытки»',
     rev4_role: 'Студент, Алматы',
+    rev_cta: '✍️ Оставить отзыв',
 
     faq_tag: 'FAQ',
     faq_title: 'Частые вопросы',
@@ -381,6 +382,7 @@ const SITE_TRANSLATIONS = {
     rev3_role: 'Курс студенті, Астана',
     rev4_text: '«Стандарт таңдадым. Бір де бір рет өкінбедім. Олар шынымен бәрін жасады — мен тек қол қойып жіберіп отырдым. Zhejiang-ге бірінші тұрмысымда түстім»',
     rev4_role: 'Студент, Алматы',
+    rev_cta: '✍️ Пікір қалдыру',
 
     faq_tag: 'FAQ',
     faq_title: 'Жиі қойылатын сұрақтар',
@@ -598,6 +600,7 @@ const SITE_TRANSLATIONS = {
     rev3_role: 'Course student, Astana',
     rev4_text: '"I chose the Standard package. Never regretted it once. They really did everything — I just signed and sent. Got into Zhejiang on the first try."',
     rev4_role: 'Student, Almaty',
+    rev_cta: '✍️ Leave a review',
 
     faq_tag: 'FAQ',
     faq_title: 'Frequently asked questions',
