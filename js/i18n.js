@@ -215,6 +215,51 @@ const SITE_TRANSLATIONS = {
     form_status_ph: 'Выберите...',
     form_package: 'Интересующий пакет',
     form_package_ph: 'Выберите...',
+
+    case1_text: '«Раньше не знала с чего начать. NIHAO STUDY разобрали мою ситуацию, подготовили документы и помогли написать письмо, которое выделило меня среди сотен кандидатов»',
+    case2_text: '«Хотел в Alibaba на стажировку. Подобрали Zhejiang — именно там связи с Alibaba. Ещё и стипендию получил. Без этих ребят не разобрался бы сам»',
+    case3_text: '«Мама была против Китая — думала это рискованно. NIHAO STUDY провели отдельную консультацию для родителей и объяснили всё. Теперь мама довольна не меньше меня»',
+
+    t_lite_name: 'Пакет Лайт', t_lite_sub: 'Стратегия поступления', t_lite_badge: 'Популярный старт', t_lite_cta: 'Записаться на Лайт',
+    t_lite_s1: 'Индивидуальная консультация (~1 ч)', t_lite_s2: 'Анализ профиля: язык, оценки, бюджет',
+    t_lite_s3: 'Выбор специальности и подбор вузов', t_lite_s4: 'Требования и дедлайны каждого вуза',
+    t_lite_s5: 'Полный список необходимых документов', t_lite_s6: 'Пошаговый план и тайминг подачи', t_lite_s7: 'Поддержка в процессе подготовки',
+
+    t_full_name: 'Полное сопровождение', t_full_sub: 'Под ключ — от заявки до визы', t_full_badge: 'Рекомендуем', t_full_cta: 'Записаться на сопровождение',
+    t_full_s1: 'Консультация + стратегия + выбор вуза', t_full_s2: 'Полный сбор пакета документов',
+    t_full_s3: 'Мотивационное письмо (проф. текст)', t_full_s4: 'Проверка и коррекция всех документов',
+    t_full_s5: 'Заполнение форм + подача в вузы', t_full_s6: 'Контроль дедлайнов и статусов',
+    t_full_s7: 'Помощь с оформлением визы X1/X2', t_full_s8: 'Поддержка до получения зачисления',
+
+    t_fast_name: 'Быстрый старт', t_fast_sub: 'Сдай экзамены без стресса', t_fast_badge: 'Для начинающих', t_fast_cta: 'Записаться на курс',
+    t_fast_s1: 'Курс китайского с нуля до разговорного', t_fast_s2: 'Параллельная подготовка к HSK и CSCA',
+    t_fast_s3: '5 занятий/нед × 1.5 ч (40 ч/мес)', t_fast_s4: 'Мини-группы до 5 человек',
+    t_fast_s5: 'Системная программа с контролем прогресса', t_fast_s6: 'Разбор формата экзамена и стратегия', t_fast_s7: 'Поддержка преподавателя между занятиями',
+
+    t_hsk_name: 'Подготовка к экзамену', t_hsk_sub: 'HSK или CSCA — на выбор', t_hsk_badge: 'Целевая подготовка', t_hsk_cta: 'Выбрать экзамен',
+    t_hsk_s1: 'Интенсивная подготовка к HSK или CSCA', t_hsk_s2: 'Разбор формата и типовых заданий',
+    t_hsk_s3: 'Практические тесты с проверкой', t_hsk_s4: 'Детальный разбор ошибок',
+    t_hsk_s5: 'Мини-группы до 5 человек', t_hsk_s6: 'Поддержка преподавателя', t_hsk_s7: 'Стратегия максимального балла',
+
+    n_consult_lbl: 'Консультация и стратегия', n_consult_risk: 'Неправильный выбор вуза',
+    n_choice_lbl: 'Выбор специальности и вуза', n_choice_risk: 'Несовместимость профиля',
+    n_docs_lbl: 'Сбор и оформление документов', n_docs_risk: 'Ошибки в документах',
+    n_letter_lbl: 'Мотивационное письмо', n_letter_risk: 'Слабое мотивационное письмо',
+    n_apply_lbl: 'Подача документов в вузы', n_apply_risk: 'Пропуск дедлайнов',
+    n_deadline_lbl: 'Контроль дедлайнов', n_deadline_risk: 'Потеря места из-за дедлайна',
+    n_visa_lbl: 'Помощь с визой X1/X2', n_visa_risk: 'Отказ в визе',
+    n_scholarship_lbl: 'Стипендия HSK / Правительство', n_scholarship_risk: 'Упущенная стипендия',
+    n_chinese_lbl: 'Курс китайского с нуля', n_chinese_risk: 'Языковой барьер',
+    n_hsk_lbl: 'Подготовка к HSK / CSCA', n_hsk_risk: 'Провал экзамена',
+
+    calc_in_budget: 'в бюджете', calc_over_budget: 'вне бюджета', calc_cheaper_mkt: 'дешевле рынка',
+    calc_market_price: 'Рыночная стоимость', calc_you_save: 'Вы экономите', calc_recommended: '★ Рекомендуем',
+    calc_coverage: 'покрытие', calc_together: 'вместе', calc_match: 'совпадение', calc_savings: 'экономия',
+    calc_rec_combo: 'Рекомендуем комбо', calc_covers_pfx: 'Закрывает', calc_needs_sfx: 'ваших потребностей',
+    calc_best_two: 'лучший результат с двумя пакетами', calc_mkt_higher_pfx: 'Рыночная стоимость выше на',
+    calc_most_popular: 'Наш самый популярный пакет — полное сопровождение до зачисления',
+    calc_choose_both: 'Выбрать оба пакета', calc_diy_pfx: 'Самостоятельно',
+    calc_need_noun: 'потребности', calc_choose_ph: 'Выберите потребности выше',
   },
 
   kz: {
@@ -433,6 +478,51 @@ const SITE_TRANSLATIONS = {
     form_status_ph: 'Таңдаңыз...',
     form_package: 'Қызығушылық тудыратын пакет',
     form_package_ph: 'Таңдаңыз...',
+
+    case1_text: '«Бұрын қайдан бастауды білмедім. NIHAO STUDY менің жағдайымды талдап, құжаттарды дайындап, жүздеген үміткерлер арасында мені ерекшелейтін хат жазуға көмектесті»',
+    case2_text: '«Alibaba-ға тәжірибеге барғым келді. Zhejiang-ды ұсынды — дәл сонда Alibaba байланыстары бар. Стипендия да алдым. Осы адамдарсыз өзім шеше алмас едім»',
+    case3_text: '«Апам Қытайға қарсы болды — қауіпті деп ойлады. NIHAO STUDY ата-аналар үшін жеке кеңес өткізіп, бәрін түсіндірді. Енді апам менің сияқты қуанышта»',
+
+    t_lite_name: 'Лайт пакеті', t_lite_sub: 'Қабылдану стратегиясы', t_lite_badge: 'Танымал бастау', t_lite_cta: 'Лайтқа жазылу',
+    t_lite_s1: 'Жеке кеңес (~1 сағ)', t_lite_s2: 'Профильді талдау: тіл, баға, бюджет',
+    t_lite_s3: 'Мамандық пен ЖОО таңдау', t_lite_s4: 'Әр ЖОО талаптары мен мерзімдері',
+    t_lite_s5: 'Қажетті құжаттардың толық тізімі', t_lite_s6: 'Қадамдық жоспар мен тапсыру уақыты', t_lite_s7: 'Дайындық барысындағы қолдау',
+
+    t_full_name: 'Толық сүйемелдеу', t_full_sub: 'Кілт тапсыру — өтінімнен визаға дейін', t_full_badge: 'Ұсынамыз', t_full_cta: 'Сүйемелдеуге жазылу',
+    t_full_s1: 'Кеңес + стратегия + ЖОО таңдау', t_full_s2: 'Құжаттар пакетін толық жинау',
+    t_full_s3: 'Мотивациялық хат (проф. мәтін)', t_full_s4: 'Барлық құжаттарды тексеру және түзету',
+    t_full_s5: 'Формаларды толтыру + ЖОО-ға тапсыру', t_full_s6: 'Мерзімдер мен күйлерді бақылау',
+    t_full_s7: 'X1/X2 визасын рәсімдеуге көмек', t_full_s8: 'Қабылданғанға дейінгі қолдау',
+
+    t_fast_name: 'Жылдам бастау', t_fast_sub: 'Емтихандарды стрессіз тапсыр', t_fast_badge: 'Жаңадан бастаушыларға', t_fast_cta: 'Курсқа жазылу',
+    t_fast_s1: 'Нөлден сөйлесу деңгейіне дейін қытай тілі', t_fast_s2: 'HSK және CSCA-ға қатар дайындық',
+    t_fast_s3: '5 сабақ/апт × 1.5 сағ (40 сағ/ай)', t_fast_s4: '5 адамға дейінгі шағын топтар',
+    t_fast_s5: 'Прогрессті бақылаумен жүйелі бағдарлама', t_fast_s6: 'Емтихан форматын талдау және стратегия', t_fast_s7: 'Сабақтар арасындағы мұғалім қолдауы',
+
+    t_hsk_name: 'Емтиханға дайындық', t_hsk_sub: 'HSK немесе CSCA — таңдауыңызша', t_hsk_badge: 'Мақсатты дайындық', t_hsk_cta: 'Емтихан таңдау',
+    t_hsk_s1: 'HSK немесе CSCA-ға қарқынды дайындық', t_hsk_s2: 'Форматты және типтік тапсырмаларды талдау',
+    t_hsk_s3: 'Тексерілген практикалық тесттер', t_hsk_s4: 'Қателерді егжей-тегжейлі талдау',
+    t_hsk_s5: '5 адамға дейінгі шағын топтар', t_hsk_s6: 'Мұғалім қолдауы', t_hsk_s7: 'Максималды балл стратегиясы',
+
+    n_consult_lbl: 'Кеңес және стратегия', n_consult_risk: 'Дұрыс емес ЖОО таңдау',
+    n_choice_lbl: 'Мамандық пен ЖОО таңдауы', n_choice_risk: 'Профиль сәйкессіздігі',
+    n_docs_lbl: 'Құжаттарды жинау және рәсімдеу', n_docs_risk: 'Құжаттардағы қателер',
+    n_letter_lbl: 'Мотивациялық хат', n_letter_risk: 'Нашар мотивациялық хат',
+    n_apply_lbl: 'ЖОО-ларға құжат тапсыру', n_apply_risk: 'Мерзімдерді өткізіп жіберу',
+    n_deadline_lbl: 'Мерзімдерді бақылау', n_deadline_risk: 'Мерзімнен орынды жоғалту',
+    n_visa_lbl: 'X1/X2 визасына көмек', n_visa_risk: 'Визадан бас тарту',
+    n_scholarship_lbl: 'HSK / Үкімет стипендиясы', n_scholarship_risk: 'Жіберілген стипендия',
+    n_chinese_lbl: 'Нөлден қытай тілі курсы', n_chinese_risk: 'Тілдік кедергі',
+    n_hsk_lbl: 'HSK / CSCA-ға дайындық', n_hsk_risk: 'Емтиханды өтпеу',
+
+    calc_in_budget: 'бюджетте', calc_over_budget: 'бюджеттен тыс', calc_cheaper_mkt: 'нарықтан арзан',
+    calc_market_price: 'Нарықтық құн', calc_you_save: 'Үнемдейсіз', calc_recommended: '★ Ұсынамыз',
+    calc_coverage: 'қамту', calc_together: 'бірге', calc_match: 'сәйкестік', calc_savings: 'үнемдеу',
+    calc_rec_combo: 'Ұсынамыз комбо', calc_covers_pfx: 'Жабады', calc_needs_sfx: 'қажеттіліктеріңізді',
+    calc_best_two: 'екі пакетпен ең жақсы нәтиже', calc_mkt_higher_pfx: 'Нарықтық баға жоғары',
+    calc_most_popular: 'Ең танымал пакет — қабылдануға дейінгі толық сүйемелдеу',
+    calc_choose_both: 'Екі пакетті таңдау', calc_diy_pfx: 'Өз бетіңізбен',
+    calc_need_noun: 'қажеттілік', calc_choose_ph: 'Жоғарыдан қажеттіліктерді таңдаңыз',
   },
 
   en: {
@@ -651,12 +741,58 @@ const SITE_TRANSLATIONS = {
     form_status_ph: 'Select...',
     form_package: 'Package of interest',
     form_package_ph: 'Select...',
+
+    case1_text: '"I didn\'t know where to start. NIHAO STUDY analyzed my situation, prepared the documents, and helped write a letter that set me apart from hundreds of candidates."',
+    case2_text: '"I wanted an internship at Alibaba. They matched me with Zhejiang — that\'s exactly where the Alibaba connections are. I even got a scholarship. Couldn\'t have figured it out alone."',
+    case3_text: '"My mom was against China — she thought it was risky. NIHAO STUDY held a separate consultation for parents and explained everything. Now my mom is just as happy as I am."',
+
+    t_lite_name: 'Lite Package', t_lite_sub: 'Admission Strategy', t_lite_badge: 'Popular Start', t_lite_cta: 'Sign Up for Lite',
+    t_lite_s1: 'Individual consultation (~1 hr)', t_lite_s2: 'Profile analysis: language, grades, budget',
+    t_lite_s3: 'Choosing specialty and universities', t_lite_s4: 'Requirements and deadlines for each university',
+    t_lite_s5: 'Complete list of required documents', t_lite_s6: 'Step-by-step plan and submission timing', t_lite_s7: 'Support during preparation',
+
+    t_full_name: 'Full Accompaniment', t_full_sub: 'Turnkey — from application to visa', t_full_badge: 'Recommended', t_full_cta: 'Sign Up for Accompaniment',
+    t_full_s1: 'Consultation + strategy + university selection', t_full_s2: 'Full document package collection',
+    t_full_s3: 'Motivation letter (professional text)', t_full_s4: 'Review and correction of all documents',
+    t_full_s5: 'Filling forms + submitting to universities', t_full_s6: 'Tracking deadlines and statuses',
+    t_full_s7: 'Help with X1/X2 visa processing', t_full_s8: 'Support until enrollment received',
+
+    t_fast_name: 'Quick Start', t_fast_sub: 'Pass Exams Stress-Free', t_fast_badge: 'For Beginners', t_fast_cta: 'Sign Up for Course',
+    t_fast_s1: 'Chinese course from zero to conversational', t_fast_s2: 'Parallel preparation for HSK and CSCA',
+    t_fast_s3: '5 lessons/week × 1.5 hrs (40 hrs/month)', t_fast_s4: 'Mini-groups up to 5 people',
+    t_fast_s5: 'Systematic program with progress tracking', t_fast_s6: 'Exam format analysis and strategy', t_fast_s7: 'Teacher support between lessons',
+
+    t_hsk_name: 'Exam Preparation', t_hsk_sub: 'HSK or CSCA — your choice', t_hsk_badge: 'Targeted Preparation', t_hsk_cta: 'Choose an Exam',
+    t_hsk_s1: 'Intensive preparation for HSK or CSCA', t_hsk_s2: 'Format and typical task analysis',
+    t_hsk_s3: 'Practical tests with review', t_hsk_s4: 'Detailed error analysis',
+    t_hsk_s5: 'Mini-groups up to 5 people', t_hsk_s6: 'Teacher support', t_hsk_s7: 'Maximum score strategy',
+
+    n_consult_lbl: 'Consultation & strategy', n_consult_risk: 'Wrong university choice',
+    n_choice_lbl: 'Specialty & university choice', n_choice_risk: 'Profile mismatch',
+    n_docs_lbl: 'Document collection & processing', n_docs_risk: 'Errors in documents',
+    n_letter_lbl: 'Motivation letter', n_letter_risk: 'Weak motivation letter',
+    n_apply_lbl: 'Submitting documents to universities', n_apply_risk: 'Missing deadlines',
+    n_deadline_lbl: 'Deadline tracking', n_deadline_risk: 'Losing spot due to deadline',
+    n_visa_lbl: 'Help with X1/X2 visa', n_visa_risk: 'Visa refusal',
+    n_scholarship_lbl: 'HSK / Government scholarship', n_scholarship_risk: 'Missed scholarship',
+    n_chinese_lbl: 'Chinese course from zero', n_chinese_risk: 'Language barrier',
+    n_hsk_lbl: 'HSK / CSCA preparation', n_hsk_risk: 'Exam failure',
+
+    calc_in_budget: 'in budget', calc_over_budget: 'over budget', calc_cheaper_mkt: 'cheaper than market',
+    calc_market_price: 'Market price', calc_you_save: 'You save', calc_recommended: '★ Recommended',
+    calc_coverage: 'coverage', calc_together: 'together', calc_match: 'match', calc_savings: 'savings',
+    calc_rec_combo: 'Recommended combo', calc_covers_pfx: 'Covers', calc_needs_sfx: 'of your needs',
+    calc_best_two: 'best result with two packages', calc_mkt_higher_pfx: 'Market price higher by',
+    calc_most_popular: 'Our most popular package — full support until enrollment',
+    calc_choose_both: 'Choose both packages', calc_diy_pfx: 'DIY cost',
+    calc_need_noun: 'need', calc_choose_ph: 'Select your needs above',
   }
 };
 
 function setLang(lang) {
   if (!SITE_TRANSLATIONS[lang]) return;
   const t = SITE_TRANSLATIONS[lang];
+  window._siteLang = lang;
   localStorage.setItem('nihao_lang', lang);
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -676,6 +812,7 @@ function setLang(lang) {
   });
 
   document.documentElement.lang = lang === 'kz' ? 'kk' : lang;
+  if (window.__lpRender) window.__lpRender();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

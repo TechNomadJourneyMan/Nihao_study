@@ -1144,7 +1144,7 @@
           <span class="result__uni">Tsinghua University</span>
           <span class="result__year">2024</span>
         </div>
-        <p class="case-card__text">«Раньше не знала с чего начать. NIHAO STUDY разобрали мою ситуацию, подготовили документы и помогли написать письмо, которое выделило меня среди сотен кандидатов»</p>
+        <p class="case-card__text" data-i18n="case1_text">«Раньше не знала с чего начать. NIHAO STUDY разобрали мою ситуацию, подготовили документы и помогли написать письмо, которое выделило меня среди сотен кандидатов»</p>
         <div class="case-card__package" data-i18n="case_pkg_std">Пакет Стандарт</div>
       </div>
       <div class="case-card">
@@ -1158,7 +1158,7 @@
           <span class="result__uni">Zhejiang University</span>
           <span class="result__year" data-i18n="case_scholarship_yr">2024 + стипендия</span>
         </div>
-        <p class="case-card__text">«Хотел в Alibaba на стажировку. Подобрали Zhejiang — именно там связи с Alibaba. Ещё и стипендию получил. Без этих ребят не разобрался бы сам»</p>
+        <p class="case-card__text" data-i18n="case2_text">«Хотел в Alibaba на стажировку. Подобрали Zhejiang — именно там связи с Alibaba. Ещё и стипендию получил. Без этих ребят не разобрался бы сам»</p>
         <div class="case-card__package" data-i18n="case_pkg_std">Пакет Стандарт</div>
       </div>
       <div class="case-card">
@@ -1172,7 +1172,7 @@
           <span class="result__uni">Peking University</span>
           <span class="result__year">2025</span>
         </div>
-        <p class="case-card__text">«Мама была против Китая — думала это рискованно. NIHAO STUDY провели отдельную консультацию для родителей и объяснили всё. Теперь мама довольна не меньше меня»</p>
+        <p class="case-card__text" data-i18n="case3_text">«Мама была против Китая — думала это рискованно. NIHAO STUDY провели отдельную консультацию для родителей и объяснили всё. Теперь мама довольна не меньше меня»</p>
         <div class="case-card__package" data-i18n="case_pkg_lite_c">Пакет Лайт + Курсы</div>
       </div>
     </div>
@@ -1491,18 +1491,23 @@
   const selNeeds = new Set();
   let activeScenario = null;
 
+  /* ── i18n helper ── */
+  function cT(k) {
+    return (SITE_TRANSLATIONS[window._siteLang]||SITE_TRANSLATIONS.ru)[k]||k;
+  }
+
   /* ── Needs ── */
   const NEEDS = [
-    {id:'consult',    lbl:'Консультация и стратегия',      icon:'fa-comments',         diy:55000,   risk:'Неправильный выбор вуза'},
-    {id:'choice',     lbl:'Выбор специальности и вуза',    icon:'fa-map-location-dot', diy:45000,   risk:'Несовместимость профиля'},
-    {id:'docs',       lbl:'Сбор и оформление документов',  icon:'fa-folder-open',      diy:160000,  risk:'Ошибки в документах'},
-    {id:'letter',     lbl:'Мотивационное письмо',          icon:'fa-pen-to-square',    diy:120000,  risk:'Слабое мотивационное письмо'},
-    {id:'apply',      lbl:'Подача документов в вузы',      icon:'fa-paper-plane',      diy:80000,   risk:'Пропуск дедлайнов'},
-    {id:'deadline',   lbl:'Контроль дедлайнов',            icon:'fa-clock',            diy:40000,   risk:'Потеря места из-за дедлайна'},
-    {id:'visa',       lbl:'Помощь с визой X1/X2',          icon:'fa-passport',         diy:80000,   risk:'Отказ в визе'},
-    {id:'scholarship',lbl:'Стипендия HSK / Правительство', icon:'fa-medal',            diy:100000,  risk:'Упущенная стипендия'},
-    {id:'chinese',    lbl:'Курс китайского с нуля',        icon:'fa-language',         diy:200000,  risk:'Языковой барьер'},
-    {id:'hsk',        lbl:'Подготовка к HSK / CSCA',       icon:'fa-graduation-cap',   diy:90000,   risk:'Провал экзамена'},
+    {id:'consult',    lblKey:'n_consult_lbl',    icon:'fa-comments',         diy:55000,   riskKey:'n_consult_risk'},
+    {id:'choice',     lblKey:'n_choice_lbl',     icon:'fa-map-location-dot', diy:45000,   riskKey:'n_choice_risk'},
+    {id:'docs',       lblKey:'n_docs_lbl',       icon:'fa-folder-open',      diy:160000,  riskKey:'n_docs_risk'},
+    {id:'letter',     lblKey:'n_letter_lbl',     icon:'fa-pen-to-square',    diy:120000,  riskKey:'n_letter_risk'},
+    {id:'apply',      lblKey:'n_apply_lbl',      icon:'fa-paper-plane',      diy:80000,   riskKey:'n_apply_risk'},
+    {id:'deadline',   lblKey:'n_deadline_lbl',   icon:'fa-clock',            diy:40000,   riskKey:'n_deadline_risk'},
+    {id:'visa',       lblKey:'n_visa_lbl',       icon:'fa-passport',         diy:80000,   riskKey:'n_visa_risk'},
+    {id:'scholarship',lblKey:'n_scholarship_lbl',icon:'fa-medal',            diy:100000,  riskKey:'n_scholarship_risk'},
+    {id:'chinese',    lblKey:'n_chinese_lbl',    icon:'fa-language',         diy:200000,  riskKey:'n_chinese_risk'},
+    {id:'hsk',        lblKey:'n_hsk_lbl',        icon:'fa-graduation-cap',   diy:90000,   riskKey:'n_hsk_risk'},
   ];
 
   /* ── Scenarios ── */
@@ -1516,64 +1521,64 @@
   /* ── Tariffs ── */
   const TARIFFS = [
     {
-      id:'lite', name:'Пакет Лайт', badge:'Популярный старт', badgeClass:'',
-      sub:'Стратегия поступления', priceKzt:100000, href:'#contact',
-      cta:'Записаться на Лайт',
+      id:'lite', nameKey:'t_lite_name', badgeKey:'t_lite_badge', badgeClass:'',
+      subKey:'t_lite_sub', priceKzt:100000, href:'#contact',
+      ctaKey:'t_lite_cta',
       covers:['consult','choice'],
       services:[
-        {n:'Индивидуальная консультация (~1 ч)',        mkt:25000, need:'consult'},
-        {n:'Анализ профиля: язык, оценки, бюджет',      mkt:20000, need:'consult'},
-        {n:'Выбор специальности и подбор вузов',        mkt:35000, need:'choice'},
-        {n:'Требования и дедлайны каждого вуза',        mkt:25000, need:'consult'},
-        {n:'Полный список необходимых документов',      mkt:20000, need:'consult'},
-        {n:'Пошаговый план и тайминг подачи',           mkt:25000, need:'choice'},
-        {n:'Поддержка в процессе подготовки',           mkt:30000, need:'consult'},
+        {nKey:'t_lite_s1', mkt:25000, need:'consult'},
+        {nKey:'t_lite_s2', mkt:20000, need:'consult'},
+        {nKey:'t_lite_s3', mkt:35000, need:'choice'},
+        {nKey:'t_lite_s4', mkt:25000, need:'consult'},
+        {nKey:'t_lite_s5', mkt:20000, need:'consult'},
+        {nKey:'t_lite_s6', mkt:25000, need:'choice'},
+        {nKey:'t_lite_s7', mkt:30000, need:'consult'},
       ]
     },
     {
-      id:'full', name:'Полное сопровождение', badge:'Рекомендуем', badgeClass:'tc-badge-gold',
-      sub:'Под ключ — от заявки до визы', priceKzt:550000, href:'#contact',
-      cta:'Записаться на сопровождение',
+      id:'full', nameKey:'t_full_name', badgeKey:'t_full_badge', badgeClass:'tc-badge-gold',
+      subKey:'t_full_sub', priceKzt:550000, href:'#contact',
+      ctaKey:'t_full_cta',
       covers:['consult','choice','docs','letter','apply','deadline','visa','scholarship'],
       services:[
-        {n:'Консультация + стратегия + выбор вуза',     mkt:80000, need:'consult'},
-        {n:'Полный сбор пакета документов',              mkt:160000,need:'docs'},
-        {n:'Мотивационное письмо (проф. текст)',         mkt:120000,need:'letter'},
-        {n:'Проверка и коррекция всех документов',      mkt:80000, need:'docs'},
-        {n:'Заполнение форм + подача в вузы',           mkt:80000, need:'apply'},
-        {n:'Контроль дедлайнов и статусов',             mkt:45000, need:'deadline'},
-        {n:'Помощь с оформлением визы X1/X2',           mkt:80000, need:'visa'},
-        {n:'Поддержка до получения зачисления',         mkt:60000, need:'scholarship'},
+        {nKey:'t_full_s1', mkt:80000,  need:'consult'},
+        {nKey:'t_full_s2', mkt:160000, need:'docs'},
+        {nKey:'t_full_s3', mkt:120000, need:'letter'},
+        {nKey:'t_full_s4', mkt:80000,  need:'docs'},
+        {nKey:'t_full_s5', mkt:80000,  need:'apply'},
+        {nKey:'t_full_s6', mkt:45000,  need:'deadline'},
+        {nKey:'t_full_s7', mkt:80000,  need:'visa'},
+        {nKey:'t_full_s8', mkt:60000,  need:'scholarship'},
       ]
     },
     {
-      id:'fast', name:'Быстрый старт', badge:'Для начинающих', badgeClass:'',
-      sub:'Сдай экзамены без стресса', priceKzt:200000, href:'#contact',
-      cta:'Записаться на курс',
+      id:'fast', nameKey:'t_fast_name', badgeKey:'t_fast_badge', badgeClass:'',
+      subKey:'t_fast_sub', priceKzt:200000, href:'#contact',
+      ctaKey:'t_fast_cta',
       covers:['chinese','hsk'],
       services:[
-        {n:'Курс китайского с нуля до разговорного',   mkt:120000,need:'chinese'},
-        {n:'Параллельная подготовка к HSK и CSCA',      mkt:90000, need:'hsk'},
-        {n:'5 занятий/нед × 1.5 ч (40 ч/мес)',         mkt:50000, need:'chinese'},
-        {n:'Мини-группы до 5 человек',                  mkt:30000, need:'chinese'},
-        {n:'Системная программа с контролем прогресса', mkt:20000, need:'chinese'},
-        {n:'Разбор формата экзамена и стратегия',       mkt:30000, need:'hsk'},
-        {n:'Поддержка преподавателя между занятиями',   mkt:25000, need:'chinese'},
+        {nKey:'t_fast_s1', mkt:120000, need:'chinese'},
+        {nKey:'t_fast_s2', mkt:90000,  need:'hsk'},
+        {nKey:'t_fast_s3', mkt:50000,  need:'chinese'},
+        {nKey:'t_fast_s4', mkt:30000,  need:'chinese'},
+        {nKey:'t_fast_s5', mkt:20000,  need:'chinese'},
+        {nKey:'t_fast_s6', mkt:30000,  need:'hsk'},
+        {nKey:'t_fast_s7', mkt:25000,  need:'chinese'},
       ]
     },
     {
-      id:'hsk_exam', name:'Подготовка к экзамену', badge:'Целевая подготовка', badgeClass:'',
-      sub:'HSK или CSCA — на выбор', priceKzt:120000, href:'#contact',
-      cta:'Выбрать экзамен',
+      id:'hsk_exam', nameKey:'t_hsk_name', badgeKey:'t_hsk_badge', badgeClass:'',
+      subKey:'t_hsk_sub', priceKzt:120000, href:'#contact',
+      ctaKey:'t_hsk_cta',
       covers:['hsk','scholarship'],
       services:[
-        {n:'Интенсивная подготовка к HSK или CSCA',    mkt:90000, need:'hsk'},
-        {n:'Разбор формата и типовых заданий',          mkt:30000, need:'hsk'},
-        {n:'Практические тесты с проверкой',            mkt:40000, need:'hsk'},
-        {n:'Детальный разбор ошибок',                   mkt:25000, need:'hsk'},
-        {n:'Мини-группы до 5 человек',                  mkt:25000, need:'hsk'},
-        {n:'Поддержка преподавателя',                   mkt:20000, need:'hsk'},
-        {n:'Стратегия максимального балла',             mkt:35000, need:'scholarship'},
+        {nKey:'t_hsk_s1', mkt:90000,  need:'hsk'},
+        {nKey:'t_hsk_s2', mkt:30000,  need:'hsk'},
+        {nKey:'t_hsk_s3', mkt:40000,  need:'hsk'},
+        {nKey:'t_hsk_s4', mkt:25000,  need:'hsk'},
+        {nKey:'t_hsk_s5', mkt:25000,  need:'hsk'},
+        {nKey:'t_hsk_s6', mkt:20000,  need:'hsk'},
+        {nKey:'t_hsk_s7', mkt:35000,  need:'scholarship'},
       ]
     },
   ];
@@ -1634,7 +1639,7 @@
       <div class="need-card${selNeeds.has(n.id)?' sel':''}" onclick="lpToggleNeed('${n.id}')">
         <div class="need-icon"><i class="fas ${n.icon}"></i></div>
         <div class="need-info">
-          <div class="need-lbl">${n.lbl}</div>
+          <div class="need-lbl">${cT(n.lblKey)}</div>
           <div class="need-price">DIY: ${fmt(n.diy)}</div>
         </div>
         <div class="need-check"></div>
@@ -1646,10 +1651,19 @@
     const txt  = document.getElementById('diy-chip-txt');
     if (selNeeds.size) {
       chip.classList.add('has-val');
-      txt.textContent = `Самостоятельно: ${fmt(diy)} (${selNeeds.size} потребност${selNeeds.size===1?'ь':selNeeds.size<5?'и':'ей'})`;
+      const lang = window._siteLang || 'ru';
+      let needStr;
+      if (lang === 'en') {
+        needStr = `${selNeeds.size} need${selNeeds.size===1?'':'s'}`;
+      } else if (lang === 'kz') {
+        needStr = `${selNeeds.size} ${cT('calc_need_noun')}`;
+      } else {
+        needStr = `${selNeeds.size} потребност${selNeeds.size===1?'ь':selNeeds.size<5?'и':'ей'}`;
+      }
+      txt.textContent = `${cT('calc_diy_pfx')}: ${fmt(diy)} (${needStr})`;
     } else {
       chip.classList.remove('has-val');
-      txt.textContent = 'Выберите потребности выше';
+      txt.textContent = cT('calc_choose_ph');
     }
   }
 
@@ -1670,7 +1684,7 @@
     const risks = [];
     selNeeds.forEach(id => {
       const n = NEEDS.find(x=>x.id===id);
-      if (n && n.risk) risks.push(n.risk);
+      if (n && n.riskKey) risks.push(cT(n.riskKey));
     });
     if (risks.length) {
       riskEl.classList.add('visible');
@@ -1685,39 +1699,39 @@
     if (rec.type === 'combo') {
       const totalPrice = rec.a.priceKzt + rec.b.priceKzt;
       document.getElementById('sr-title').textContent =
-        `Рекомендуем комбо: ${rec.a.name} + ${rec.b.name}`;
+        `${cT('calc_rec_combo')}: ${cT(rec.a.nameKey)} + ${cT(rec.b.nameKey)}`;
       document.getElementById('sr-desc').textContent =
-        `Закрывает ${rec.score}% ваших потребностей — лучший результат с двумя пакетами`;
+        `${cT('calc_covers_pfx')} ${rec.score}% ${cT('calc_needs_sfx')} — ${cT('calc_best_two')}`;
       document.getElementById('sr-stats').innerHTML = `
-        <div class="sr-stat"><div class="sr-stat-val">${rec.score}%</div><div class="sr-stat-lbl">покрытие</div></div>
-        <div class="sr-stat"><div class="sr-stat-val">${fmt(totalPrice)}</div><div class="sr-stat-lbl">вместе</div></div>
-        <div class="sr-stat"><div class="sr-stat-val">${fmt(diyTotal() - totalPrice)}</div><div class="sr-stat-lbl">экономия</div></div>`;
+        <div class="sr-stat"><div class="sr-stat-val">${rec.score}%</div><div class="sr-stat-lbl">${cT('calc_coverage')}</div></div>
+        <div class="sr-stat"><div class="sr-stat-val">${fmt(totalPrice)}</div><div class="sr-stat-lbl">${cT('calc_together')}</div></div>
+        <div class="sr-stat"><div class="sr-stat-val">${fmt(diyTotal() - totalPrice)}</div><div class="sr-stat-lbl">${cT('calc_savings')}</div></div>`;
       document.getElementById('sr-right').innerHTML = `
-        <div class="sr-pkg"><div class="sr-pkg-name">${rec.a.name}</div><div class="sr-pkg-price">${fmt(rec.a.priceKzt)}</div></div>
-        <div class="sr-pkg combo"><div class="sr-pkg-name">+ ${rec.b.name}</div><div class="sr-pkg-price">${fmt(rec.b.priceKzt)}</div></div>
-        <a href="#contact" class="sr-cta" onclick="openTariffModal('${rec.a.id}'); return false;"><i class="fas fa-arrow-right"></i> Выбрать оба пакета</a>`;
+        <div class="sr-pkg"><div class="sr-pkg-name">${cT(rec.a.nameKey)}</div><div class="sr-pkg-price">${fmt(rec.a.priceKzt)}</div></div>
+        <div class="sr-pkg combo"><div class="sr-pkg-name">+ ${cT(rec.b.nameKey)}</div><div class="sr-pkg-price">${fmt(rec.b.priceKzt)}</div></div>
+        <a href="#contact" class="sr-cta" onclick="openTariffModal('${rec.a.id}'); return false;"><i class="fas fa-arrow-right"></i> ${cT('calc_choose_both')}</a>`;
     } else {
       const pkg = rec.pkg;
       const diy = diyTotal();
       const save = diy - pkg.priceKzt;
       const mkt = pkg.services.reduce((s,sv)=>s+sv.mkt,0);
       const savePct = Math.round((mkt - pkg.priceKzt) / mkt * 100);
-      document.getElementById('sr-title').textContent = pkg.name;
+      document.getElementById('sr-title').textContent = cT(pkg.nameKey);
       document.getElementById('sr-desc').textContent =
         selNeeds.size
-          ? `Закрывает ${rec.score||100}% ваших потребностей · Рыночная стоимость выше на ${savePct}%`
-          : 'Наш самый популярный пакет — полное сопровождение до зачисления';
+          ? `${cT('calc_covers_pfx')} ${rec.score||100}% ${cT('calc_needs_sfx')} · ${cT('calc_mkt_higher_pfx')} ${savePct}%`
+          : cT('calc_most_popular');
       document.getElementById('sr-stats').innerHTML = `
-        <div class="sr-stat"><div class="sr-stat-val">${rec.score||100}%</div><div class="sr-stat-lbl">совпадение</div></div>
-        ${save > 0 ? `<div class="sr-stat"><div class="sr-stat-val">${fmt(save)}</div><div class="sr-stat-lbl">экономия</div></div>` : ''}
-        <div class="sr-stat"><div class="sr-stat-val">${savePct}%</div><div class="sr-stat-lbl">дешевле рынка</div></div>`;
+        <div class="sr-stat"><div class="sr-stat-val">${rec.score||100}%</div><div class="sr-stat-lbl">${cT('calc_match')}</div></div>
+        ${save > 0 ? `<div class="sr-stat"><div class="sr-stat-val">${fmt(save)}</div><div class="sr-stat-lbl">${cT('calc_savings')}</div></div>` : ''}
+        <div class="sr-stat"><div class="sr-stat-val">${savePct}%</div><div class="sr-stat-lbl">${cT('calc_cheaper_mkt')}</div></div>`;
       document.getElementById('sr-right').innerHTML = `
         <div class="sr-pkg featured">
-          <div class="sr-pkg-name">${pkg.name}</div>
+          <div class="sr-pkg-name">${cT(pkg.nameKey)}</div>
           <div class="sr-pkg-price">${fmt(pkg.priceKzt)}</div>
         </div>
-        <a href="#contact" class="sr-cta" onclick="openTariffModal('${pkg.id}'); return false;"><i class="fas fa-arrow-right"></i> ${pkg.cta}</a>`;
-      document.getElementById('sr-cta-txt').textContent = pkg.cta;
+        <a href="#contact" class="sr-cta" onclick="openTariffModal('${pkg.id}'); return false;"><i class="fas fa-arrow-right"></i> ${cT(pkg.ctaKey)}</a>`;
+      document.getElementById('sr-cta-txt').textContent = cT(pkg.ctaKey);
     }
   }
 
@@ -1736,7 +1750,7 @@
       const isBest = bestIds.includes(t.id);
       const overBudget = t.priceKzt > budget;
       const isDim = selNeeds.size > 0 && score === 0;
-      const badgeTxt = isBest && selNeeds.size > 0 ? '★ Рекомендуем' : t.badge;
+      const badgeTxt = isBest && selNeeds.size > 0 ? cT('calc_recommended') : cT(t.badgeKey);
       const badgeCls = isBest && selNeeds.size > 0 ? '' : t.badgeClass;
       return `
 <div class="tc-card${isBest?' tc-best':''}${isDim?' tc-dim':''}${overBudget?' tc-over-budget':''}">
@@ -1745,37 +1759,37 @@
       <div class="tc-match-bar"><div class="tc-match-fill" style="width:${score}%"></div></div>
       <span class="tc-match-pct">${score}%</span>
     </div>
-    <span class="tc-budget-tag${overBudget?' over':''}">${overBudget?'вне бюджета':'в бюджете'}</span>
+    <span class="tc-budget-tag${overBudget?' over':''}">${overBudget?cT('calc_over_budget'):cT('calc_in_budget')}</span>
   </div>
   <div class="tc-head">
     <div class="tc-badge ${badgeCls}">${badgeTxt}</div>
-    <div class="tc-name">${t.name}</div>
-    <div class="tc-sub">${t.sub}</div>
+    <div class="tc-name">${cT(t.nameKey)}</div>
+    <div class="tc-sub">${cT(t.subKey)}</div>
   </div>
   <div class="tc-price-block">
     <div class="tc-price">${fmt(t.priceKzt)}</div>
-    <div class="tc-savings-badge"><i class="fas fa-arrow-down"></i> ${savePct}% дешевле рынка</div>
+    <div class="tc-savings-badge"><i class="fas fa-arrow-down"></i> ${savePct}% ${cT('calc_cheaper_mkt')}</div>
   </div>
   <div class="tc-services">
     ${t.services.map(sv=>{
       const hi = selNeeds.has(sv.need);
       return `<div class="tc-svc-row${hi?' highlighted':''}">
         <span class="tc-svc-check"><i class="fas ${hi?'fa-circle-check':'fa-circle'}"></i></span>
-        <span class="tc-svc-name">${sv.n}</span>
+        <span class="tc-svc-name">${cT(sv.nKey)}</span>
         <span class="tc-svc-mkt">${fmt(sv.mkt)}</span>
       </div>`;
     }).join('')}
   </div>
   <div class="tc-foot">
     <div class="tc-market-row">
-      <span class="tc-market-lbl">Рыночная стоимость</span>
+      <span class="tc-market-lbl">${cT('calc_market_price')}</span>
       <span class="tc-market-val">${fmt(mktTotal)}</span>
     </div>
     <div class="tc-save-row">
-      <span class="tc-save-lbl">Вы экономите</span>
+      <span class="tc-save-lbl">${cT('calc_you_save')}</span>
       <span class="tc-save-val">${fmt(save)}</span>
     </div>
-    <a href="${t.href}" class="tc-cta" onclick="openTariffModal('${t.id}'); return false;">${isBest && selNeeds.size>0?'★ ':''}${t.cta}</a>
+    <a href="${t.href}" class="tc-cta" onclick="openTariffModal('${t.id}'); return false;">${isBest && selNeeds.size>0?'★ ':''}${cT(t.ctaKey)}</a>
   </div>
 </div>`;
     }).join('');
@@ -1848,6 +1862,7 @@
     cur = this.value; render();
   });
 
+  window.__lpRender = render;
   render();
 })();
 
