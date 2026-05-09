@@ -13,9 +13,14 @@
 <body>
 <header class="header scrolled"><div class="container header__inner">
   <a href="../" class="logo"><img src="../logo.svg" alt="NIHAO STUDY логотип" class="logo__img" /></a>
-  <nav class="nav" id="nav"><a href="../#services" class="nav__link">Услуги</a><a href="../#universities" class="nav__link">Вузы</a><a href="../#contact" class="nav__link">Контакты</a></nav>
-  <a href="../#contact" class="btn btn--primary btn--sm header__cta">Записаться</a>
+  <nav class="nav" id="nav"><a href="../#services" class="nav__link" data-i18n="nav_services">Услуги</a><a href="../#universities" class="nav__link" data-i18n="nav_unis">Вузы</a><a href="../#contact" class="nav__link" data-i18n="nav_faq">FAQ</a></nav>
+  <a href="../#contact" class="btn btn--primary btn--sm header__cta" data-i18n="nav_cta">Записаться</a>
   <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  <div class="lang-switcher">
+    <button class="lang-btn lang-btn--active" data-lang="ru" onclick="setUniLang('ru')">РУ</button>
+    <button class="lang-btn" data-lang="kz" onclick="setUniLang('kz')">ҚАЗ</button>
+    <button class="lang-btn" data-lang="en" onclick="setUniLang('en')">EN</button>
+  </div>
 </div></header>
 
 <section class="uni-hero">
@@ -26,33 +31,33 @@
     <div class="uni-hero__overlay"></div>
   </div>
   <div class="container uni-hero__content">
-    <div class="uni-hero__breadcrumb"><a href="../">Главная</a> / <a href="../#universities">Университеты</a> / SJTU</div>
-    <div class="uni-hero__badge">#51 в мире · Топ технических вузов Китая (QS 2024)</div>
+    <div class="uni-hero__breadcrumb"><a href="../" data-i18n="uni_home">Главная</a> / <a href="../#universities" data-i18n="uni_unis_link">Университеты</a> / SJTU</div>
+    <div class="uni-hero__badge" data-i18n="sjtu_hero_badge">#51 в мире · Топ технических вузов Китая (QS 2024)</div>
     <h1 class="uni-hero__title">Shanghai Jiao Tong University</h1>
     <div class="uni-hero__zh">上海交通大学</div>
-    <p class="uni-hero__sub">Шанхай, Китай · Основан в 1896 году · Лучший медицинский и технический вуз Шанхая</p>
+    <p class="uni-hero__sub" data-i18n="sjtu_hero_sub">Шанхай, Китай · Основан в 1896 году · Лучший медицинский и технический вуз Шанхая</p>
     <div class="uni-hero__actions">
-      <a href="../#contact" class="btn btn--primary btn--lg">Хочу поступить в SJTU</a>
-      <a href="#admission" class="btn btn--outline-white btn--lg">Требования →</a>
+      <a href="../#contact" class="btn btn--primary btn--lg" data-i18n="sjtu_hero_btn1">Хочу поступить в SJTU</a>
+      <a href="#admission" class="btn btn--outline-white btn--lg" data-i18n="uni_hero_btn2">Требования →</a>
     </div>
   </div>
 </section>
 
 <section class="uni-stats"><div class="container"><div class="uni-stats__grid">
   <div class="uni-stat"><i class="fa-solid fa-ranking-star"></i><span class="uni-stat__num">#51</span><span class="uni-stat__label">QS World 2024</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-users"></i><span class="uni-stat__num">45 000+</span><span class="uni-stat__label">студентов</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-users"></i><span class="uni-stat__num">45 000+</span><span class="uni-stat__label" data-i18n="uni_stat_students">студентов</span></div>
   <div class="uni-stat"><i class="fa-solid fa-city"></i><span class="uni-stat__num">Шанхай</span><span class="uni-stat__label">финансовый центр КНР</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-graduation-cap"></i><span class="uni-stat__num">2 500+</span><span class="uni-stat__label">иностранных студентов</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-calendar"></i><span class="uni-stat__num">1896</span><span class="uni-stat__label">год основания</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-graduation-cap"></i><span class="uni-stat__num">2 500+</span><span class="uni-stat__label" data-i18n="uni_stat_intl">иностранных студентов</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-calendar"></i><span class="uni-stat__num">1896</span><span class="uni-stat__label" data-i18n="uni_stat_founded">год основания</span></div>
 </div></div></section>
 
 <section class="uni-about section"><div class="container"><div class="uni-about__inner">
   <div class="uni-about__text">
-    <span class="section__tag">Об университете</span>
-    <h2 class="section__title">Топ-технический вуз в финансовой столице Китая</h2>
-    <p>Shanghai Jiao Tong University (上海交通大学, SJTU) — один из старейших и самых престижных университетов Китая, основанный в 1896 году. Занимает 51-е место в мировом рейтинге QS 2024.</p>
-    <p>SJTU расположен в Шанхае — финансовой и культурной столице Китая, крупнейшем городе страны. Кампус Минхан площадью 290 га оснащён современными лабораториями, инновационными парками и исследовательскими центрами.</p>
-    <p>Особая сила SJTU — медицина (медицинская школа входит в топ-5 Китая), инженерия и кибербезопасность. Выпускники SJTU составляют значительную часть руководства Fortune 500 компаний в Китае.</p>
+    <span class="section__tag" data-i18n="uni_about_tag">Об университете</span>
+    <h2 class="section__title" data-i18n="sjtu_about_title">Топ-технический вуз в финансовой столице Китая</h2>
+    <p data-i18n="sjtu_about_p1">Shanghai Jiao Tong University (上海交通大学, SJTU) — один из старейших и самых престижных университетов Китая, основанный в 1896 году. Занимает 51-е место в мировом рейтинге QS 2024.</p>
+    <p data-i18n="sjtu_about_p2">SJTU расположен в Шанхае — финансовой и культурной столице Китая, крупнейшем городе страны. Кампус Минхан площадью 290 га оснащён современными лабораториями, инновационными парками и исследовательскими центрами.</p>
+    <p data-i18n="sjtu_about_p3">Особая сила SJTU — медицина (медицинская школа входит в топ-5 Китая), инженерия и кибербезопасность. Выпускники SJTU составляют значительную часть руководства Fortune 500 компаний в Китае.</p>
     <div class="uni-about__tags">
       <span><i class="fa-solid fa-heartbeat"></i> Медицина</span>
       <span><i class="fa-solid fa-microchip"></i> AI & CS</span>
@@ -63,57 +68,58 @@
   </div>
   <div class="uni-about__img">
     <img src="https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?auto=format&fit=crop&w=600&q=80" alt="Шанхай — город SJTU" />
-    <div class="uni-about__img-caption">Шанхай — глобальный финансовый и технологический хаб</div>
+    <div class="uni-about__img-caption" data-i18n="sjtu_about_caption">Шанхай — глобальный финансовый и технологический хаб</div>
   </div>
 </div></div></section>
 
 <section class="uni-programs section section--gray"><div class="container">
-  <div class="section__header"><span class="section__tag">Программы</span><h2 class="section__title">Программы для иностранных студентов</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_programs_tag">Программы</span><h2 class="section__title" data-i18n="uni_programs_title">Программы для иностранных студентов</h2></div>
   <div class="programs-grid">
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Electrical & Computer Engineering</h3><p>Бакалавриат, 4 года. Сильнейшая инженерная программа SJTU</p><div class="program-card__meta"><span>IELTS 6.5+</span><span>GPA 85+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Cybersecurity & AI</h3><p>Магистратура, 2 года. Передовые исследования в области ИБ</p><div class="program-card__meta"><span>IELTS 7.0+</span><span>CS бэкграунд</span></div></div>
-    <div class="program-card program-card--cn"><div class="program-card__lang">На китайском</div><h3>Clinical Medicine (临床医学)</h3><p>5–8 лет. Медицинская школа SJTU — в топ-5 Китая</p><div class="program-card__meta"><span>HSK 5+</span><span>GPA 4.5+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Finance & Economics (SAIF)</h3><p>МВА/Магистратура. Финансовая школа SJTU в топ Азии</p><div class="program-card__meta"><span>GMAT/GRE</span><span>IELTS 7.0+</span></div></div>
-    <div class="program-card program-card--cn"><div class="program-card__lang">На китайском</div><h3>Mechanical Engineering</h3><p>Бакалавриат, 4 года. Традиционно сильная программа</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 80+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Naval Architecture</h3><p>Лучшая программа судостроения в мире (QS #1)</p><div class="program-card__meta"><span>IELTS 6.5+</span><span>Математика/физика</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Electrical & Computer Engineering</h3><p data-i18n="sjtu_prog1_desc">Бакалавриат, 4 года. Сильнейшая инженерная программа SJTU</p><div class="program-card__meta"><span>IELTS 6.5+</span><span>GPA 85+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Cybersecurity & AI</h3><p data-i18n="sjtu_prog2_desc">Магистратура, 2 года. Передовые исследования в области ИБ</p><div class="program-card__meta"><span>IELTS 7.0+</span><span>CS бэкграунд</span></div></div>
+    <div class="program-card program-card--cn"><div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div><h3>Clinical Medicine (临床医学)</h3><p data-i18n="sjtu_prog3_desc">5–8 лет. Медицинская школа SJTU — в топ-5 Китая</p><div class="program-card__meta"><span>HSK 5+</span><span>GPA 4.5+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Finance & Economics (SAIF)</h3><p data-i18n="sjtu_prog4_desc">МВА/Магистратура. Финансовая школа SJTU в топ Азии</p><div class="program-card__meta"><span>GMAT/GRE</span><span>IELTS 7.0+</span></div></div>
+    <div class="program-card program-card--cn"><div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div><h3>Mechanical Engineering</h3><p data-i18n="sjtu_prog5_desc">Бакалавриат, 4 года. Традиционно сильная программа</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 80+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Naval Architecture</h3><p data-i18n="sjtu_prog6_desc">Лучшая программа судостроения в мире (QS #1)</p><div class="program-card__meta"><span>IELTS 6.5+</span><span>Математика/физика</span></div></div>
   </div>
 </div></section>
 
 <section class="uni-admission section" id="admission"><div class="container">
-  <div class="section__header"><span class="section__tag">Поступление</span><h2 class="section__title">Требования для поступления</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_admission_tag">Поступление</span><h2 class="section__title" data-i18n="uni_admission_title">Требования для поступления</h2></div>
   <div class="admission-grid">
-    <div class="admission-block"><h3><i class="fa-solid fa-language"></i> Язык</h3><ul><li>Китайские программы: <strong>HSK 4–5</strong> в зависимости от специальности</li><li>Английские программы: <strong>IELTS 6.5–7.0+</strong></li><li>Медицина: HSK 5 минимум</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-star"></i> Академические требования</h3><ul><li>GPA: <strong>80–85/100</strong> для технических программ</li><li>Медицина: <strong>GPA 90+</strong>, сильные биология/химия</li><li>Мотивационное письмо обязательно</li><li>2 рекомендательных письма</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-calendar-check"></i> Сроки подачи</h3><ul><li>CSC стипендия: <strong>до 31 марта</strong></li><li>Самостоятельная подача: <strong>до 30 апреля</strong></li><li>Начало: сентябрь</li><li>Результаты: июнь</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-file-lines"></i> Документы</h3><ul><li>Загранпаспорт</li><li>Диплом/аттестат с переводом</li><li>Транскрипт оценок</li><li>IELTS/HSK сертификат</li><li>Мотивационное письмо</li><li>2 рекомендации</li><li>Медицинская форма JW201/202</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-language"></i> <span data-i18n="uni_adm_lang">Язык</span></h3><ul><li data-i18n="sjtu_adm_lang1">Китайские программы: <strong>HSK 4–5</strong> в зависимости от специальности</li><li data-i18n="sjtu_adm_lang2">Английские программы: <strong>IELTS 6.5–7.0+</strong></li><li data-i18n="sjtu_adm_lang3">Медицина: HSK 5 минимум</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-star"></i> <span data-i18n="uni_adm_academic">Академические требования</span></h3><ul><li data-i18n="sjtu_adm_acad1">GPA: <strong>80–85/100</strong> для технических программ</li><li data-i18n="sjtu_adm_acad2">Медицина: <strong>GPA 90+</strong>, сильные биология/химия</li><li data-i18n="sjtu_adm_acad3">Мотивационное письмо обязательно</li><li data-i18n="sjtu_adm_acad4">2 рекомендательных письма</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-calendar-check"></i> <span data-i18n="uni_adm_deadlines">Сроки подачи</span></h3><ul><li data-i18n="sjtu_adm_dead1">CSC стипендия: <strong>до 31 марта</strong></li><li data-i18n="sjtu_adm_dead2">Самостоятельная подача: <strong>до 30 апреля</strong></li><li data-i18n="sjtu_adm_dead3">Начало: сентябрь</li><li data-i18n="sjtu_adm_dead4">Результаты: июнь</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-file-lines"></i> <span data-i18n="uni_adm_docs">Документы</span></h3><ul><li data-i18n="sjtu_adm_doc1">Загранпаспорт</li><li data-i18n="sjtu_adm_doc2">Диплом/аттестат с переводом</li><li data-i18n="sjtu_adm_doc3">Транскрипт оценок</li><li data-i18n="sjtu_adm_doc4">IELTS/HSK сертификат</li><li data-i18n="sjtu_adm_doc5">Мотивационное письмо</li><li data-i18n="sjtu_adm_doc6">2 рекомендации</li><li data-i18n="sjtu_adm_doc7">Медицинская форма JW201/202</li></ul></div>
   </div>
 </div></section>
 
 <section class="uni-costs section section--gray"><div class="container">
-  <div class="section__header"><span class="section__tag">Стоимость</span><h2 class="section__title">Стоимость обучения и жизни в Шанхае</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_costs_tag">Стоимость</span><h2 class="section__title" data-i18n="sjtu_costs_title">Стоимость обучения и жизни в Шанхае</h2></div>
   <div class="costs-grid">
-    <div class="cost-card"><i class="fa-solid fa-book-open"></i><h3>Обучение</h3><div class="cost-card__amount">40 000 – 80 000 ¥/год</div><div class="cost-card__usd">≈ $5 600 – $11 200/год</div><p>Шанхай — дороже других городов. Медицина и бизнес-программы выше среднего.</p></div>
-    <div class="cost-card"><i class="fa-solid fa-house"></i><h3>Общежитие</h3><div class="cost-card__amount">8 000 – 24 000 ¥/год</div><div class="cost-card__usd">≈ $1 100 – $3 400/год</div><p>Современные общежития на кампусе Минхан с отличной инфраструктурой.</p></div>
-    <div class="cost-card"><i class="fa-solid fa-utensils"></i><h3>Питание и быт</h3><div class="cost-card__amount">2 500 – 5 000 ¥/мес</div><div class="cost-card__usd">≈ $350 – $700/мес</div><p>Шанхай — самый дорогой город Китая, но всё равно дешевле Алматы/Москвы.</p></div>
-    <div class="cost-card cost-card--total"><i class="fa-solid fa-calculator"></i><h3>Итого за год</h3><div class="cost-card__amount">~70 000 – 130 000 ¥</div><div class="cost-card__usd">≈ $9 800 – $18 200/год</div><p>Топ-51 мира в мировом финансовом центре — отличная инвестиция в карьеру.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-book-open"></i><h3 data-i18n="uni_cost_tuition">Обучение</h3><div class="cost-card__amount">40 000 – 80 000 ¥/год</div><div class="cost-card__usd">≈ $5 600 – $11 200/год</div><p data-i18n="sjtu_cost_tuition_desc">Шанхай — дороже других городов. Медицина и бизнес-программы выше среднего.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-house"></i><h3 data-i18n="uni_cost_dorm">Общежитие</h3><div class="cost-card__amount">8 000 – 24 000 ¥/год</div><div class="cost-card__usd">≈ $1 100 – $3 400/год</div><p data-i18n="sjtu_cost_dorm_desc">Современные общежития на кампусе Минхан с отличной инфраструктурой.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-utensils"></i><h3 data-i18n="uni_cost_living">Питание и быт</h3><div class="cost-card__amount">2 500 – 5 000 ¥/мес</div><div class="cost-card__usd">≈ $350 – $700/мес</div><p data-i18n="sjtu_cost_living_desc">Шанхай — самый дорогой город Китая, но всё равно дешевле Алматы/Москвы.</p></div>
+    <div class="cost-card cost-card--total"><i class="fa-solid fa-calculator"></i><h3 data-i18n="uni_cost_total">Итого за год</h3><div class="cost-card__amount">~70 000 – 130 000 ¥</div><div class="cost-card__usd">≈ $9 800 – $18 200/год</div><p data-i18n="sjtu_cost_total_desc">Топ-51 мира в мировом финансовом центре — отличная инвестиция в карьеру.</p></div>
   </div>
 </div></section>
 
 <section class="uni-scholarships section"><div class="container">
-  <div class="section__header"><span class="section__tag">Стипендии</span><h2 class="section__title">Стипендии в SJTU</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_scholarships_tag">Стипендии</span><h2 class="section__title" data-i18n="sjtu_scholarships_title">Стипендии в SJTU</h2></div>
   <div class="scholarships-grid">
-    <div class="scholarship-card scholarship-card--main"><div class="scholarship-card__badge">Главная</div><h3>CSC Scholarship</h3><p>Государственная стипендия Китая. SJTU — один из приоритетных вузов программы CSC.</p><ul><li>✓ Полное покрытие обучения</li><li>✓ Бесплатное общежитие</li><li>✓ 2 500 – 3 500 ¥/мес</li><li>✓ Медицинская страховка</li></ul><div class="scholarship-card__deadline">Дедлайн: 31 марта</div></div>
-    <div class="scholarship-card"><h3>SJTU Excellence Award</h3><p>Университетская стипендия для топ-абитуриентов. Частичное/полное покрытие.</p><ul><li>✓ 25–100% от стоимости обучения</li><li>✓ GPA 90+ и достижения</li></ul><div class="scholarship-card__deadline">Дедлайн: апрель</div></div>
-    <div class="scholarship-card"><h3>Shanghai Government Scholarship</h3><p>Стипендия правительства Шанхая для студентов шанхайских вузов.</p><ul><li>✓ До 40 000 ¥/год</li><li>✓ Подаётся через вуз</li></ul><div class="scholarship-card__deadline">Дедлайн: май</div></div>
+    <div class="scholarship-card scholarship-card--main"><div class="scholarship-card__badge" data-i18n="uni_schol_main">Главная</div><h3>CSC Scholarship</h3><p data-i18n="sjtu_schol1_desc">Государственная стипендия Китая. SJTU — один из приоритетных вузов программы CSC.</p><ul><li data-i18n="sjtu_schol1_li1">✓ Полное покрытие обучения</li><li data-i18n="sjtu_schol1_li2">✓ Бесплатное общежитие</li><li data-i18n="sjtu_schol1_li3">✓ 2 500 – 3 500 ¥/мес</li><li data-i18n="sjtu_schol1_li4">✓ Медицинская страховка</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="sjtu_schol1_date">31 марта</span></div></div>
+    <div class="scholarship-card"><h3>SJTU Excellence Award</h3><p data-i18n="sjtu_schol2_desc">Университетская стипендия для топ-абитуриентов. Частичное/полное покрытие.</p><ul><li data-i18n="sjtu_schol2_li1">✓ 25–100% от стоимости обучения</li><li data-i18n="sjtu_schol2_li2">✓ GPA 90+ и достижения</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="sjtu_schol2_date">апрель</span></div></div>
+    <div class="scholarship-card"><h3>Shanghai Government Scholarship</h3><p data-i18n="sjtu_schol3_desc">Стипендия правительства Шанхая для студентов шанхайских вузов.</p><ul><li data-i18n="sjtu_schol3_li1">✓ До 40 000 ¥/год</li><li data-i18n="sjtu_schol3_li2">✓ Подаётся через вуз</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="sjtu_schol3_date">май</span></div></div>
   </div>
 </div></section>
 
 <section class="uni-cta section section--red"><div class="container"><div class="uni-cta__inner">
-  <div><h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px">Хотите поступить в SJTU?</h2><p style="color:rgba(255,255,255,0.85);font-size:1.05rem">Шанхай + топовый диплом = лучший старт карьеры в Азии. Поможем поступить.</p></div>
-  <a href="../#contact" class="btn btn--white btn--lg">Записаться на консультацию →</a>
+  <div><h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px" data-i18n="sjtu_cta_title">Хотите поступить в SJTU?</h2><p style="color:rgba(255,255,255,0.85);font-size:1.05rem" data-i18n="sjtu_cta_desc">Шанхай + топовый диплом = лучший старт карьеры в Азии. Поможем поступить.</p></div>
+  <a href="../#contact" class="btn btn--white btn--lg" data-i18n="uni_cta_btn">Записаться на консультацию →</a>
 </div></div></section>
 
-<footer class="footer"><div class="container"><div class="footer__bottom" style="border:none;padding-top:32px"><p>© 2026 NIHAO STUDY.</p><a href="../" style="color:rgba(255,255,255,0.6)">← На главную</a></div></div></footer>
+<footer class="footer"><div class="container"><div class="footer__bottom" style="border:none;padding-top:32px"><p data-i18n="uni_footer_copy">© 2026 NIHAO STUDY. Все права защищены.</p><a href="../" style="color:rgba(255,255,255,0.6)" data-i18n="uni_footer_back">← Вернуться на главную</a></div></div></footer>
 <a href="https://wa.me/77075181605" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 <script src="../js/main.js"></script>
+<script src="../js/uni-i18n.js"></script>
 </body></html>

@@ -19,13 +19,18 @@
       <img src="../logo.svg" alt="NIHAO STUDY логотип" class="logo__img" />
     </a>
     <nav class="nav" id="nav">
-      <a href="../#services" class="nav__link">Услуги</a>
-      <a href="../#universities" class="nav__link">Вузы</a>
-      <a href="../#process" class="nav__link">Процесс</a>
-      <a href="../#faq" class="nav__link">FAQ</a>
+      <a href="../#services" class="nav__link" data-i18n="nav_services">Услуги</a>
+      <a href="../#universities" class="nav__link" data-i18n="nav_unis">Вузы</a>
+      <a href="../#process" class="nav__link" data-i18n="nav_process">Процесс</a>
+      <a href="../#faq" class="nav__link" data-i18n="nav_faq">FAQ</a>
     </nav>
-    <a href="../#contact" class="btn btn--primary btn--sm header__cta">Записаться</a>
+    <a href="../#contact" class="btn btn--primary btn--sm header__cta" data-i18n="nav_cta">Записаться</a>
     <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <div class="lang-switcher">
+      <button class="lang-btn lang-btn--active" data-lang="ru" onclick="setUniLang('ru')">РУ</button>
+      <button class="lang-btn" data-lang="kz" onclick="setUniLang('kz')">ҚАЗ</button>
+      <button class="lang-btn" data-lang="en" onclick="setUniLang('en')">EN</button>
+    </div>
   </div>
 </header>
 
@@ -39,15 +44,15 @@
   </div>
   <div class="container uni-hero__content">
     <div class="uni-hero__breadcrumb">
-      <a href="../">Главная</a> / <a href="../#universities">Университеты</a> / Tsinghua University
+      <a href="../" data-i18n="uni_home">Главная</a> / <a href="../#universities" data-i18n="uni_unis_link">Университеты</a> / Tsinghua University
     </div>
-    <div class="uni-hero__badge">#1 в Китае · #25 в мире (QS 2024)</div>
+    <div class="uni-hero__badge" data-i18n="tsinghua_hero_badge">#1 в Китае · #25 в мире (QS 2024)</div>
     <h1 class="uni-hero__title">Tsinghua University</h1>
     <div class="uni-hero__zh">清华大学</div>
-    <p class="uni-hero__sub">Пекин, Китай · Основан в 1911 году · Лидер в IT и AI</p>
+    <p class="uni-hero__sub" data-i18n="tsinghua_hero_sub">Пекин, Китай · Основан в 1911 году · Лидер в IT и AI</p>
     <div class="uni-hero__actions">
-      <a href="../#contact" class="btn btn--primary btn--lg">Хочу поступить в Tsinghua</a>
-      <a href="#admission" class="btn btn--outline-white btn--lg">Требования →</a>
+      <a href="../#contact" class="btn btn--primary btn--lg" data-i18n="tsinghua_hero_btn1">Хочу поступить в Tsinghua</a>
+      <a href="#admission" class="btn btn--outline-white btn--lg" data-i18n="uni_hero_btn2">Требования →</a>
     </div>
   </div>
 </section>
@@ -64,22 +69,22 @@
       <div class="uni-stat">
         <i class="fa-solid fa-users"></i>
         <span class="uni-stat__num">50 000+</span>
-        <span class="uni-stat__label">студентов</span>
+        <span class="uni-stat__label" data-i18n="uni_stat_students">студентов</span>
       </div>
       <div class="uni-stat">
         <i class="fa-solid fa-earth-asia"></i>
         <span class="uni-stat__num">120+</span>
-        <span class="uni-stat__label">стран-партнёров</span>
+        <span class="uni-stat__label" data-i18n="uni_stat_countries">стран-партнёров</span>
       </div>
       <div class="uni-stat">
         <i class="fa-solid fa-graduation-cap"></i>
         <span class="uni-stat__num">3 000+</span>
-        <span class="uni-stat__label">иностранных студентов</span>
+        <span class="uni-stat__label" data-i18n="uni_stat_intl">иностранных студентов</span>
       </div>
       <div class="uni-stat">
         <i class="fa-solid fa-calendar"></i>
         <span class="uni-stat__num">1911</span>
-        <span class="uni-stat__label">год основания</span>
+        <span class="uni-stat__label" data-i18n="uni_stat_founded">год основания</span>
       </div>
     </div>
   </div>
@@ -90,11 +95,11 @@
   <div class="container">
     <div class="uni-about__inner">
       <div class="uni-about__text">
-        <span class="section__tag">Об университете</span>
-        <h2 class="section__title">Лучший технический университет Азии</h2>
-        <p>Университет Цинхуа (清华大学) — бесспорный лидер китайского образования в области инженерии, компьютерных наук и искусственного интеллекта. Входит в топ-25 университетов мира по версии QS World Rankings 2024.</p>
-        <p>Расположен в Пекине, в историческом районе Хайдянь — «Силиконовой долине» Китая. Кампус площадью 4 km² — один из красивейших в мире: традиционные китайские сады соседствуют с ультрасовременными исследовательскими лабораториями.</p>
-        <p>Среди выпускников — лидеры крупнейших IT-компаний Китая, государственные деятели, Нобелевские лауреаты. Tsinghua является главным поставщиком кадров для Huawei, ByteDance (TikTok), Baidu и других технологических гигантов.</p>
+        <span class="section__tag" data-i18n="uni_about_tag">Об университете</span>
+        <h2 class="section__title" data-i18n="tsinghua_about_title">Лучший технический университет Азии</h2>
+        <p data-i18n="tsinghua_about_p1">Университет Цинхуа (清华大学) — бесспорный лидер китайского образования в области инженерии, компьютерных наук и искусственного интеллекта. Входит в топ-25 университетов мира по версии QS World Rankings 2024.</p>
+        <p data-i18n="tsinghua_about_p2">Расположен в Пекине, в историческом районе Хайдянь — «Силиконовой долине» Китая. Кампус площадью 4 km² — один из красивейших в мире: традиционные китайские сады соседствуют с ультрасовременными исследовательскими лабораториями.</p>
+        <p data-i18n="tsinghua_about_p3">Среди выпускников — лидеры крупнейших IT-компаний Китая, государственные деятели, Нобелевские лауреаты. Tsinghua является главным поставщиком кадров для Huawei, ByteDance (TikTok), Baidu и других технологических гигантов.</p>
         <div class="uni-about__tags">
           <span><i class="fa-solid fa-microchip"></i> AI & Machine Learning</span>
           <span><i class="fa-solid fa-code"></i> Computer Science</span>
@@ -108,7 +113,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Tsinghua_University_Library.jpg/640px-Tsinghua_University_Library.jpg"
              onerror="this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80'"
              alt="Библиотека Tsinghua University" />
-        <div class="uni-about__img-caption">Библиотека Tsinghua — одна из крупнейших в Азии</div>
+        <div class="uni-about__img-caption" data-i18n="tsinghua_about_caption">Библиотека Tsinghua — одна из крупнейших в Азии</div>
       </div>
     </div>
   </div>
@@ -118,44 +123,44 @@
 <section class="uni-programs section section--gray">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Программы</span>
-      <h2 class="section__title">Программы для иностранных студентов</h2>
+      <span class="section__tag" data-i18n="uni_programs_tag">Программы</span>
+      <h2 class="section__title" data-i18n="uni_programs_title">Программы для иностранных студентов</h2>
     </div>
     <div class="programs-grid">
       <div class="program-card program-card--en">
-        <div class="program-card__lang">На английском</div>
+        <div class="program-card__lang" data-i18n="uni_prog_en">На английском</div>
         <h3>Computer Science & Technology</h3>
-        <p>Бакалавриат, 4 года. Охватывает алгоритмы, AI, системное программирование</p>
+        <p data-i18n="tsinghua_prog1_desc">Бакалавриат, 4 года. Охватывает алгоритмы, AI, системное программирование</p>
         <div class="program-card__meta"><span>HSK не нужен</span><span>IELTS 6.5+</span></div>
       </div>
       <div class="program-card program-card--en">
-        <div class="program-card__lang">На английском</div>
+        <div class="program-card__lang" data-i18n="uni_prog_en">На английском</div>
         <h3>Artificial Intelligence</h3>
-        <p>Магистратура, 2 года. Передовые исследования в области машинного обучения</p>
+        <p data-i18n="tsinghua_prog2_desc">Магистратура, 2 года. Передовые исследования в области машинного обучения</p>
         <div class="program-card__meta"><span>GPA 3.5+</span><span>IELTS 7.0+</span></div>
       </div>
       <div class="program-card program-card--cn">
-        <div class="program-card__lang">На китайском</div>
-        <h3>Электроника и информатика</h3>
-        <p>Бакалавриат, 4 года. Самая конкурентная программа вуза</p>
+        <div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div>
+        <h3 data-i18n="tsinghua_prog3_title">Электроника и информатика</h3>
+        <p data-i18n="tsinghua_prog3_desc">Бакалавриат, 4 года. Самая конкурентная программа вуза</p>
         <div class="program-card__meta"><span>HSK 5+</span><span>Конкурс 50:1</span></div>
       </div>
       <div class="program-card program-card--cn">
-        <div class="program-card__lang">На китайском</div>
-        <h3>Архитектура</h3>
-        <p>Бакалавриат, 4 года. Лучшая архитектурная школа Китая</p>
+        <div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div>
+        <h3 data-i18n="tsinghua_prog4_title">Архитектура</h3>
+        <p data-i18n="tsinghua_prog4_desc">Бакалавриат, 4 года. Лучшая архитектурная школа Китая</p>
         <div class="program-card__meta"><span>HSK 5+</span><span>Портфолио</span></div>
       </div>
       <div class="program-card program-card--en">
-        <div class="program-card__lang">На английском</div>
+        <div class="program-card__lang" data-i18n="uni_prog_en">На английском</div>
         <h3>MBA / Economics</h3>
-        <p>Магистратура, 2 года. Школа бизнеса Tsinghua в топ-30 мира</p>
+        <p data-i18n="tsinghua_prog5_desc">Магистратура, 2 года. Школа бизнеса Tsinghua в топ-30 мира</p>
         <div class="program-card__meta"><span>GMAT/GRE</span><span>2+ года опыта</span></div>
       </div>
       <div class="program-card program-card--cn">
-        <div class="program-card__lang">На китайском</div>
-        <h3>Физика / Математика</h3>
-        <p>Бакалавриат, 4 года. Сильная фундаментальная подготовка</p>
+        <div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div>
+        <h3 data-i18n="tsinghua_prog6_title">Физика / Математика</h3>
+        <p data-i18n="tsinghua_prog6_desc">Бакалавриат, 4 года. Сильная фундаментальная подготовка</p>
         <div class="program-card__meta"><span>HSK 5+</span><span>GPA 4.5+</span></div>
       </div>
     </div>
@@ -166,46 +171,46 @@
 <section class="uni-admission section" id="admission">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Поступление</span>
-      <h2 class="section__title">Требования для поступления</h2>
+      <span class="section__tag" data-i18n="uni_admission_tag">Поступление</span>
+      <h2 class="section__title" data-i18n="uni_admission_title">Требования для поступления</h2>
     </div>
     <div class="admission-grid">
       <div class="admission-block">
-        <h3><i class="fa-solid fa-language"></i> Язык</h3>
+        <h3><i class="fa-solid fa-language"></i> <span data-i18n="uni_adm_lang">Язык</span></h3>
         <ul>
-          <li>Программы на китайском: <strong>HSK 5 (180+)</strong> или HSK 6</li>
-          <li>Программы на английском: <strong>IELTS 6.5+</strong> или TOEFL 90+</li>
-          <li>Академический китайский CSCA — преимущество</li>
+          <li data-i18n="tsinghua_adm_lang1">Программы на китайском: <strong>HSK 5 (180+)</strong> или HSK 6</li>
+          <li data-i18n="tsinghua_adm_lang2">Программы на английском: <strong>IELTS 6.5+</strong> или TOEFL 90+</li>
+          <li data-i18n="tsinghua_adm_lang3">Академический китайский CSCA — преимущество</li>
         </ul>
       </div>
       <div class="admission-block">
-        <h3><i class="fa-solid fa-star"></i> Академические требования</h3>
+        <h3><i class="fa-solid fa-star"></i> <span data-i18n="uni_adm_academic">Академические требования</span></h3>
         <ul>
-          <li>GPA: <strong>не ниже 4.0 из 5.0</strong> (или 85/100)</li>
-          <li>Аттестат/диплом с переводом на китайский или английский</li>
-          <li>Мотивационное письмо (Statement of Purpose)</li>
-          <li>2 рекомендательных письма</li>
+          <li data-i18n="tsinghua_adm_acad1">GPA: <strong>не ниже 4.0 из 5.0</strong> (или 85/100)</li>
+          <li data-i18n="tsinghua_adm_acad2">Аттестат/диплом с переводом на китайский или английский</li>
+          <li data-i18n="tsinghua_adm_acad3">Мотивационное письмо (Statement of Purpose)</li>
+          <li data-i18n="tsinghua_adm_acad4">2 рекомендательных письма</li>
         </ul>
       </div>
       <div class="admission-block">
-        <h3><i class="fa-solid fa-calendar-check"></i> Сроки подачи</h3>
+        <h3><i class="fa-solid fa-calendar-check"></i> <span data-i18n="uni_adm_deadlines">Сроки подачи</span></h3>
         <ul>
-          <li>CSC стипендия: <strong>до 31 марта</strong></li>
-          <li>Самостоятельная подача: <strong>до 30 апреля</strong></li>
-          <li>Начало обучения: сентябрь каждого года</li>
-          <li>Результаты: июнь–июль</li>
+          <li data-i18n="tsinghua_adm_dead1">CSC стипендия: <strong>до 31 марта</strong></li>
+          <li data-i18n="tsinghua_adm_dead2">Самостоятельная подача: <strong>до 30 апреля</strong></li>
+          <li data-i18n="tsinghua_adm_dead3">Начало обучения: сентябрь каждого года</li>
+          <li data-i18n="tsinghua_adm_dead4">Результаты: июнь–июль</li>
         </ul>
       </div>
       <div class="admission-block">
-        <h3><i class="fa-solid fa-file-lines"></i> Документы</h3>
+        <h3><i class="fa-solid fa-file-lines"></i> <span data-i18n="uni_adm_docs">Документы</span></h3>
         <ul>
-          <li>Заграничный паспорт (копия)</li>
-          <li>Аттестат/диплом + транскрипт</li>
-          <li>Сертификат HSK или IELTS/TOEFL</li>
-          <li>Мотивационное письмо</li>
-          <li>2 рекомендации от учителей/профессоров</li>
-          <li>Медицинская справка по форме</li>
-          <li>Финансовая гарантия (для самоплательщиков)</li>
+          <li data-i18n="tsinghua_adm_doc1">Заграничный паспорт (копия)</li>
+          <li data-i18n="tsinghua_adm_doc2">Аттестат/диплом + транскрипт</li>
+          <li data-i18n="tsinghua_adm_doc3">Сертификат HSK или IELTS/TOEFL</li>
+          <li data-i18n="tsinghua_adm_doc4">Мотивационное письмо</li>
+          <li data-i18n="tsinghua_adm_doc5">2 рекомендации от учителей/профессоров</li>
+          <li data-i18n="tsinghua_adm_doc6">Медицинская справка по форме</li>
+          <li data-i18n="tsinghua_adm_doc7">Финансовая гарантия (для самоплательщиков)</li>
         </ul>
       </div>
     </div>
@@ -216,37 +221,37 @@
 <section class="uni-costs section section--gray">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Стоимость</span>
-      <h2 class="section__title">Стоимость обучения и жизни</h2>
+      <span class="section__tag" data-i18n="uni_costs_tag">Стоимость</span>
+      <h2 class="section__title" data-i18n="uni_costs_title">Стоимость обучения и жизни</h2>
     </div>
     <div class="costs-grid">
       <div class="cost-card">
         <i class="fa-solid fa-book-open"></i>
-        <h3>Обучение</h3>
+        <h3 data-i18n="uni_cost_tuition">Обучение</h3>
         <div class="cost-card__amount">26 000 – 55 000 ¥/год</div>
         <div class="cost-card__usd">≈ $3 600 – $7 700/год</div>
-        <p>Зависит от программы и уровня обучения. Технические программы дороже гуманитарных.</p>
+        <p data-i18n="tsinghua_cost_tuition_desc">Зависит от программы и уровня обучения. Технические программы дороже гуманитарных.</p>
       </div>
       <div class="cost-card">
         <i class="fa-solid fa-house"></i>
-        <h3>Общежитие</h3>
+        <h3 data-i18n="uni_cost_dorm">Общежитие</h3>
         <div class="cost-card__amount">6 000 – 18 000 ¥/год</div>
         <div class="cost-card__usd">≈ $840 – $2 500/год</div>
-        <p>Кампус предлагает комфортные комнаты для иностранных студентов с Wi-Fi, кондиционером.</p>
+        <p data-i18n="tsinghua_cost_dorm_desc">Кампус предлагает комфортные комнаты для иностранных студентов с Wi-Fi, кондиционером.</p>
       </div>
       <div class="cost-card">
         <i class="fa-solid fa-utensils"></i>
-        <h3>Питание и быт</h3>
+        <h3 data-i18n="uni_cost_living">Питание и быт</h3>
         <div class="cost-card__amount">2 000 – 3 500 ¥/мес</div>
         <div class="cost-card__usd">≈ $280 – $490/мес</div>
-        <p>Столовые кампуса — дёшево и вкусно. Пекин дороже регионов, но сопоставимо с Алматы.</p>
+        <p data-i18n="tsinghua_cost_living_desc">Столовые кампуса — дёшево и вкусно. Пекин дороже регионов, но сопоставимо с Алматы.</p>
       </div>
       <div class="cost-card cost-card--total">
         <i class="fa-solid fa-calculator"></i>
-        <h3>Итого за год</h3>
+        <h3 data-i18n="uni_cost_total">Итого за год</h3>
         <div class="cost-card__amount">~50 000 – 90 000 ¥</div>
         <div class="cost-card__usd">≈ $7 000 – $12 600/год</div>
-        <p>В 3–4 раза дешевле аналогичного образования в Европе или США.</p>
+        <p data-i18n="tsinghua_cost_total_desc">В 3–4 раза дешевле аналогичного образования в Европе или США.</p>
       </div>
     </div>
   </div>
@@ -256,41 +261,41 @@
 <section class="uni-scholarships section">
   <div class="container">
     <div class="section__header">
-      <span class="section__tag">Стипендии</span>
-      <h2 class="section__title">Как учиться бесплатно в Tsinghua</h2>
+      <span class="section__tag" data-i18n="uni_scholarships_tag">Стипендии</span>
+      <h2 class="section__title" data-i18n="uni_scholarships_title">Как учиться бесплатно в Tsinghua</h2>
     </div>
     <div class="scholarships-grid">
       <div class="scholarship-card scholarship-card--main">
-        <div class="scholarship-card__badge">Главная</div>
+        <div class="scholarship-card__badge" data-i18n="uni_schol_main">Главная</div>
         <h3>CSC Scholarship (государственная)</h3>
-        <p>Правительство Китая полностью покрывает обучение, общежитие и выплачивает ежемесячную стипендию 2 500–3 500 ¥.</p>
+        <p data-i18n="tsinghua_schol1_desc">Правительство Китая полностью покрывает обучение, общежитие и выплачивает ежемесячную стипендию 2 500–3 500 ¥.</p>
         <ul>
-          <li>✓ Полное покрытие обучения</li>
-          <li>✓ Бесплатное общежитие</li>
-          <li>✓ 2 500 ¥/мес (бакалавриат)</li>
-          <li>✓ Страховка включена</li>
+          <li data-i18n="tsinghua_schol1_li1">✓ Полное покрытие обучения</li>
+          <li data-i18n="tsinghua_schol1_li2">✓ Бесплатное общежитие</li>
+          <li data-i18n="tsinghua_schol1_li3">✓ 2 500 ¥/мес (бакалавриат)</li>
+          <li data-i18n="tsinghua_schol1_li4">✓ Страховка включена</li>
         </ul>
-        <div class="scholarship-card__deadline">Дедлайн: 31 марта каждого года</div>
+        <div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="tsinghua_schol1_date">31 марта каждого года</span></div>
       </div>
       <div class="scholarship-card">
         <h3>Tsinghua University Scholarship</h3>
-        <p>Университетская стипендия для выдающихся иностранных студентов. Частичное или полное покрытие.</p>
+        <p data-i18n="tsinghua_schol2_desc">Университетская стипендия для выдающихся иностранных студентов. Частичное или полное покрытие.</p>
         <ul>
-          <li>✓ 50–100% скидка на обучение</li>
-          <li>✓ Для академически сильных студентов</li>
-          <li>✓ GPA 4.5+, активные достижения</li>
+          <li data-i18n="tsinghua_schol2_li1">✓ 50–100% скидка на обучение</li>
+          <li data-i18n="tsinghua_schol2_li2">✓ Для академически сильных студентов</li>
+          <li data-i18n="tsinghua_schol2_li3">✓ GPA 4.5+, активные достижения</li>
         </ul>
-        <div class="scholarship-card__deadline">Дедлайн: апрель</div>
+        <div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="tsinghua_schol2_date">апрель</span></div>
       </div>
       <div class="scholarship-card">
         <h3>Beijing Government Scholarship</h3>
-        <p>Стипендия правительства Пекина для иностранных студентов, обучающихся в вузах столицы.</p>
+        <p data-i18n="tsinghua_schol3_desc">Стипендия правительства Пекина для иностранных студентов, обучающихся в вузах столицы.</p>
         <ul>
-          <li>✓ До 30 000 ¥/год</li>
-          <li>✓ Подаётся через вуз</li>
-          <li>✓ Совместима с университетской</li>
+          <li data-i18n="tsinghua_schol3_li1">✓ До 30 000 ¥/год</li>
+          <li data-i18n="tsinghua_schol3_li2">✓ Подаётся через вуз</li>
+          <li data-i18n="tsinghua_schol3_li3">✓ Совместима с университетской</li>
         </ul>
-        <div class="scholarship-card__deadline">Дедлайн: май</div>
+        <div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="tsinghua_schol3_date">май</span></div>
       </div>
     </div>
   </div>
@@ -301,10 +306,10 @@
   <div class="container">
     <div class="uni-cta__inner">
       <div>
-        <h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px">Хотите поступить в Tsinghua?</h2>
-        <p style="color:rgba(255,255,255,0.85);font-size:1.05rem">Мы знаем требования изнутри. Поможем подготовить сильную заявку и пройти отбор.</p>
+        <h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px" data-i18n="tsinghua_cta_title">Хотите поступить в Tsinghua?</h2>
+        <p style="color:rgba(255,255,255,0.85);font-size:1.05rem" data-i18n="tsinghua_cta_desc">Мы знаем требования изнутри. Поможем подготовить сильную заявку и пройти отбор.</p>
       </div>
-      <a href="../#contact" class="btn btn--white btn--lg">Записаться на консультацию →</a>
+      <a href="../#contact" class="btn btn--white btn--lg" data-i18n="uni_cta_btn">Записаться на консультацию →</a>
     </div>
   </div>
 </section>
@@ -312,8 +317,8 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__bottom" style="border:none;padding-top:32px">
-      <p>© 2026 NIHAO STUDY. Все права защищены.</p>
-      <a href="../" style="color:rgba(255,255,255,0.6)">← Вернуться на главную</a>
+      <p data-i18n="uni_footer_copy">© 2026 NIHAO STUDY. Все права защищены.</p>
+      <a href="../" style="color:rgba(255,255,255,0.6)" data-i18n="uni_footer_back">← Вернуться на главную</a>
     </div>
   </div>
 </footer>
@@ -322,5 +327,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 <script src="../js/main.js"></script>
+<script src="../js/uni-i18n.js"></script>
 </body>
 </html>

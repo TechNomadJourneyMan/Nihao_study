@@ -13,9 +13,14 @@
 <body>
 <header class="header scrolled"><div class="container header__inner">
   <a href="../" class="logo"><img src="../logo.svg" alt="NIHAO STUDY логотип" class="logo__img" /></a>
-  <nav class="nav" id="nav"><a href="../#services" class="nav__link">Услуги</a><a href="../#universities" class="nav__link">Вузы</a><a href="../#contact" class="nav__link">Контакты</a></nav>
-  <a href="../#contact" class="btn btn--primary btn--sm header__cta">Записаться</a>
+  <nav class="nav" id="nav"><a href="../#services" class="nav__link" data-i18n="nav_services">Услуги</a><a href="../#universities" class="nav__link" data-i18n="nav_unis">Вузы</a><a href="../#contact" class="nav__link" data-i18n="nav_faq">FAQ</a></nav>
+  <a href="../#contact" class="btn btn--primary btn--sm header__cta" data-i18n="nav_cta">Записаться</a>
   <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  <div class="lang-switcher">
+    <button class="lang-btn lang-btn--active" data-lang="ru" onclick="setUniLang('ru')">РУ</button>
+    <button class="lang-btn" data-lang="kz" onclick="setUniLang('kz')">ҚАЗ</button>
+    <button class="lang-btn" data-lang="en" onclick="setUniLang('en')">EN</button>
+  </div>
 </div></header>
 
 <section class="uni-hero">
@@ -26,33 +31,33 @@
     <div class="uni-hero__overlay"></div>
   </div>
   <div class="container uni-hero__content">
-    <div class="uni-hero__breadcrumb"><a href="../">Главная</a> / <a href="../#universities">Университеты</a> / UESTC</div>
-    <div class="uni-hero__badge">#1 в электронике · Чэнду · Доступные цены</div>
+    <div class="uni-hero__breadcrumb"><a href="../" data-i18n="uni_home">Главная</a> / <a href="../#universities" data-i18n="uni_unis_link">Университеты</a> / UESTC</div>
+    <div class="uni-hero__badge" data-i18n="uestc_hero_badge">#1 в электронике · Чэнду · Доступные цены</div>
     <h1 class="uni-hero__title">UESTC</h1>
     <div class="uni-hero__zh">电子科技大学</div>
-    <p class="uni-hero__sub">Чэнду, Китай · Основан в 1956 году · Лучший в мире по электронике и телекоммуникациям</p>
+    <p class="uni-hero__sub" data-i18n="uestc_hero_sub">Чэнду, Китай · Основан в 1956 году · Лучший в мире по электронике и телекоммуникациям</p>
     <div class="uni-hero__actions">
-      <a href="../#contact" class="btn btn--primary btn--lg">Хочу поступить в UESTC</a>
-      <a href="#admission" class="btn btn--outline-white btn--lg">Требования →</a>
+      <a href="../#contact" class="btn btn--primary btn--lg" data-i18n="uestc_hero_btn1">Хочу поступить в UESTC</a>
+      <a href="#admission" class="btn btn--outline-white btn--lg" data-i18n="uni_hero_btn2">Требования →</a>
     </div>
   </div>
 </section>
 
 <section class="uni-stats"><div class="container"><div class="uni-stats__grid">
   <div class="uni-stat"><i class="fa-solid fa-microchip"></i><span class="uni-stat__num">#1</span><span class="uni-stat__label">электроника в мире (QS)</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-users"></i><span class="uni-stat__num">35 000+</span><span class="uni-stat__label">студентов</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-users"></i><span class="uni-stat__num">35 000+</span><span class="uni-stat__label" data-i18n="uni_stat_students">студентов</span></div>
   <div class="uni-stat"><i class="fa-solid fa-city"></i><span class="uni-stat__num">Чэнду</span><span class="uni-stat__label">«Silicon Valley» Китая</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-graduation-cap"></i><span class="uni-stat__num">1 200+</span><span class="uni-stat__label">иностранных студентов</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-calendar"></i><span class="uni-stat__num">1956</span><span class="uni-stat__label">год основания</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-graduation-cap"></i><span class="uni-stat__num">1 200+</span><span class="uni-stat__label" data-i18n="uni_stat_intl">иностранных студентов</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-calendar"></i><span class="uni-stat__num">1956</span><span class="uni-stat__label" data-i18n="uni_stat_founded">год основания</span></div>
 </div></div></section>
 
 <section class="uni-about section"><div class="container"><div class="uni-about__inner">
   <div class="uni-about__text">
-    <span class="section__tag">Об университете</span>
-    <h2 class="section__title">Мировой лидер в электронике — в самом доступном городе Китая</h2>
-    <p>Университет электронной науки и технологий Китая (电子科技大学, UESTC) занимает 1-е место в мире в предметном рейтинге QS по электронике и электрической инженерии. Это единственный в своём роде вуз с такой узкой и глубокой специализацией.</p>
-    <p>UESTC расположен в Чэнду — столице провинции Сычуань, которую называют «Силиконовой долиной» западного Китая. Здесь открыли офисы Intel, IBM, Foxconn, Huawei, а также крупнейшие китайские tech-компании. Уровень жизни высокий, стоимость — одна из самых низких среди крупных городов Китая.</p>
-    <p>Для студентов из Казахстана и СНГ UESTC — идеальный выбор: топовое качество образования в области IT и электроники при ценах вдвое ниже, чем в Пекине и Шанхае.</p>
+    <span class="section__tag" data-i18n="uni_about_tag">Об университете</span>
+    <h2 class="section__title" data-i18n="uestc_about_title">Мировой лидер в электронике — в самом доступном городе Китая</h2>
+    <p data-i18n="uestc_about_p1">Университет электронной науки и технологий Китая (电子科技大学, UESTC) занимает 1-е место в мире в предметном рейтинге QS по электронике и электрической инженерии. Это единственный в своём роде вуз с такой узкой и глубокой специализацией.</p>
+    <p data-i18n="uestc_about_p2">UESTC расположен в Чэнду — столице провинции Сычуань, которую называют «Силиконовой долиной» западного Китая. Здесь открыли офисы Intel, IBM, Foxconn, Huawei, а также крупнейшие китайские tech-компании. Уровень жизни высокий, стоимость — одна из самых низких среди крупных городов Китая.</p>
+    <p data-i18n="uestc_about_p3">Для студентов из Казахстана и СНГ UESTC — идеальный выбор: топовое качество образования в области IT и электроники при ценах вдвое ниже, чем в Пекине и Шанхае.</p>
     <div class="uni-about__tags">
       <span><i class="fa-solid fa-microchip"></i> Электроника #1</span>
       <span><i class="fa-solid fa-wifi"></i> Телекоммуникации</span>
@@ -63,57 +68,58 @@
   </div>
   <div class="uni-about__img">
     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="Электроника и технологии UESTC" />
-    <div class="uni-about__img-caption">QS #1 в мире по электронике и электрической инженерии</div>
+    <div class="uni-about__img-caption" data-i18n="uestc_about_caption">QS #1 в мире по электронике и электрической инженерии</div>
   </div>
 </div></div></section>
 
 <section class="uni-programs section section--gray"><div class="container">
-  <div class="section__header"><span class="section__tag">Программы</span><h2 class="section__title">Программы для иностранных студентов</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_programs_tag">Программы</span><h2 class="section__title" data-i18n="uni_programs_title">Программы для иностранных студентов</h2></div>
   <div class="programs-grid">
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Electronic Engineering</h3><p>Бакалавриат 4 года. Флагманская программа #1 в мире по специальности</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 70+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Computer Science & Technology</h3><p>Бак/Маг. Сильный CS с акцентом на hardware и embedded systems</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 72+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Telecommunications Engineering</h3><p>Бакалавриат 4 года. 5G, IoT, беспроводные сети — сильнейшая в Китае</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>Физика/математика</span></div></div>
-    <div class="program-card program-card--cn"><div class="program-card__lang">На китайском</div><h3>信息安全 (Кибербезопасность)</h3><p>Бакалавриат 4 года. Востребованная программа с прямым выходом на рынок труда</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 72+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>AI & Machine Learning</h3><p>Магистратура 2 года. Новая программа с исследовательским фокусом</p><div class="program-card__meta"><span>IELTS 6.5+</span><span>CS/Math бэкграунд</span></div></div>
-    <div class="program-card program-card--cn"><div class="program-card__lang">На китайском</div><h3>微电子 (Микроэлектроника)</h3><p>Бакалавриат 4 года. Уникальная программа: чипы, полупроводники, VLSI</p><div class="program-card__meta"><span>HSK 4+</span><span>Физика++</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Electronic Engineering</h3><p data-i18n="uestc_prog1_desc">Бакалавриат 4 года. Флагманская программа #1 в мире по специальности</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 70+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Computer Science & Technology</h3><p data-i18n="uestc_prog2_desc">Бак/Маг. Сильный CS с акцентом на hardware и embedded systems</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 72+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Telecommunications Engineering</h3><p data-i18n="uestc_prog3_desc">Бакалавриат 4 года. 5G, IoT, беспроводные сети — сильнейшая в Китае</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>Физика/математика</span></div></div>
+    <div class="program-card program-card--cn"><div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div><h3 data-i18n="uestc_prog4_title">信息安全 (Кибербезопасность)</h3><p data-i18n="uestc_prog4_desc">Бакалавриат 4 года. Востребованная программа с прямым выходом на рынок труда</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 72+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>AI & Machine Learning</h3><p data-i18n="uestc_prog5_desc">Магистратура 2 года. Новая программа с исследовательским фокусом</p><div class="program-card__meta"><span>IELTS 6.5+</span><span>CS/Math бэкграунд</span></div></div>
+    <div class="program-card program-card--cn"><div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div><h3 data-i18n="uestc_prog6_title">微电子 (Микроэлектроника)</h3><p data-i18n="uestc_prog6_desc">Бакалавриат 4 года. Уникальная программа: чипы, полупроводники, VLSI</p><div class="program-card__meta"><span>HSK 4+</span><span>Физика++</span></div></div>
   </div>
 </div></section>
 
 <section class="uni-admission section" id="admission"><div class="container">
-  <div class="section__header"><span class="section__tag">Поступление</span><h2 class="section__title">Самые доступные требования среди наших вузов</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_admission_tag">Поступление</span><h2 class="section__title" data-i18n="uestc_admission_title">Самые доступные требования среди наших вузов</h2></div>
   <div class="admission-grid">
-    <div class="admission-block"><h3><i class="fa-solid fa-language"></i> Язык</h3><ul><li>Английские программы: <strong>IELTS 6.0+</strong></li><li>Китайские программы: <strong>HSK 4</strong></li><li>Можно начать с языкового года в UESTC</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-star"></i> Академические требования</h3><ul><li>GPA: <strong>от 70/100</strong> — самые доступные требования</li><li>Акцент на математике, физике, информатике</li><li>Мотивационное письмо</li><li>1–2 рекомендации (для магистратуры)</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-calendar-check"></i> Сроки подачи</h3><ul><li>CSC: <strong>до 31 марта</strong></li><li>Self-funded: <strong>до 15 мая</strong></li><li>Начало: сентябрь (и март — весенний набор)</li><li>Языковой год: сентябрь</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-file-lines"></i> Документы</h3><ul><li>Загранпаспорт</li><li>Диплом/аттестат с переводом</li><li>Транскрипт оценок</li><li>IELTS или HSK сертификат</li><li>Мотивационное письмо</li><li>Рекомендации (1–2)</li><li>Медицинская форма</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-language"></i> <span data-i18n="uni_adm_lang">Язык</span></h3><ul><li data-i18n="uestc_adm_lang1">Английские программы: <strong>IELTS 6.0+</strong></li><li data-i18n="uestc_adm_lang2">Китайские программы: <strong>HSK 4</strong></li><li data-i18n="uestc_adm_lang3">Можно начать с языкового года в UESTC</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-star"></i> <span data-i18n="uni_adm_academic">Академические требования</span></h3><ul><li data-i18n="uestc_adm_acad1">GPA: <strong>от 70/100</strong> — самые доступные требования</li><li data-i18n="uestc_adm_acad2">Акцент на математике, физике, информатике</li><li data-i18n="uestc_adm_acad3">Мотивационное письмо</li><li data-i18n="uestc_adm_acad4">1–2 рекомендации (для магистратуры)</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-calendar-check"></i> <span data-i18n="uni_adm_deadlines">Сроки подачи</span></h3><ul><li data-i18n="uestc_adm_dead1">CSC: <strong>до 31 марта</strong></li><li data-i18n="uestc_adm_dead2">Self-funded: <strong>до 15 мая</strong></li><li data-i18n="uestc_adm_dead3">Начало: сентябрь (и март — весенний набор)</li><li data-i18n="uestc_adm_dead4">Языковой год: сентябрь</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-file-lines"></i> <span data-i18n="uni_adm_docs">Документы</span></h3><ul><li data-i18n="uestc_adm_doc1">Загранпаспорт</li><li data-i18n="uestc_adm_doc2">Диплом/аттестат с переводом</li><li data-i18n="uestc_adm_doc3">Транскрипт оценок</li><li data-i18n="uestc_adm_doc4">IELTS или HSK сертификат</li><li data-i18n="uestc_adm_doc5">Мотивационное письмо</li><li data-i18n="uestc_adm_doc6">Рекомендации (1–2)</li><li data-i18n="uestc_adm_doc7">Медицинская форма</li></ul></div>
   </div>
 </div></section>
 
 <section class="uni-costs section section--gray"><div class="container">
-  <div class="section__header"><span class="section__tag">Стоимость</span><h2 class="section__title">Самый доступный из наших вузов — отличное начало</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_costs_tag">Стоимость</span><h2 class="section__title" data-i18n="uestc_costs_title">Самый доступный из наших вузов — отличное начало</h2></div>
   <div class="costs-grid">
-    <div class="cost-card"><i class="fa-solid fa-book-open"></i><h3>Обучение</h3><div class="cost-card__amount">16 000 – 30 000 ¥/год</div><div class="cost-card__usd">≈ $2 200 – $4 200/год</div><p>Мировое #1 по электронике за цену ниже многих региональных вузов в Европе.</p></div>
-    <div class="cost-card"><i class="fa-solid fa-house"></i><h3>Общежитие</h3><div class="cost-card__amount">4 000 – 12 000 ¥/год</div><div class="cost-card__usd">≈ $560 – $1 700/год</div><p>Новый кампус Qingshuihe с современными общежитиями и всей инфраструктурой.</p></div>
-    <div class="cost-card"><i class="fa-solid fa-utensils"></i><h3>Питание и быт</h3><div class="cost-card__amount">1 200 – 2 800 ¥/мес</div><div class="cost-card__usd">≈ $170 – $390/мес</div><p>Чэнду — знаменитая кухня Китая + один из самых доступных крупных городов.</p></div>
-    <div class="cost-card cost-card--total"><i class="fa-solid fa-calculator"></i><h3>Итого за год</h3><div class="cost-card__amount">~30 000 – 65 000 ¥</div><div class="cost-card__usd">≈ $4 200 – $9 100/год</div><p>QS #1 электроника в мире дешевле, чем большинство университетов Казахстана.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-book-open"></i><h3 data-i18n="uni_cost_tuition">Обучение</h3><div class="cost-card__amount">16 000 – 30 000 ¥/год</div><div class="cost-card__usd">≈ $2 200 – $4 200/год</div><p data-i18n="uestc_cost_tuition_desc">Мировое #1 по электронике за цену ниже многих региональных вузов в Европе.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-house"></i><h3 data-i18n="uni_cost_dorm">Общежитие</h3><div class="cost-card__amount">4 000 – 12 000 ¥/год</div><div class="cost-card__usd">≈ $560 – $1 700/год</div><p data-i18n="uestc_cost_dorm_desc">Новый кампус Qingshuihe с современными общежитиями и всей инфраструктурой.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-utensils"></i><h3 data-i18n="uni_cost_living">Питание и быт</h3><div class="cost-card__amount">1 200 – 2 800 ¥/мес</div><div class="cost-card__usd">≈ $170 – $390/мес</div><p data-i18n="uestc_cost_living_desc">Чэнду — знаменитая кухня Китая + один из самых доступных крупных городов.</p></div>
+    <div class="cost-card cost-card--total"><i class="fa-solid fa-calculator"></i><h3 data-i18n="uni_cost_total">Итого за год</h3><div class="cost-card__amount">~30 000 – 65 000 ¥</div><div class="cost-card__usd">≈ $4 200 – $9 100/год</div><p data-i18n="uestc_cost_total_desc">QS #1 электроника в мире дешевле, чем большинство университетов Казахстана.</p></div>
   </div>
 </div></section>
 
 <section class="uni-scholarships section"><div class="container">
-  <div class="section__header"><span class="section__tag">Стипендии</span><h2 class="section__title">Высокие шансы на стипендию в UESTC</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_scholarships_tag">Стипендии</span><h2 class="section__title" data-i18n="uestc_scholarships_title">Высокие шансы на стипендию в UESTC</h2></div>
   <div class="scholarships-grid">
-    <div class="scholarship-card scholarship-card--main"><div class="scholarship-card__badge">Лучшие шансы</div><h3>CSC Scholarship</h3><p>UESTC менее конкурентный вуз по программе CSC — шансы получить стипендию выше, чем в Tsinghua или PKU при аналогичном профиле.</p><ul><li>✓ Полное покрытие обучения</li><li>✓ Бесплатное общежитие</li><li>✓ 2 500 ¥/мес</li><li>✓ Страховка</li></ul><div class="scholarship-card__deadline">Дедлайн: 31 марта</div></div>
-    <div class="scholarship-card"><h3>UESTC Scholarship</h3><p>Университетская стипендия. Более доступная, чем в элитных вузах Пекина.</p><ul><li>✓ До 100% стоимости обучения</li><li>✓ GPA 72+ достаточно</li></ul><div class="scholarship-card__deadline">Дедлайн: апрель</div></div>
-    <div class="scholarship-card"><h3>Sichuan Gov. Scholarship</h3><p>Провинция Сычуань активно привлекает иностранных студентов — одна из самых щедрых региональных программ.</p><ul><li>✓ 8 000 – 20 000 ¥/год</li><li>✓ Для студентов из СНГ</li></ul><div class="scholarship-card__deadline">Дедлайн: май</div></div>
+    <div class="scholarship-card scholarship-card--main"><div class="scholarship-card__badge" data-i18n="uni_schol_main">Главная</div><h3>CSC Scholarship</h3><p data-i18n="uestc_schol1_desc">UESTC менее конкурентный вуз по программе CSC — шансы получить стипендию выше, чем в Tsinghua или PKU при аналогичном профиле.</p><ul><li data-i18n="uestc_schol1_li1">✓ Полное покрытие обучения</li><li data-i18n="uestc_schol1_li2">✓ Бесплатное общежитие</li><li data-i18n="uestc_schol1_li3">✓ 2 500 ¥/мес</li><li data-i18n="uestc_schol1_li4">✓ Страховка</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="uestc_schol1_date">31 марта</span></div></div>
+    <div class="scholarship-card"><h3>UESTC Scholarship</h3><p data-i18n="uestc_schol2_desc">Университетская стипендия. Более доступная, чем в элитных вузах Пекина.</p><ul><li data-i18n="uestc_schol2_li1">✓ До 100% стоимости обучения</li><li data-i18n="uestc_schol2_li2">✓ GPA 72+ достаточно</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="uestc_schol2_date">апрель</span></div></div>
+    <div class="scholarship-card"><h3>Sichuan Gov. Scholarship</h3><p data-i18n="uestc_schol3_desc">Провинция Сычуань активно привлекает иностранных студентов — одна из самых щедрых региональных программ.</p><ul><li data-i18n="uestc_schol3_li1">✓ 8 000 – 20 000 ¥/год</li><li data-i18n="uestc_schol3_li2">✓ Для студентов из СНГ</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="uestc_schol3_date">май</span></div></div>
   </div>
 </div></section>
 
 <section class="uni-cta section section--red"><div class="container"><div class="uni-cta__inner">
-  <div><h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px">Хотите поступить в UESTC?</h2><p style="color:rgba(255,255,255,0.85);font-size:1.05rem">Мировой лидер в электронике + самые доступные цены + высокие шансы на стипендию.</p></div>
-  <a href="../#contact" class="btn btn--white btn--lg">Записаться на консультацию →</a>
+  <div><h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px" data-i18n="uestc_cta_title">Хотите поступить в UESTC?</h2><p style="color:rgba(255,255,255,0.85);font-size:1.05rem" data-i18n="uestc_cta_desc">Мировой лидер в электронике + самые доступные цены + высокие шансы на стипендию.</p></div>
+  <a href="../#contact" class="btn btn--white btn--lg" data-i18n="uni_cta_btn">Записаться на консультацию →</a>
 </div></div></section>
 
-<footer class="footer"><div class="container"><div class="footer__bottom" style="border:none;padding-top:32px"><p>© 2026 NIHAO STUDY.</p><a href="../" style="color:rgba(255,255,255,0.6)">← На главную</a></div></div></footer>
+<footer class="footer"><div class="container"><div class="footer__bottom" style="border:none;padding-top:32px"><p data-i18n="uni_footer_copy">© 2026 NIHAO STUDY. Все права защищены.</p><a href="../" style="color:rgba(255,255,255,0.6)" data-i18n="uni_footer_back">← Вернуться на главную</a></div></div></footer>
 <a href="https://wa.me/77075181605" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 <script src="../js/main.js"></script>
+<script src="../js/uni-i18n.js"></script>
 </body></html>

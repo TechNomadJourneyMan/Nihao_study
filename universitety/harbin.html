@@ -13,9 +13,14 @@
 <body>
 <header class="header scrolled"><div class="container header__inner">
   <a href="../" class="logo"><img src="../logo.svg" alt="NIHAO STUDY логотип" class="logo__img" /></a>
-  <nav class="nav" id="nav"><a href="../#services" class="nav__link">Услуги</a><a href="../#universities" class="nav__link">Вузы</a><a href="../#contact" class="nav__link">Контакты</a></nav>
-  <a href="../#contact" class="btn btn--primary btn--sm header__cta">Записаться</a>
+  <nav class="nav" id="nav"><a href="../#services" class="nav__link" data-i18n="nav_services">Услуги</a><a href="../#universities" class="nav__link" data-i18n="nav_unis">Вузы</a><a href="../#contact" class="nav__link" data-i18n="nav_faq">FAQ</a></nav>
+  <a href="../#contact" class="btn btn--primary btn--sm header__cta" data-i18n="nav_cta">Записаться</a>
   <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  <div class="lang-switcher">
+    <button class="lang-btn lang-btn--active" data-lang="ru" onclick="setUniLang('ru')">РУ</button>
+    <button class="lang-btn" data-lang="kz" onclick="setUniLang('kz')">ҚАЗ</button>
+    <button class="lang-btn" data-lang="en" onclick="setUniLang('en')">EN</button>
+  </div>
 </div></header>
 
 <section class="uni-hero">
@@ -26,33 +31,33 @@
     <div class="uni-hero__overlay"></div>
   </div>
   <div class="container uni-hero__content">
-    <div class="uni-hero__breadcrumb"><a href="../">Главная</a> / <a href="../#universities">Университеты</a> / HIT</div>
-    <div class="uni-hero__badge">C9 League · Лучший инженерный вуз с доступными ценами</div>
+    <div class="uni-hero__breadcrumb"><a href="../" data-i18n="uni_home">Главная</a> / <a href="../#universities" data-i18n="uni_unis_link">Университеты</a> / HIT</div>
+    <div class="uni-hero__badge" data-i18n="harbin_hero_badge">C9 League · Лучший инженерный вуз с доступными ценами</div>
     <h1 class="uni-hero__title">Harbin Institute of Technology</h1>
     <div class="uni-hero__zh">哈尔滨工业大学</div>
-    <p class="uni-hero__sub">Харбин, Китай · Основан в 1920 году · Аэрокосмос, робототехника, инженерия</p>
+    <p class="uni-hero__sub" data-i18n="harbin_hero_sub">Харбин, Китай · Основан в 1920 году · Аэрокосмос, робототехника, инженерия</p>
     <div class="uni-hero__actions">
-      <a href="../#contact" class="btn btn--primary btn--lg">Хочу поступить в HIT</a>
-      <a href="#admission" class="btn btn--outline-white btn--lg">Требования →</a>
+      <a href="../#contact" class="btn btn--primary btn--lg" data-i18n="harbin_hero_btn1">Хочу поступить в HIT</a>
+      <a href="#admission" class="btn btn--outline-white btn--lg" data-i18n="uni_hero_btn2">Требования →</a>
     </div>
   </div>
 </section>
 
 <section class="uni-stats"><div class="container"><div class="uni-stats__grid">
   <div class="uni-stat"><i class="fa-solid fa-ranking-star"></i><span class="uni-stat__num">C9</span><span class="uni-stat__label">Лига (= Ivy League)</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-users"></i><span class="uni-stat__num">35 000+</span><span class="uni-stat__label">студентов</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-users"></i><span class="uni-stat__num">35 000+</span><span class="uni-stat__label" data-i18n="uni_stat_students">студентов</span></div>
   <div class="uni-stat"><i class="fa-solid fa-rocket"></i><span class="uni-stat__num">#1</span><span class="uni-stat__label">аэрокосмос в Китае</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-graduation-cap"></i><span class="uni-stat__num">1 500+</span><span class="uni-stat__label">иностранных студентов</span></div>
-  <div class="uni-stat"><i class="fa-solid fa-calendar"></i><span class="uni-stat__num">1920</span><span class="uni-stat__label">год основания</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-graduation-cap"></i><span class="uni-stat__num">1 500+</span><span class="uni-stat__label" data-i18n="uni_stat_intl">иностранных студентов</span></div>
+  <div class="uni-stat"><i class="fa-solid fa-calendar"></i><span class="uni-stat__num">1920</span><span class="uni-stat__label" data-i18n="uni_stat_founded">год основания</span></div>
 </div></div></section>
 
 <section class="uni-about section"><div class="container"><div class="uni-about__inner">
   <div class="uni-about__text">
-    <span class="section__tag">Об университете</span>
-    <h2 class="section__title">Лучший инженерный вуз Китая с советскими корнями</h2>
-    <p>Харбинский политехнический институт (哈尔滨工业大学, HIT) — член элитной C9 League (китайский аналог Лиги Плюща). Основан в 1920 году, изначально по советской модели технического образования, что объясняет его особую силу в инженерных дисциплинах.</p>
-    <p>HIT занимает первое место в Китае в области аэрокосмических исследований — университет разработал несколько китайских космических спутников и роботов для лунных миссий. Лаборатории HIT сотрудничают с Китайским национальным космическим агентством (CNSA).</p>
-    <p><strong>Главный плюс для наших студентов:</strong> академический уровень Tsinghua, но цены в 2–3 раза ниже. Харбин — доступный и спокойный город, идеальный для концентрации на учёбе. Близость к российской границе создаёт комфортную среду для СНГ-студентов.</p>
+    <span class="section__tag" data-i18n="uni_about_tag">Об университете</span>
+    <h2 class="section__title" data-i18n="harbin_about_title">Лучший инженерный вуз Китая с советскими корнями</h2>
+    <p data-i18n="harbin_about_p1">Харбинский политехнический институт (哈尔滨工业大学, HIT) — член элитной C9 League (китайский аналог Лиги Плюща). Основан в 1920 году, изначально по советской модели технического образования, что объясняет его особую силу в инженерных дисциплинах.</p>
+    <p data-i18n="harbin_about_p2">HIT занимает первое место в Китае в области аэрокосмических исследований — университет разработал несколько китайских космических спутников и роботов для лунных миссий. Лаборатории HIT сотрудничают с Китайским национальным космическим агентством (CNSA).</p>
+    <p data-i18n="harbin_about_p3"><strong>Главный плюс для наших студентов:</strong> академический уровень Tsinghua, но цены в 2–3 раза ниже. Харбин — доступный и спокойный город, идеальный для концентрации на учёбе. Близость к российской границе создаёт комфортную среду для СНГ-студентов.</p>
     <div class="uni-about__tags">
       <span><i class="fa-solid fa-rocket"></i> Аэрокосмос</span>
       <span><i class="fa-solid fa-robot"></i> Робототехника</span>
@@ -64,57 +69,58 @@
   <div class="uni-about__img">
     <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80"
          alt="Инженерная лаборатория HIT" />
-    <div class="uni-about__img-caption">HIT разработал спутники для китайских космических миссий</div>
+    <div class="uni-about__img-caption" data-i18n="harbin_about_caption">HIT разработал спутники для китайских космических миссий</div>
   </div>
 </div></div></section>
 
 <section class="uni-programs section section--gray"><div class="container">
-  <div class="section__header"><span class="section__tag">Программы</span><h2 class="section__title">Программы для иностранных студентов</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_programs_tag">Программы</span><h2 class="section__title" data-i18n="uni_programs_title">Программы для иностранных студентов</h2></div>
   <div class="programs-grid">
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Mechanical Engineering</h3><p>Бакалавриат 4 года. Сильнейшая программа HIT. Стажировки в авиастроении</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 75+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Robotics & Automation</h3><p>Бак/Маг. Уникальная программа с доступом к исследовательским лабораториям</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>Математика/физика</span></div></div>
-    <div class="program-card program-card--cn"><div class="program-card__lang">На китайском</div><h3>Aerospace Engineering (航天工程)</h3><p>Бакалавриат 4 года. Программа #1 в Китае. Секретные проекты CNSA</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 80+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Civil & Environmental Engineering</h3><p>Бакалавриат 4 года. Строительство, инфраструктура, экология</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 70+</span></div></div>
-    <div class="program-card program-card--cn"><div class="program-card__lang">На китайском</div><h3>Computer Science</h3><p>Бакалавриат 4 года. Конкурентная программа с сильной математической базой</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 78+</span></div></div>
-    <div class="program-card program-card--en"><div class="program-card__lang">На английском</div><h3>Materials Science</h3><p>Магистратура 2 года. HIT — мировой лидер в новых материалах</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>Бак. по теме</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Mechanical Engineering</h3><p data-i18n="harbin_prog1_desc">Бакалавриат 4 года. Сильнейшая программа HIT. Стажировки в авиастроении</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 75+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Robotics & Automation</h3><p data-i18n="harbin_prog2_desc">Бак/Маг. Уникальная программа с доступом к исследовательским лабораториям</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>Математика/физика</span></div></div>
+    <div class="program-card program-card--cn"><div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div><h3 data-i18n="harbin_prog3_title">Aerospace Engineering (航天工程)</h3><p data-i18n="harbin_prog3_desc">Бакалавриат 4 года. Программа #1 в Китае. Секретные проекты CNSA</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 80+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Civil & Environmental Engineering</h3><p data-i18n="harbin_prog4_desc">Бакалавриат 4 года. Строительство, инфраструктура, экология</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>GPA 70+</span></div></div>
+    <div class="program-card program-card--cn"><div class="program-card__lang" data-i18n="uni_prog_cn">На китайском</div><h3>Computer Science</h3><p data-i18n="harbin_prog5_desc">Бакалавриат 4 года. Конкурентная программа с сильной математической базой</p><div class="program-card__meta"><span>HSK 4+</span><span>GPA 78+</span></div></div>
+    <div class="program-card program-card--en"><div class="program-card__lang" data-i18n="uni_prog_en">На английском</div><h3>Materials Science</h3><p data-i18n="harbin_prog6_desc">Магистратура 2 года. HIT — мировой лидер в новых материалах</p><div class="program-card__meta"><span>IELTS 6.0+</span><span>Бак. по теме</span></div></div>
   </div>
 </div></section>
 
 <section class="uni-admission section" id="admission"><div class="container">
-  <div class="section__header"><span class="section__tag">Поступление</span><h2 class="section__title">Требования — гибче, чем в топ-3 Китая</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_admission_tag">Поступление</span><h2 class="section__title" data-i18n="harbin_admission_title">Требования — гибче, чем в топ-3 Китая</h2></div>
   <div class="admission-grid">
-    <div class="admission-block"><h3><i class="fa-solid fa-language"></i> Язык</h3><ul><li>Английские программы: <strong>IELTS 6.0+</strong> (ниже, чем в Tsinghua/PKU)</li><li>Китайские программы: <strong>HSK 4+</strong></li><li>Без языка — языковой год в HIT</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-star"></i> Академические требования</h3><ul><li>GPA: <strong>от 70/100</strong> — самый доступный из C9</li><li>Мотивационное письмо</li><li>1–2 рекомендательных письма</li><li>Акцент на точных науках</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-calendar-check"></i> Сроки подачи</h3><ul><li>CSC: <strong>до 31 марта</strong></li><li>Self-funded: <strong>до 30 апреля</strong></li><li>Начало: сентябрь</li><li>Языковой год: сентябрь</li></ul></div>
-    <div class="admission-block"><h3><i class="fa-solid fa-file-lines"></i> Документы</h3><ul><li>Загранпаспорт</li><li>Диплом/аттестат с переводом</li><li>Транскрипт оценок</li><li>IELTS или HSK сертификат</li><li>Мотивационное письмо</li><li>Рекомендации (1–2)</li><li>Медицинская форма</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-language"></i> <span data-i18n="uni_adm_lang">Язык</span></h3><ul><li data-i18n="harbin_adm_lang1">Английские программы: <strong>IELTS 6.0+</strong> (ниже, чем в Tsinghua/PKU)</li><li data-i18n="harbin_adm_lang2">Китайские программы: <strong>HSK 4+</strong></li><li data-i18n="harbin_adm_lang3">Без языка — языковой год в HIT</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-star"></i> <span data-i18n="uni_adm_academic">Академические требования</span></h3><ul><li data-i18n="harbin_adm_acad1">GPA: <strong>от 70/100</strong> — самый доступный из C9</li><li data-i18n="harbin_adm_acad2">Мотивационное письмо</li><li data-i18n="harbin_adm_acad3">1–2 рекомендательных письма</li><li data-i18n="harbin_adm_acad4">Акцент на точных науках</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-calendar-check"></i> <span data-i18n="uni_adm_deadlines">Сроки подачи</span></h3><ul><li data-i18n="harbin_adm_dead1">CSC: <strong>до 31 марта</strong></li><li data-i18n="harbin_adm_dead2">Self-funded: <strong>до 30 апреля</strong></li><li data-i18n="harbin_adm_dead3">Начало: сентябрь</li><li data-i18n="harbin_adm_dead4">Языковой год: сентябрь</li></ul></div>
+    <div class="admission-block"><h3><i class="fa-solid fa-file-lines"></i> <span data-i18n="uni_adm_docs">Документы</span></h3><ul><li data-i18n="harbin_adm_doc1">Загранпаспорт</li><li data-i18n="harbin_adm_doc2">Диплом/аттестат с переводом</li><li data-i18n="harbin_adm_doc3">Транскрипт оценок</li><li data-i18n="harbin_adm_doc4">IELTS или HSK сертификат</li><li data-i18n="harbin_adm_doc5">Мотивационное письмо</li><li data-i18n="harbin_adm_doc6">Рекомендации (1–2)</li><li data-i18n="harbin_adm_doc7">Медицинская форма</li></ul></div>
   </div>
 </div></section>
 
 <section class="uni-costs section section--gray"><div class="container">
-  <div class="section__header"><span class="section__tag">Стоимость</span><h2 class="section__title">Самые доступные цены в C9 League</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_costs_tag">Стоимость</span><h2 class="section__title" data-i18n="harbin_costs_title">Самые доступные цены в C9 League</h2></div>
   <div class="costs-grid">
-    <div class="cost-card"><i class="fa-solid fa-book-open"></i><h3>Обучение</h3><div class="cost-card__amount">16 000 – 28 000 ¥/год</div><div class="cost-card__usd">≈ $2 200 – $3 900/год</div><p>В 2–3 раза дешевле Tsinghua и SJTU при сопоставимом академическом уровне C9.</p></div>
-    <div class="cost-card"><i class="fa-solid fa-house"></i><h3>Общежитие</h3><div class="cost-card__amount">4 000 – 10 000 ¥/год</div><div class="cost-card__usd">≈ $560 – $1 400/год</div><p>Харбин значительно дешевле Пекина и Шанхая. Хорошие условия проживания.</p></div>
-    <div class="cost-card"><i class="fa-solid fa-utensils"></i><h3>Питание и быт</h3><div class="cost-card__amount">1 200 – 2 500 ¥/мес</div><div class="cost-card__usd">≈ $170 – $350/мес</div><p>Харбин — один из самых доступных крупных городов Китая для иностранцев.</p></div>
-    <div class="cost-card cost-card--total"><i class="fa-solid fa-calculator"></i><h3>Итого за год</h3><div class="cost-card__amount">~30 000 – 55 000 ¥</div><div class="cost-card__usd">≈ $4 200 – $7 700/год</div><p>Самое выгодное соотношение цена/престиж среди всех вузов C9 League Китая.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-book-open"></i><h3 data-i18n="uni_cost_tuition">Обучение</h3><div class="cost-card__amount">16 000 – 28 000 ¥/год</div><div class="cost-card__usd">≈ $2 200 – $3 900/год</div><p data-i18n="harbin_cost_tuition_desc">В 2–3 раза дешевле Tsinghua и SJTU при сопоставимом академическом уровне C9.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-house"></i><h3 data-i18n="uni_cost_dorm">Общежитие</h3><div class="cost-card__amount">4 000 – 10 000 ¥/год</div><div class="cost-card__usd">≈ $560 – $1 400/год</div><p data-i18n="harbin_cost_dorm_desc">Харбин значительно дешевле Пекина и Шанхая. Хорошие условия проживания.</p></div>
+    <div class="cost-card"><i class="fa-solid fa-utensils"></i><h3 data-i18n="uni_cost_living">Питание и быт</h3><div class="cost-card__amount">1 200 – 2 500 ¥/мес</div><div class="cost-card__usd">≈ $170 – $350/мес</div><p data-i18n="harbin_cost_living_desc">Харбин — один из самых доступных крупных городов Китая для иностранцев.</p></div>
+    <div class="cost-card cost-card--total"><i class="fa-solid fa-calculator"></i><h3 data-i18n="uni_cost_total">Итого за год</h3><div class="cost-card__amount">~30 000 – 55 000 ¥</div><div class="cost-card__usd">≈ $4 200 – $7 700/год</div><p data-i18n="harbin_cost_total_desc">Самое выгодное соотношение цена/престиж среди всех вузов C9 League Китая.</p></div>
   </div>
 </div></section>
 
 <section class="uni-scholarships section"><div class="container">
-  <div class="section__header"><span class="section__tag">Стипендии</span><h2 class="section__title">Стипендии в HIT</h2></div>
+  <div class="section__header"><span class="section__tag" data-i18n="uni_scholarships_tag">Стипендии</span><h2 class="section__title" data-i18n="harbin_scholarships_title">Стипендии в HIT</h2></div>
   <div class="scholarships-grid">
-    <div class="scholarship-card scholarship-card--main"><div class="scholarship-card__badge">Главная</div><h3>CSC Scholarship</h3><p>HIT — менее конкурентный вуз по CSC по сравнению с Tsinghua/PKU, что повышает шансы на получение стипендии.</p><ul><li>✓ Полное покрытие обучения</li><li>✓ Бесплатное общежитие</li><li>✓ 2 500 ¥/мес</li><li>✓ Страховка</li></ul><div class="scholarship-card__deadline">Дедлайн: 31 марта</div></div>
-    <div class="scholarship-card"><h3>HIT President's Scholarship</h3><p>Университетская стипендия. Менее конкурентная, чем в Tsinghua — реальный шанс.</p><ul><li>✓ 50–100% обучения</li><li>✓ GPA 75+ достаточно</li></ul><div class="scholarship-card__deadline">Дедлайн: апрель</div></div>
-    <div class="scholarship-card"><h3>Хэйлунцзян Gov. Scholarship</h3><p>Провинциальная стипендия. Провинция Хэйлунцзян активно привлекает иностранных студентов.</p><ul><li>✓ 5 000 – 15 000 ¥/год</li><li>✓ Для студентов из СНГ</li></ul><div class="scholarship-card__deadline">Дедлайн: май</div></div>
+    <div class="scholarship-card scholarship-card--main"><div class="scholarship-card__badge" data-i18n="uni_schol_main">Главная</div><h3>CSC Scholarship</h3><p data-i18n="harbin_schol1_desc">HIT — менее конкурентный вуз по CSC по сравнению с Tsinghua/PKU, что повышает шансы на получение стипендии.</p><ul><li data-i18n="harbin_schol1_li1">✓ Полное покрытие обучения</li><li data-i18n="harbin_schol1_li2">✓ Бесплатное общежитие</li><li data-i18n="harbin_schol1_li3">✓ 2 500 ¥/мес</li><li data-i18n="harbin_schol1_li4">✓ Страховка</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="harbin_schol1_date">31 марта</span></div></div>
+    <div class="scholarship-card"><h3>HIT President's Scholarship</h3><p data-i18n="harbin_schol2_desc">Университетская стипендия. Менее конкурентная, чем в Tsinghua — реальный шанс.</p><ul><li data-i18n="harbin_schol2_li1">✓ 50–100% обучения</li><li data-i18n="harbin_schol2_li2">✓ GPA 75+ достаточно</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="harbin_schol2_date">апрель</span></div></div>
+    <div class="scholarship-card"><h3>Хэйлунцзян Gov. Scholarship</h3><p data-i18n="harbin_schol3_desc">Провинциальная стипендия. Провинция Хэйлунцзян активно привлекает иностранных студентов.</p><ul><li data-i18n="harbin_schol3_li1">✓ 5 000 – 15 000 ¥/год</li><li data-i18n="harbin_schol3_li2">✓ Для студентов из СНГ</li></ul><div class="scholarship-card__deadline"><span data-i18n="uni_schol_deadline">Дедлайн:</span> <span data-i18n="harbin_schol3_date">май</span></div></div>
   </div>
 </div></section>
 
 <section class="uni-cta section section--red"><div class="container"><div class="uni-cta__inner">
-  <div><h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px">Хотите поступить в HIT?</h2><p style="color:rgba(255,255,255,0.85);font-size:1.05rem">C9 League + доступная цена + близость к СНГ. Лучший выбор для инженеров и техников.</p></div>
-  <a href="../#contact" class="btn btn--white btn--lg">Записаться на консультацию →</a>
+  <div><h2 style="color:white;font-size:2rem;font-weight:800;margin-bottom:12px" data-i18n="harbin_cta_title">Хотите поступить в HIT?</h2><p style="color:rgba(255,255,255,0.85);font-size:1.05rem" data-i18n="harbin_cta_desc">C9 League + доступная цена + близость к СНГ. Лучший выбор для инженеров и техников.</p></div>
+  <a href="../#contact" class="btn btn--white btn--lg" data-i18n="uni_cta_btn">Записаться на консультацию →</a>
 </div></div></section>
 
-<footer class="footer"><div class="container"><div class="footer__bottom" style="border:none;padding-top:32px"><p>© 2026 NIHAO STUDY.</p><a href="../" style="color:rgba(255,255,255,0.6)">← На главную</a></div></div></footer>
+<footer class="footer"><div class="container"><div class="footer__bottom" style="border:none;padding-top:32px"><p data-i18n="uni_footer_copy">© 2026 NIHAO STUDY. Все права защищены.</p><a href="../" style="color:rgba(255,255,255,0.6)" data-i18n="uni_footer_back">← Вернуться на главную</a></div></div></footer>
 <a href="https://wa.me/77075181605" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 <script src="../js/main.js"></script>
+<script src="../js/uni-i18n.js"></script>
 </body></html>
