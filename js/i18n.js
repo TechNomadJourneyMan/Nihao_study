@@ -263,9 +263,9 @@ const SITE_TRANSLATIONS = {
 
     form_status_s1: 'Школьник (10–11 класс)', form_status_s2: 'Студент вуза',
     form_status_s3: 'Родитель абитуриента', form_status_s4: 'Уже с дипломом',
-    form_pkg_lite: 'Пакет Лайт — 100 000 ₸', form_pkg_full: 'Полное сопровождение — 550 000 ₸',
-    form_pkg_fast: 'Быстрый старт — 200 000 ₸', form_pkg_hsk: 'Подготовка к HSK — 120 000 ₸',
-    form_pkg_csca: 'Подготовка к CSCA — 120 000 ₸', form_pkg_none: 'Ещё не решил(а)',
+    form_pkg_lite: 'Пакет Лайт', form_pkg_full: 'Полное сопровождение',
+    form_pkg_fast: 'Быстрый старт', form_pkg_hsk: 'Подготовка к HSK',
+    form_pkg_csca: 'Подготовка к CSCA', form_pkg_none: 'Ещё не решил(а)',
   },
 
   kz: {
@@ -532,9 +532,9 @@ const SITE_TRANSLATIONS = {
 
     form_status_s1: 'Оқушы (10–11 сынып)', form_status_s2: 'Жоғары оқу орны студенті',
     form_status_s3: 'Абитуриент ата-анасы', form_status_s4: 'Дипломы бар',
-    form_pkg_lite: 'Лайт пакеті — 100 000 ₸', form_pkg_full: 'Толық сүйемелдеу — 550 000 ₸',
-    form_pkg_fast: 'Жылдам бастау — 200 000 ₸', form_pkg_hsk: 'HSK дайындығы — 120 000 ₸',
-    form_pkg_csca: 'CSCA дайындығы — 120 000 ₸', form_pkg_none: 'Әлі шешпедім',
+    form_pkg_lite: 'Лайт пакеті', form_pkg_full: 'Толық сүйемелдеу',
+    form_pkg_fast: 'Жылдам бастау', form_pkg_hsk: 'HSK дайындығы',
+    form_pkg_csca: 'CSCA дайындығы', form_pkg_none: 'Әлі шешпедім',
   },
 
   en: {
@@ -801,9 +801,9 @@ const SITE_TRANSLATIONS = {
 
     form_status_s1: 'High school student (grades 10–11)', form_status_s2: 'University student',
     form_status_s3: 'Parent of applicant', form_status_s4: 'Already have a degree',
-    form_pkg_lite: 'Lite Package — 100,000 ₸', form_pkg_full: 'Full Accompaniment — 550,000 ₸',
-    form_pkg_fast: 'Quick Start — 200,000 ₸', form_pkg_hsk: 'HSK Preparation — 120,000 ₸',
-    form_pkg_csca: 'CSCA Preparation — 120,000 ₸', form_pkg_none: "Haven't decided yet",
+    form_pkg_lite: 'Lite Package', form_pkg_full: 'Full Accompaniment',
+    form_pkg_fast: 'Quick Start', form_pkg_hsk: 'HSK Preparation',
+    form_pkg_csca: 'CSCA Preparation', form_pkg_none: "Haven't decided yet",
   }
 };
 
