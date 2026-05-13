@@ -77,13 +77,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- Contact form ---------- */
+  /* ---------- Contact form → Google Sheets ---------- */
+  const SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxws_uMQCLJNb_KLyYhxGM-joJ-AVLuEYUi0_kBz1rQiYhisxsqjBSrjtmUorTXLIbfDw/exec';
+
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+    contactForm.addEventListener('submit', async e => {
       e.preventDefault();
+      const btn = contactForm.querySelector('[type=submit]');
+      btn.disabled = true;
+
+      const payload = {
+        name:      (document.getElementById('form-name')    || {}).value || '',
+        phone:     (document.getElementById('form-phone')   || {}).value || '',
+        status:    (document.getElementById('form-status')  || {}).value || '',
+        package:   (document.getElementById('contact-package') || {}).value || '',
+        source:    'nihao-study-website',
+        timestamp: new Date().toISOString(),
+      };
+
+      if (SHEETS_WEBHOOK && SHEETS_WEBHOOK !== 'REPLACE_WITH_YOUR_APPS_SCRIPT_URL') {
+        try {
+          const url = new URL(SHEETS_WEBHOOK);
+          Object.entries(payload).forEach(([k, v]) => url.searchParams.append(k, v));
+          await fetch(url.toString(), { method: 'GET', mode: 'no-cors' });
+        } catch (err) {
+          console.warn('Sheets webhook error:', err);
+        }
+      }
+
       showSuccessModal();
       contactForm.reset();
+      btn.disabled = false;
     });
   }
 

@@ -658,6 +658,14 @@ img{display:block;max-width:100%}
 .calc-pkg-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}
 .calc-pkg-name{font-weight:700;font-size:.9rem;color:var(--navy)}
 .calc-pkg-price{font-weight:800;font-size:1rem;color:var(--red)}
+
+/* ── Permanent price blur: только цены пакетов Nihao Study ── */
+.calc-pkg-price,
+#sum-nihao {
+  filter: blur(6px);
+  user-select: none;
+  -webkit-user-select: none;
+}
 .calc-pkg-includes{display:flex;flex-direction:column;gap:.2rem}
 .calc-pkg-inc{font-size:.75rem;color:var(--gray-600);display:flex;align-items:center;gap:.35rem}
 .calc-pkg-inc i{color:var(--success);font-size:.65rem;flex-shrink:0}

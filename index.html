@@ -329,6 +329,17 @@
 .price-unlocked .price-lock-hint{display:none}
 .service-card{cursor:default;transition:transform .25s ease,box-shadow .25s ease}
 
+/* ── Permanent price blur: только цены пакетов Nihao Study ── */
+.tc-price,
+.sr-pkg-price,
+.tariff-modal__price,
+#tm-price,
+#csb-pkg {
+  filter: blur(6px);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 @media(max-width:1100px){
   .tc-grid{grid-template-columns:repeat(2,1fr)}
   .needs-grid{grid-template-columns:repeat(2,1fr)}
@@ -1345,15 +1356,15 @@
         <form class="contact__form" id="contact-form">
           <div class="form__group">
             <label data-i18n="form_name">Ваше имя *</label>
-            <input type="text" placeholder="Имя" data-i18n-ph="form_name_ph" required />
+            <input id="form-name" type="text" placeholder="Имя" data-i18n-ph="form_name_ph" required />
           </div>
           <div class="form__group">
             <label data-i18n="form_phone">Телефон / WhatsApp *</label>
-            <input type="tel" placeholder="+7 (___) ___ __ __" required />
+            <input id="form-phone" type="tel" placeholder="+7 (___) ___ __ __" required />
           </div>
           <div class="form__group">
             <label data-i18n="form_status">Текущий статус</label>
-            <select>
+            <select id="form-status">
               <option value="" data-i18n="form_status_ph">Выберите...</option>
               <option data-i18n="form_status_s1">Школьник (10–11 класс)</option>
               <option data-i18n="form_status_s2">Студент вуза</option>
@@ -1365,11 +1376,11 @@
             <label data-i18n="form_package">Интересующий пакет</label>
             <select id="contact-package">
               <option value="" data-i18n="form_package_ph">Выберите...</option>
-              <option value="lite" data-i18n="form_pkg_lite">Пакет Лайт — 100 000 ₸</option>
-              <option value="full" data-i18n="form_pkg_full">Полное сопровождение — 550 000 ₸</option>
-              <option value="fast" data-i18n="form_pkg_fast">Быстрый старт — 200 000 ₸</option>
-              <option value="hsk" data-i18n="form_pkg_hsk">Подготовка к HSK — 120 000 ₸</option>
-              <option value="csca" data-i18n="form_pkg_csca">Подготовка к CSCA — 120 000 ₸</option>
+              <option value="lite" data-i18n="form_pkg_lite">Пакет Лайт</option>
+              <option value="full" data-i18n="form_pkg_full">Полное сопровождение</option>
+              <option value="fast" data-i18n="form_pkg_fast">Быстрый старт</option>
+              <option value="hsk" data-i18n="form_pkg_hsk">Подготовка к HSK</option>
+              <option value="csca" data-i18n="form_pkg_csca">Подготовка к CSCA</option>
               <option value="none" data-i18n="form_pkg_none">Ещё не решил(а)</option>
             </select>
           </div>
